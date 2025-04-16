@@ -1,0 +1,383 @@
+= Gen-C Spring 1
+:toc: right
+:toclevels: 5
+:sectnums:
+
+
+==  Code
+
+* GenC-SpringFramework-1
+** IoC
+
+== Spring Framework Core Concepts
+
+* *Introduction to Spring Framework*
+
+* *Objective:* Understand key concepts of Spring Framework, including IoC, Dependency Injection, and Bean Management.
+
+##############################################
+
+=== Terminologies
+
+* [ ] Beans
+* [ ] Autowiring
+* [ ] Dependency Injection
+* [ ] Inversion of Control
+* [ ] IOC Container
+* [ ] Application Context
+
+---
+
+##############################################
+
+=== ✔️ Inversion of Control (IoC)?
+
+* *Definition:*
+* IoC is a design principle where the control of object creation and dependency management is handed over to a container (Spring Framework).
+* Helps in reducing tight coupling and improving testability.
+
+* *Example:*
+
+```java
+public class Car {
+
+private Engine engine;
+
+      public Car(Engine engine) {
+          // Dependency injected via constructor
+          this.engine = engine;
+      }
+  }
+```
+
+---
+
+##############################################
+
+
+==== ✔️ Loose Coupling with Different Sorting Algorithms
+
+Loose coupling means that classes or modules are *independent* and can be modified or replaced *without affecting* other parts of the system.
+
+---
+
+*Scenario: Sorting Strategies with Loose Coupling*
+
+We create an *interface* that defines a sorting behavior. Different sorting algorithms will implement this interface.
+
+*Step 1: Define the Interface*
+
+```java
+public interface SortAlgorithm {
+    void sort(int[] numbers);
+}
+```
+This interface defines a method `sort()`, which different sorting algorithms will implement.
+
+---
+
+*Step 2: Implement Different Sorting Algorithms*
+
+*Bubble Sort Implementation*
+
+```java
+@Component
+public class BubbleSort implements SortAlgorithm {
+    @Override
+    public void sort(int[] numbers) {
+    }
+}
+```
+
+*Quick Sort Implementation*
+
+```java
+@Component
+public class QuickSort implements SortAlgorithm {
+    @Override
+    public void sort(int[] numbers) {
+
+    }
+}
+```
+
+---
+
+*Step 3: Create a Service That Uses the Sorting Algorithm*
+
+```java
+@Component
+public class SortService {
+    private final SortAlgorithm sortAlgorithm;
+
+    @Autowired
+    public SortService(SortAlgorithm sortAlgorithm) {
+        this.sortAlgorithm = sortAlgorithm;
+    }
+
+    public void performSorting(int[] numbers) {
+        sortAlgorithm.sort(numbers);
+    }
+}
+```
+
+* The `SortService` *depends on* `SortAlgorithm` but does not know which sorting algorithm it is using.
+* Spring *injects* the required sorting algorithm at runtime, ensuring *loose coupling*.
+
+---
+
+*Step 4: Configure Sorting Algorithm in Spring*
+
+```java
+@Configuration
+public class AppConfig {
+    @Bean
+    public SortAlgorithm sortAlgorithm() {
+        return new BubbleSort(); // Can be changed to QuickSort easily
+    }
+}
+```
+
+* If we change `BubbleSort` to `QuickSort`, the system will work *without modifying `SortService`*.
+
+---
+
+*Key Benefits of Loose Coupling*
+
+* *Easier to extend*: We can add new sorting algorithms without modifying `SortService`.
+* *Improved flexibility*: We can switch sorting strategies at runtime.
+* *Better maintainability*: The classes are independent and reusable.
+
+This is how *loose coupling* makes systems *more scalable and maintainable*! 🚀
+
+---
+
+##############################################
+
+==== ✔️ Scenario: Hiring a Personal Chef vs. Cooking Yourself
+
+Imagine you love eating delicious home-cooked food but don't have time to cook. You have two choices:
+
+*Without IoC (Traditional Approach)*
+
+* You go grocery shopping.
+* You buy ingredients.
+* You cook the meal yourself.
+* You serve it and clean up after.
+
+*Problem:* You control every step, making it time-consuming and tightly coupled to your effort.
+
+*With IoC (Using a Chef - Inversion of Control)*
+
+* You *hire a personal chef* and tell them what kind of food you want.
+* The chef *takes care of* buying ingredients, cooking, and serving.
+* You simply enjoy the meal.
+
+*IoC Concept:* Instead of *you controlling the process*, the *chef takes control* of cooking.
+
+---
+
+##############################################
+
+*How This Relates to Spring Framework?*
+
+* In a traditional Java application, we *create and manage objects ourselves* (like cooking on our own).
+* With IoC, *Spring takes over object creation and management*, just like a chef handling the cooking.
+* We just *request what we need* (like ordering a dish), and Spring *provides the required object* (like a cooked meal).
+
+
+---
+
+##############################################
+
+=== ✔️ Dependency Injection
+
+* Dependency Injection (DI) is a technique where one object supplies dependencies of another object.
+
+* Types of DI:
+** Constructor Injection
+** Setter Injection
+** Field Injection
+
+##############################################
+
+```java
+//Constructor Injection
+@Component
+public class Car {
+private Engine engine;
+
+      @Autowired
+      public Car(Engine engine) {
+          this.engine = engine;
+      }
+  }
+```
+
+---
+
+##############################################
+
+
+```java
+//Setter Injection
+@Component
+public class Car {
+    private Engine engine;
+    @Autowired
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+}
+```
+
+---
+
+##############################################
+
+```java
+//Field Injection
+@Component
+public class Car {
+    @Autowired
+    private Engine engine;
+}
+```
+
+---
+
+##############################################
+
+*Component Scanning*
+
+* *Definition:*
+* Spring automatically detects and registers beans using `@ComponentScan`.
+* Requires annotating classes with `@Component`, `@Service`, or `@Repository`.
+
+* *Example:*
+
+```java
+@Configuration
+@ComponentScan(basePackages = "com.example")
+public class AppConfig {
+}
+```
+
+---
+
+##############################################
+
+*Qualifiers Overview*
+
+* *Definition:*
+* Used to specify which bean to inject when multiple beans of the same type exist.
+
+* *Example:*
+```java
+@Component("dieselEngine")
+public class DieselEngine implements Engine {}
+
+@Component("petrolEngine")
+public class PetrolEngine implements Engine {}
+
+@Component
+public class Car {
+  private Engine engine;
+
+  @Autowired
+  public Car(@Qualifier("dieselEngine") Engine engine) {
+      this.engine = engine;
+  }
+}
+```
+
+---
+
+##############################################
+
+*Lazy Initialization Overview*
+
+* *Definition:*
+* By default, Spring initializes beans eagerly.
+* `@Lazy` delays bean creation until the first request.
+
+* *Example:*
+```java
+@Component
+@Lazy
+public class HeavyComponent {
+    public HeavyComponent() {
+        System.out.println("HeavyComponent initialized");
+    }
+}
+```
+
+---
+
+=== ✔️ Bean Scopes
+
+* *Definition:*
+* Spring provides different bean scopes:
+* `singleton` (default)
+* `prototype`
+* `request`, `session`, `application` (Web only)
+
+* *Example:*
+
+```java
+@Component
+@Scope("prototype")
+public class PrototypeBean {
+}
+```
+
+---
+
+=== ✔️ Bean Lifecycle Methods
+
+* *Definition:*
+* Spring provides lifecycle callbacks using `@PostConstruct` and `@PreDestroy`.
+
+* *Example:*
+```java
+@Component
+public class LifecycleBean {
+@PostConstruct
+public void init() {
+System.out.println("Bean initialized");
+}
+
+      @PreDestroy
+      public void destroy() {
+          System.out.println("Bean destroyed");
+      }
+  }
+```
+
+---
+
+=== ✔️ Java Config Bean Overview
+
+* *Definition:*
+* Instead of XML, Java-based configuration defines beans using `@Configuration` and `@Bean`.
+
+* *Example:*
+```java
+@Configuration
+public class AppConfig {
+@Bean
+public Engine engine() {
+return new Engine();
+}
+}
+```
+
+---
+
+=== javax.inject
+
+
+
+
+
+

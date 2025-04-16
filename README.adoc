@@ -1,0 +1,100 @@
+= GenC-KnowledgeHub
+:toc: left
+:toclevels: 2
+
+This project demonstrates the use of Mockito for unit testing in Java. It includes examples of mocking, stubbing, spying, and verifying method calls.
+
+== Prerequisites
+
+- Java 17 or higher
+- Maven 3.6 or higher
+
+== Project Structure
+
+[source]
+----
+pom.xml
+src/
+  main/
+    java/
+      com/
+        example/
+  test/
+    java/
+      com/
+        example/
+target/
+  classes/
+    com/
+      example/
+  test-classes/
+    com/
+      example/
+----
+
+== Dependencies
+
+The project uses the following dependencies:
+
+- JUnit 5 (JUnit Jupiter) for writing and running tests.
+- Mockito for mocking and verifying interactions.
+
+These dependencies are defined in the `pom.xml` file:
+
+[source,xml]
+----
+<dependencies>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>5.8.2</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>4.0.0</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+----
+
+== Test Cases
+
+The project contains the following test cases:
+
+- `BasicMockingTest`: Demonstrates basic mocking and verifying interactions.
+- `StubVoidMethodTest`: Shows how to stub void methods.
+- `MockExceptionTest`: Demonstrates throwing exceptions from mocked methods.
+- `SpyTest`: Illustrates the use of spies to partially mock objects.
+- `VerifyMethodCallsTest`: Verifies the number of method calls on a mock.
+
+Each test case is located in the `src/test/java/com/example/` directory.
+
+== Running Tests
+
+To run the tests, use the following Maven command:
+
+[source,shell]
+----
+mvn test
+----
+
+== Example Usage
+
+Here is an example of a basic test case from `BasicMockingTest`:
+
+[source,java]
+----
+@Test
+void testBasicMocking() {
+    MyService mockService = mock(MyService.class);
+    when(mockService.getData()).thenReturn("Mocked Data");
+    System.out.println(mockService.getData()); // Output: Mocked Data
+    verify(mockService).getData();
+}
+----
+
+== License
+
+This project is licensed under the MIT License.

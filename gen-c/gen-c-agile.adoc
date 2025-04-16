@@ -1,0 +1,113 @@
+= Gen-C Entry Point
+:toc: right
+:toclevels:5
+:sectnums:
+
+
+== Agile Simulation Assignment: Build a Simple Product Using Scrum
+
+== Objective
+To simulate a real Agile environment using the Scrum framework and demonstrate understanding of Agile principles, roles, ceremonies, and artifacts.
+
+== Project Theme (Choose One)
+Ask each team to pick one simple product idea. Some examples:
+
+* A To-do List Web App
+* A Simple Weather App
+* A Book Catalog System
+* A Recipe Manager
+* A College Event Planner
+
+(Or let them come up with their own idea, subject to approval)
+
+== Team Structure
+Each team should have:
+
+* 1 Product Owner
+* 1 Scrum Master
+* 2-4 Developers
+
+Encourage rotation in roles across different teams if time allows.
+
+== Assignment Phases
+
+=== 1. Product Vision and Backlog Creation
+*Deliverables:* Product Vision Statement, Initial Product Backlog
+
+* Define the product goal.
+* Write at least 10-15 user stories with acceptance criteria.
+* Prioritize the product backlog.
+
+=== 2. Sprint Planning
+*Deliverables:* Sprint Goal, Sprint Backlog
+
+* Conduct a Sprint Planning meeting.
+* Select user stories for Sprint 1 (small scope — 1-week sprint recommended).
+* Break stories into tasks.
+* Estimate story points using Planning Poker.
+
+=== 3. Sprint Execution
+*Deliverables:* Daily Scrum notes/log (simulated)
+
+* Simulate daily standups (they can document this on a shared sheet).
+* Team works on implementing features (actual coding is optional or minimal).
+* Create at least 1 “Increment” or mock-up.
+
+=== 4. Sprint Review & Retrospective
+*Deliverables:* Sprint Review presentation + Sprint Retrospective notes
+
+* Showcase completed work (even if it's paper-based or design).
+* Capture feedback.
+* Reflect on what went well and what can be improved.
+
+== Agile Artifacts to Submit
+Each team should submit:
+
+. Product Vision
+. Product Backlog
+. Sprint Backlog for Sprint 1
+. Burndown chart (simulated)
+. Daily Scrum notes (brief entries)
+. Sprint Review summary
+. Sprint Retrospective summary
+
+== Evaluation Criteria
+
+[cols="2,1", options="header"]
+|===
+|Criteria                            |Marks
+|Quality of User Stories             |10
+|Use of Agile Roles and Ceremonies   |10
+|Estimation & Planning               |10
+|Agile Artifacts                     |10
+|Reflection & Team Collaboration     |10
+|*Total*                             |*50*
+|===
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+

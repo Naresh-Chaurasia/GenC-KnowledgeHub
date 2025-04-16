@@ -1,0 +1,54 @@
+= Gen-C Concepts
+:toc: right
+:toclevels:5
+:sectnums:
+
+
+== JAR File in Java
+
+*What is a JAR File?*
+
+* JAR stands for *Java ARchive*.
+* It is a file format that bundles multiple Java class files, metadata, and resources (like images, text files) into a single file.
+* Used to distribute Java applications and libraries.
+
+*Why Use JAR Files?*
+
+* Combines all your `.class` files and resources into one file.
+* Makes deployment and sharing of Java programs easier.
+* Reduces clutter and improves organization.
+
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
