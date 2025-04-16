@@ -3,8 +3,16 @@
 :toclevels:5
 :sectnums:
 
+== CheckList
 
-== Agile Simulation Assignment: Build a Simple Product Using Scrum
+* [x] Notes in Github
+* [x] PPT in one drive
+* [x] PPT on Laptop
+* [x] PPT to PDF
+
+== Agile Simulation Assignment
+
+*Build a Simple Product Using Scrum*
 
 == Objective
 To simulate a real Agile environment using the Scrum framework and demonstrate understanding of Agile principles, roles, ceremonies, and artifacts.
