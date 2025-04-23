@@ -36,26 +36,49 @@
 * IoC is a design principle where the control of object creation and dependency management is handed over to a container (Spring Framework).
 * Helps in reducing tight coupling and improving testability.
 
-* *Example:*
-
-```java
-public class Car {
-
-private Engine engine;
-
-      public Car(Engine engine) {
-          // Dependency injected via constructor
-          this.engine = engine;
-      }
-  }
-```
-
 ---
 
 ##############################################
 
+==== ✔️ Demo
 
-==== ✔️ Loose Coupling with Different Sorting Algorithms
+* example/demo
+
+
+```java
+@Configuration
+public class AppConfig {
+    @Bean
+    public MessageService messageService() {
+        return new MessageServiceImpl();
+    }
+}
+```
+
+##############################################
+
+==== ✔️ Autowiring
+
+* autowiring
+
+```java
+@Configuration
+@ComponentScan(basePackages = "com.autowiring")
+public class AppConfig {
+}
+```
+
+##############################################
+
+==== ✔️ AutowiringXML
+
+##############################################
+
+==== ✔️ Loose Coupling: Sorting
+
+* RECAP: GenC-SpringCore1/sorting
+
+---
 
 Loose coupling means that classes or modules are *independent* and can be modified or replaced *without affecting* other parts of the system.
 
@@ -154,7 +177,7 @@ This is how *loose coupling* makes systems *more scalable and maintainable*! �
 
 ##############################################
 
-==== ✔️ Scenario: Hiring a Personal Chef vs. Cooking Yourself
+==== ✔️ Scenario: Chef
 
 Imagine you love eating delicious home-cooked food but don't have time to cook. You have two choices:
 
