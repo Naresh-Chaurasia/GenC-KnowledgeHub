@@ -611,6 +611,8 @@ mvn clean install
 [source,bash]
 ----
 mvn dependency:tree
+
+mvn dependency:resolve
 ----
 
 *9. mvn help:effective-pom*
