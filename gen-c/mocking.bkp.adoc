@@ -26,7 +26,7 @@ Add the following Maven dependencies in your `pom.xml`:
 </dependency>
 ----
 
-== Basic Mock Example
+== 1. *Basic Mock Example*
 
 [source,java]
 ----
@@ -48,7 +48,7 @@ public class BasicMockTest {
 }
 ----
 
-== Verify Method Calls
+== 2. *Verify Method Calls*
 
 [source,java]
 ----
@@ -67,7 +67,38 @@ public class VerifyMethodCallTest {
 }
 ----
 
-== Mocking Service Layer Dependency
+== 3. *Using @Mock Annotation with @BeforeEach*
+
+[source,java]
+----
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import java.util.List;
+
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class AnnotationMockTest {
+
+    @Mock
+    List<String> mockedList;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    void testWithAnnotation() {
+        when(mockedList.get(0)).thenReturn("Mockito Rocks");
+        assertEquals("Mockito Rocks", mockedList.get(0));
+    }
+}
+----
+
+== 4. *Mocking Service Layer Dependency*
 
 [source,java]
 ----
@@ -102,7 +133,7 @@ public class MockServiceTest {
 }
 ----
 
-== Mocking Exceptions
+== 5. *Mocking Exceptions*
 
 [source,java]
 ----
@@ -130,7 +161,106 @@ public class ExceptionMockTest {
 }
 ----
 
-== Verifying Number of Invocations
+== 6. *Using Argument Matchers*
+
+[source,java]
+----
+public class ArgumentMatcherTest {
+
+    @Test
+    void testWithAnyInt() {
+        List<String> mockedList = mock(List.class);
+        when(mockedList.get(anyInt())).thenReturn("Any Index");
+
+        assertEquals("Any Index", mockedList.get(0));
+        assertEquals("Any Index", mockedList.get(999));
+    }
+}
+----
+
+== 7. *Stubbing Void Methods with doNothing()*
+
+[source,java]
+----
+public class VoidMethodTest {
+
+    @Test
+    void testVoidStub() {
+        List<String> mockedList = mock(List.class);
+        doNothing().when(mockedList).clear();
+
+        mockedList.clear();
+        verify(mockedList).clear();
+    }
+}
+----
+
+== 8. *Spy Real Object*
+
+[source,java]
+----
+import java.util.ArrayList;
+
+public class SpyTest {
+
+    @Test
+    void testSpyList() {
+        List<String> realList = new ArrayList<>();
+        List<String> spyList = spy(realList);
+
+        spyList.add("A");
+        spyList.add("B");
+
+        assertEquals(2, spyList.size());
+
+        when(spyList.size()).thenReturn(100);
+        assertEquals(100, spyList.size());
+    }
+}
+----
+
+== 9. *@InjectMocks with @Mock*
+
+[source,java]
+----
+import org.mockito.InjectMocks;
+
+class CalculatorService {
+    public int add(int a, int b) {
+        return a + b;
+    }
+}
+
+class MathApp {
+    CalculatorService service;
+
+    public int calculate(int x, int y) {
+        return service.add(x, y);
+    }
+}
+
+public class InjectMocksTest {
+
+    @Mock
+    CalculatorService service;
+
+    @InjectMocks
+    MathApp mathApp;
+
+    @BeforeEach
+    void init() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    void testInjectMocks() {
+        when(service.add(3, 7)).thenReturn(20);
+        assertEquals(20, mathApp.calculate(3, 7));
+    }
+}
+----
+
+== 10. *Verifying Number of Invocations*
 
 [source,java]
 ----
@@ -150,7 +280,28 @@ public class VerifyTimesTest {
 }
 ----
 
-== Resetting a Mock
+== 11. *Capturing Arguments*
+
+[source,java]
+----
+import org.mockito.ArgumentCaptor;
+
+public class ArgumentCaptureTest {
+
+    @Test
+    void testCapture() {
+        List<String> mockedList = mock(List.class);
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+
+        mockedList.add("Captured");
+
+        verify(mockedList).add(captor.capture());
+        assertEquals("Captured", captor.getValue());
+    }
+}
+----
+
+== 12. *Resetting a Mock*
 
 [source,java]
 ----
@@ -169,6 +320,43 @@ public class ResetMockTest {
 }
 ----
 
+== 13. *BDD Style Mockito*
+
+[source,java]
+----
+import static org.mockito.BDDMockito.*;
+
+public class BDDMockitoTest {
+
+    @Test
+    void testBDD() {
+        List<String> mockedList = mock(List.class);
+
+        given(mockedList.get(0)).willReturn("BDD Style");
+
+        assertEquals("BDD Style", mockedList.get(0));
+        then(mockedList).should().get(0);
+    }
+}
+----
+
+== 14. *Chaining Returns*
+
+[source,java]
+----
+public class ChainedReturnTest {
+
+    @Test
+    void testThenReturnSequence() {
+        List<String> mockedList = mock(List.class);
+
+        when(mockedList.get(0)).thenReturn("First").thenReturn("Second");
+
+        assertEquals("First", mockedList.get(0));
+        assertEquals("Second", mockedList.get(0));
+    }
+}
+----
 
 
 ##############################################

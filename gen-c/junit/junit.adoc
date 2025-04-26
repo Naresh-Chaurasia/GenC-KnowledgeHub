@@ -1,0 +1,251 @@
+= JUnit
+:toc: right
+:toclevels: 5
+:sectnums: 5
+
+== Introduction to JUnit
+
+* JUnit is a unit testing framework for Java.
+* It helps test individual units of code (like methods or classes).
+* JUnit 4 uses annotations to define and control tests.
+* Widely used in test-driven development (TDD).
+
+== JUnit 4 Setup
+
+* Add the following dependency for Maven:
+
+[source, xml]
+----
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+    <scope>test</scope>
+</dependency>
+----
+
+* Or download the `junit-4.13.2.jar` and `hamcrest-core-1.3.jar` manually and add them to your classpath.
+
+== JUnit 4 Annotations
+
+* `@Test` - Marks a method as a test method.
+* `@Before` - Runs before each test method.
+* `@After` - Runs after each test method.
+* `@BeforeClass` - Runs once before any test method in the class.
+* `@AfterClass` - Runs once after all test methods.
+* `@Ignore` - Skips the test method.
+* `@Test(expected = Exception.class)` - Expects an exception.
+* `@Test(timeout = 1000)` - Fails if test takes more than 1 second (1000 ms).
+
+== Basic Test Example
+
+[source, java]
+----
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class CalculatorTest {
+
+    @Test
+    public void testAddition() {
+        assertEquals(5, 2 + 3);
+    }
+
+    @Test
+    public void testSubtraction() {
+        assertTrue(5 - 2 == 3);
+    }
+}
+----
+
+== Assertions
+
+* `assertEquals(expected, actual)`
+* `assertTrue(condition)`
+* `assertFalse(condition)`
+* `assertNull(object)`
+* `assertNotNull(object)`
+* `assertSame(expected, actual)`
+* `assertNotSame(expected, actual)`
+* `fail("message")` – forces a failure
+
+== Lifecycle Annotations Example
+
+[source, java]
+----
+import org.junit.*;
+
+public class SampleTest {
+
+    @BeforeClass
+    public static void setupClass() {
+        System.out.println("Before Class - runs once");
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+        System.out.println("After Class - runs once");
+    }
+
+    @Before
+    public void setup() {
+        System.out.println("Before - runs before each test");
+    }
+
+    @After
+    public void cleanup() {
+        System.out.println("After - runs after each test");
+    }
+
+    @Test
+    public void testOne() {
+        System.out.println("Test One");
+    }
+
+    @Test
+    public void testTwo() {
+        System.out.println("Test Two");
+    }
+}
+----
+
+== Testing Exceptions
+
+[source, java]
+----
+@Test(expected = ArithmeticException.class)
+public void testDivideByZero() {
+    int result = 10 / 0;
+}
+----
+
+== Timeout Example
+
+[source, java]
+----
+@Test(timeout = 1000)
+public void testTimeout() throws InterruptedException {
+    Thread.sleep(500);
+}
+----
+
+== Ignore a Test
+
+[source, java]
+----
+@Ignore("This test is ignored for now")
+@Test
+public void testIgnored() {
+    assertEquals(1, 2);
+}
+----
+
+== Parameterized Tests
+
+[source, java]
+----
+import java.util.Arrays;
+import java.util.Collection;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import static org.junit.Assert.*;
+
+@RunWith(Parameterized.class)
+public class ParameterizedTest {
+
+    private int input;
+    private int expected;
+
+    public ParameterizedTest(int input, int expected) {
+        this.input = input;
+        this.expected = expected;
+    }
+
+    @Parameterized.Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][] {
+            {1, 2}, {2, 4}, {3, 6}
+        });
+    }
+
+    @Test
+    public void testDouble() {
+        assertEquals(expected, input * 2);
+    }
+}
+----
+
+== Best Practices
+
+* Name your test methods clearly (`testCalculateInterest_shouldReturnCorrectValue`).
+* Keep tests independent.
+* Use `@Before` and `@After` to avoid code duplication.
+* Test both positive and negative cases.
+* Run tests frequently.
+
+== Tools That Use JUnit
+
+* IDEs: Eclipse, IntelliJ IDEA (have built-in JUnit support)
+* Build tools: Maven, Gradle
+* CI tools: Jenkins, GitHub Actions, GitLab CI/CD
+
+Absolutely! Here's the explanation of *Test Suites* in **JUnit 4** in **AsciiDoc format**:
+
+---
+
+== Test Suites in JUnit 4
+
+* A *test suite* is a collection of test classes that are run together.
+* Useful when you want to group related test classes for integration or regression testing.
+* Test suites are executed using `@RunWith(Suite.class)` and `@Suite.SuiteClasses({...})`.
+
+=== Why Use Test Suites?
+
+* To run multiple test classes together.
+* To organize tests logically.
+* To perform full module or system-level testing.
+
+=== Syntax and Example
+
+[source, java]
+----
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+    CalculatorTest.class,
+    UserServiceTest.class,
+    OrderServiceTest.class
+})
+public class AllTests {
+    // No code needed here
+}
+----
+
+* In this example, `AllTests` is the suite that will run:
+* `CalculatorTest`
+* `UserServiceTest`
+* `OrderServiceTest`
+
+=== How to Run the Test Suite
+
+* Run `AllTests` like a regular test class from your IDE or build tool.
+* JUnit will automatically discover and run all test methods from the specified classes.
+
+=== Points to Remember
+
+* Test suite class must be *public* and have a *public no-arg constructor*.
+* You cannot include individual test methods—only test classes.
+
+=== Advantages
+
+* Simplifies batch testing.
+* Helps in grouping tests by feature or module.
+* Useful in continuous integration pipelines.
+
+---
+
+Would you like an example with sample test classes included in the suite?
