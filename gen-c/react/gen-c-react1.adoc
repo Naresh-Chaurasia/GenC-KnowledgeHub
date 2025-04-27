@@ -1,0 +1,33 @@
+= React -1
+:toc: right
+:toclevels:5
+:sectnums:
+
+
+* React is a library for building modern single page applications (*SPAs*).
+* In traditional applications, each user action causes a full HTML page reload.
+* In SPAs, only partial page updates are made based on user actions, without full reloads.
+* SPAs communicate with back-end servers using REST APIs to send and retrieve data.
+
+---
+
+* Examples of SPAs:
+** Google Maps and Yahoo Maps – update maps dynamically.
+** Gmail and Yahoo Mail – update the interface without full page reloads.
+* React helps build SPAs with partial updates and REST API communication.
+* A future project example: a full stack app with React (frontend) and Spring Boot (backend).
+
+---
+
+* Companies using React include:
+** Dropbox
+** WhatsApp
+** Facebook (React was originally developed at Facebook)
+* For more examples, you can visit: `madewithreact.com`
+
+---
+
+* DIY(Do It Yourself) Approach:
+** Using vanilla JavaScript, jQuery, and Ajax could work for small apps.
+** For enterprise apps, managing features like data binding becomes hard.
+** Libraries like React, Angular, and Vue handle the heavy lifting, making development easier and scalable.
