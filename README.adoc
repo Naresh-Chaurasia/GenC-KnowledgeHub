@@ -3,5 +3,11 @@
 :toclevels: 2
 
 
-* link:gen-c/spring/gen-c-spring-1.adoc[SpringFramework]
+* link:gen-c/agile/gen-c-agile.adoc[Agile]
+* link:gen-c/junit/junit.adoc[JUnit]
+* link:gen-c/junit/code-quality.adoc[Code Quality]
+* link:gen-c/junit/tdd.adoc[TDD]
 * link:gen-c/maven/gen-c-maven.adoc[Maven]
+* link:gen-c/mocking/mocking.adoc[Mocking]
+* link:gen-c/slf4j/slf4j.adoc[SLF4J]
+* link:gen-c/spring/gen-c-spring-1.adoc[Spring]

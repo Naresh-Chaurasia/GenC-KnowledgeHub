@@ -1,4 +1,4 @@
-= Gen-C Entry Point
+= Gen-C Agile
 :toc: right
 :toclevels:5
 :sectnums:
