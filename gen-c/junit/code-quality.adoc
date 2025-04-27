@@ -1,0 +1,266 @@
+= Java Code Quality Standards
+:toc: right
+:toclevels: 5
+:sectnums: 5
+
+== Introduction
+
+* *Code Quality* means writing clean, readable, efficient, and maintainable code.
+* Good quality code reduces bugs, improves collaboration, and makes applications easier to extend.
+* Code quality is *not optional* in professional Java development.
+
+== Key Code Quality Principles
+
+* *Readability*: Code should be easy to read and understand.
+* *Maintainability*: Code should be easy to update and fix.
+* *Simplicity*: Solve problems with the simplest possible solution.
+* *Consistency*: Use consistent naming, formatting, and structure.
+* *Performance*: Write efficient code but not at the cost of readability unless necessary.
+* *Testability*: Code should be easy to test (prefer small, modular methods).
+
+== Naming Conventions
+
+=== Wrong Code
+
+[source, java]
+----
+public class employeeDetails {
+    public void CalculateSalary() { }
+    private int EMPLOYEEage;
+}
+----
+
+=== Corrected Code
+
+[source, java]
+----
+public class EmployeeDetails {
+    public void calculateSalary() { }
+    private int employeeAge;
+}
+----
+
+== Code Structure and Organization
+
+=== Wrong Code
+
+[source, java]
+----
+public class EmployeeService {
+    // Handles login
+    // Calculates salary
+    // Processes leaves
+}
+----
+
+=== Corrected Code
+
+[source, java]
+----
+public class LoginService { }
+public class SalaryService { }
+public class LeaveService { }
+----
+
+*One class = one responsibility.*
+
+== Commenting and Documentation
+
+=== Wrong Code
+
+[source, java]
+----
+// This method adds two numbers
+public int add(int a, int b) {
+    return a + b;
+}
+----
+
+=== Corrected Code
+
+[source, java]
+----
+/**
+ * Adds two integers.
+ *
+ * @param a first number
+ * @param b second number
+ * @return sum of a and b
+ */
+public int add(int a, int b) {
+    return a + b;
+}
+----
+
+*Prefer Javadoc for method descriptions.*
+
+== Code Formatting
+
+=== Wrong Code
+
+[source, java]
+----
+if(condition)
+{
+System.out.println("Hello");
+}
+else
+{
+System.out.println("Bye");
+}
+----
+
+=== Corrected Code
+
+[source, java]
+----
+if (condition) {
+    System.out.println("Hello");
+} else {
+    System.out.println("Bye");
+}
+----
+
+*Follow consistent brace placement and indentation.*
+
+== Error Handling
+
+=== Wrong Code
+
+[source, java]
+----
+try {
+    FileReader reader = new FileReader("file.txt");
+} catch (Exception e) {
+    // Ignored
+}
+----
+
+=== Corrected Code
+
+[source, java]
+----
+try (FileReader reader = new FileReader("file.txt")) {
+    // process file
+} catch (IOException e) {
+    System.err.println("File could not be read: " + e.getMessage());
+}
+----
+
+*Catch specific exceptions and clean resources properly.*
+
+== Best Practices
+
+=== Wrong Code
+
+[source, java]
+----
+public class Service {
+    Database db = new Database(); // Tight coupling
+}
+----
+
+=== Corrected Code
+
+[source, java]
+----
+public class Service {
+    private Database db;
+
+    public Service(Database db) {
+        this.db = db;
+    }
+}
+----
+
+*Use dependency injection for better flexibility and testability.*
+
+== Avoid Magic Numbers
+
+=== Wrong Code
+
+[source, java]
+----
+public double calculateBonus(double salary) {
+    return salary * 0.2;
+}
+----
+
+=== Corrected Code
+
+[source, java]
+----
+private static final double BONUS_PERCENTAGE = 0.2;
+
+public double calculateBonus(double salary) {
+    return salary * BONUS_PERCENTAGE;
+}
+----
+
+*Use named constants instead of hardcoded values.*
+
+== Code Review Standards
+
+* Ensure every code change is reviewed by peers.
+* Look for:
+** Logic correctness
+** Security vulnerabilities
+** Performance bottlenecks
+** Readability and simplicity
+* Keep a *constructive* tone during code reviews.
+
+== Tools for Ensuring Code Quality
+
+* *Checkstyle*: Enforces coding standards.
+* *PMD*: Detects bad coding practices.
+* *FindBugs* or *SpotBugs*: Finds potential bugs.
+* *SonarQube*: Comprehensive static code analysis.
+* *Jacoco*: Measures test coverage.
+
+== Code Smells to Avoid
+
+* Large classes (God Object)
+* Long methods (more than 20–30 lines)
+* Duplicate code
+* Excessive parameters in methods
+* Overuse of static methods
+* Tight coupling between classes
+
+=== Example of Code Smell: Long Method
+
+[source, java]
+----
+// BAD: Too much in one method
+public void processEmployee() {
+    validateEmployee();
+    saveEmployee();
+    sendEmail();
+    logActivity();
+}
+----
+
+=== Refactored Code
+
+[source, java]
+----
+public void processEmployee() {
+    validateEmployee();
+    saveEmployee();
+    notifyEmployee();
+    auditActivity();
+}
+
+private void notifyEmployee() {
+    sendEmail();
+}
+
+private void auditActivity() {
+    logActivity();
+}
+----
+
+== Final Tips
+
+* Always think about the next developer who will read your code.
+* Aim for clarity first, optimization second.
+* Consistently refactor code to improve quality over time.

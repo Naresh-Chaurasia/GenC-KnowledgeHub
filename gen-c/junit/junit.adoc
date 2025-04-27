@@ -1,48 +1,39 @@
-= JUnit
+= JUnit 5
 :toc: right
 :toclevels: 5
 :sectnums: 5
 
-== Introduction to JUnit
+== JUnit 5 Setup
 
-* JUnit is a unit testing framework for Java.
-* It helps test individual units of code (like methods or classes).
-* JUnit 4 uses annotations to define and control tests.
-* Widely used in test-driven development (TDD).
-
-== JUnit 4 Setup
-
-* Add the following dependency for Maven:
+* Add the following dependencies for Maven:
 
 [source, xml]
 ----
 <dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.13.2</version>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter</artifactId>
+    <version>5.10.0</version>
     <scope>test</scope>
 </dependency>
 ----
 
-* Or download the `junit-4.13.2.jar` and `hamcrest-core-1.3.jar` manually and add them to your classpath.
+* Or download the JARs manually (`junit-jupiter-api`, `junit-jupiter-engine`) and add them to your classpath.
 
-== JUnit 4 Annotations
+== JUnit 5 Annotations
 
 * `@Test` - Marks a method as a test method.
-* `@Before` - Runs before each test method.
-* `@After` - Runs after each test method.
-* `@BeforeClass` - Runs once before any test method in the class.
-* `@AfterClass` - Runs once after all test methods.
-* `@Ignore` - Skips the test method.
-* `@Test(expected = Exception.class)` - Expects an exception.
-* `@Test(timeout = 1000)` - Fails if test takes more than 1 second (1000 ms).
+* `@BeforeEach` - Runs before each test method.
+* `@AfterEach` - Runs after each test method.
+* `@BeforeAll` - Runs once before all test methods.
+* `@AfterAll` - Runs once after all test methods.
+* `@Disabled` - Skips the test method or class.
 
 == Basic Test Example
 
 [source, java]
 ----
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorTest {
 
@@ -67,43 +58,44 @@ public class CalculatorTest {
 * `assertNotNull(object)`
 * `assertSame(expected, actual)`
 * `assertNotSame(expected, actual)`
+* `assertThrows(expectedException, executable)`
 * `fail("message")` – forces a failure
 
 == Lifecycle Annotations Example
 
 [source, java]
 ----
-import org.junit.*;
+import org.junit.jupiter.api.*;
 
 public class SampleTest {
 
-    @BeforeClass
-    public static void setupClass() {
-        System.out.println("Before Class - runs once");
+    @BeforeAll
+    static void setupAll() {
+        System.out.println("Before All - runs once");
     }
 
-    @AfterClass
-    public static void tearDownClass() {
-        System.out.println("After Class - runs once");
+    @AfterAll
+    static void tearDownAll() {
+        System.out.println("After All - runs once");
     }
 
-    @Before
-    public void setup() {
-        System.out.println("Before - runs before each test");
+    @BeforeEach
+    void setup() {
+        System.out.println("Before Each - runs before each test");
     }
 
-    @After
-    public void cleanup() {
-        System.out.println("After - runs after each test");
+    @AfterEach
+    void cleanup() {
+        System.out.println("After Each - runs after each test");
     }
 
     @Test
-    public void testOne() {
+    void testOne() {
         System.out.println("Test One");
     }
 
     @Test
-    public void testTwo() {
+    void testTwo() {
         System.out.println("Test Two");
     }
 }
@@ -113,9 +105,13 @@ public class SampleTest {
 
 [source, java]
 ----
-@Test(expected = ArithmeticException.class)
-public void testDivideByZero() {
-    int result = 10 / 0;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+@Test
+void testDivideByZero() {
+    assertThrows(ArithmeticException.class, () -> {
+        int result = 10 / 0;
+    });
 }
 ----
 
@@ -123,9 +119,15 @@ public void testDivideByZero() {
 
 [source, java]
 ----
-@Test(timeout = 1000)
-public void testTimeout() throws InterruptedException {
-    Thread.sleep(500);
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
+import java.time.Duration;
+
+@Test
+void testTimeout() {
+    assertTimeout(Duration.ofSeconds(1), () -> {
+        Thread.sleep(500);
+    });
 }
 ----
 
@@ -133,89 +135,45 @@ public void testTimeout() throws InterruptedException {
 
 [source, java]
 ----
-@Ignore("This test is ignored for now")
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+@Disabled("This test is disabled for now")
 @Test
-public void testIgnored() {
+void testIgnored() {
     assertEquals(1, 2);
 }
 ----
 
-== Parameterized Tests
-
-[source, java]
-----
-import java.util.Arrays;
-import java.util.Collection;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import static org.junit.Assert.*;
-
-@RunWith(Parameterized.class)
-public class ParameterizedTest {
-
-    private int input;
-    private int expected;
-
-    public ParameterizedTest(int input, int expected) {
-        this.input = input;
-        this.expected = expected;
-    }
-
-    @Parameterized.Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
-            {1, 2}, {2, 4}, {3, 6}
-        });
-    }
-
-    @Test
-    public void testDouble() {
-        assertEquals(expected, input * 2);
-    }
-}
-----
 
 == Best Practices
 
-* Name your test methods clearly (`testCalculateInterest_shouldReturnCorrectValue`).
+* Name your test methods clearly (`calculateInterest_shouldReturnCorrectValue`).
 * Keep tests independent.
-* Use `@Before` and `@After` to avoid code duplication.
+* Use `@BeforeEach` and `@AfterEach` to avoid code duplication.
 * Test both positive and negative cases.
-* Run tests frequently.
+* Run tests frequently and automate with CI/CD pipelines.
 
-== Tools That Use JUnit
+== Tools That Use JUnit 5
 
-* IDEs: Eclipse, IntelliJ IDEA (have built-in JUnit support)
-* Build tools: Maven, Gradle
+* IDEs: Eclipse, IntelliJ IDEA, Visual Studio Code (with plugins)
+* Build tools: Maven, Gradle (have built-in JUnit 5 support)
 * CI tools: Jenkins, GitHub Actions, GitLab CI/CD
 
-Absolutely! Here's the explanation of *Test Suites* in **JUnit 4** in **AsciiDoc format**:
+== Test Suites in JUnit 5
 
----
-
-== Test Suites in JUnit 4
-
-* A *test suite* is a collection of test classes that are run together.
-* Useful when you want to group related test classes for integration or regression testing.
-* Test suites are executed using `@RunWith(Suite.class)` and `@Suite.SuiteClasses({...})`.
-
-=== Why Use Test Suites?
-
-* To run multiple test classes together.
-* To organize tests logically.
-* To perform full module or system-level testing.
+* In JUnit 5, test suites are built using `@Suite` annotations from the `junit-platform-suite` package.
+* You can group multiple test classes to run them together.
 
 === Syntax and Example
 
 [source, java]
 ----
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.junit.platform.suite.api.SelectClasses;
+import org.junit.platform.suite.api.Suite;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
+@Suite
+@SelectClasses({
     CalculatorTest.class,
     UserServiceTest.class,
     OrderServiceTest.class
@@ -225,27 +183,23 @@ public class AllTests {
 }
 ----
 
-* In this example, `AllTests` is the suite that will run:
-* `CalculatorTest`
-* `UserServiceTest`
-* `OrderServiceTest`
+* `AllTests` is the test suite that runs:
+** `CalculatorTest`
+** `UserServiceTest`
+** `OrderServiceTest`
 
 === How to Run the Test Suite
 
-* Run `AllTests` like a regular test class from your IDE or build tool.
-* JUnit will automatically discover and run all test methods from the specified classes.
+* Run `AllTests` like a regular test class.
+* JUnit Platform automatically executes all specified tests.
 
 === Points to Remember
 
-* Test suite class must be *public* and have a *public no-arg constructor*.
-* You cannot include individual test methods—only test classes.
+* You must have `junit-platform-suite` dependency for suites.
+* Only classes, not methods, are selected.
 
 === Advantages
 
 * Simplifies batch testing.
-* Helps in grouping tests by feature or module.
-* Useful in continuous integration pipelines.
-
----
-
-Would you like an example with sample test classes included in the suite?
+* Organizes tests by feature, module, or layer.
+* Useful for continuous integration pipelines.
