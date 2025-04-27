@@ -1,0 +1,77 @@
+= TDD
+
+In TDD (Test-Driven Development), we start by *writing tests first*, even before the actual code is developed.
+These initial tests are expected to *fail* because the functionality does not exist yet.
+
+The provided example shows exactly this situation.
+
+---
+
+[source, java]
+----
+public class CalculatorTestFailing {
+
+    @Test
+    public void testAdd() {
+        throw new RuntimeException("testAdd is failing intentionally");
+    }
+
+    @Test
+    public void testSubtract() {
+        throw new RuntimeException("testSubtract is failing intentionally");
+    }
+
+    @Test
+    public void testMultiply() {
+        throw new RuntimeException("testMultiply is failing intentionally");
+    }
+}
+----
+
+---
+
+*Explanation*:
+
+* This class *CalculatorTestFailing* contains three test methods:
+** `testAdd()`
+** `testSubtract()`
+** `testMultiply()`
+* Each method throws a *RuntimeException* intentionally.
+* The message clearly states that the test is *failing intentionally*.
+
+---
+
+*Concept behind this example*:
+
+* In TDD, when you receive a *requirement* like:
+** "Calculator should be able to add, subtract, and multiply two numbers."
+* Instead of implementing anything immediately, you write *failing test cases* that represent these requirements.
+* These failing tests act as *reminders* and *contracts* that the corresponding features need to be developed.
+* Once you implement the actual functionality (add, subtract, multiply methods), you will replace the `throw new RuntimeException(...)` with proper test logic and make the tests *pass*.
+
+---
+
+*Benefits of starting with failing tests*:
+
+* Forces you to think clearly about what the system must do.
+* Ensures that you do not miss any requirement.
+* Gives you a checklist of work left to complete.
+* Builds a strong safety net — you know when development is complete once all tests pass.
+
+---
+
+*Typical TDD cycle around this example*:
+
+. **Write failing test cases** that match requirements (as done here).
+. **Run tests** and see that they *fail*.
+. **Implement code** for addition, subtraction, multiplication.
+. **Update tests** to properly check the behavior (instead of throwing exceptions).
+. **Run tests again** — now they should *pass*.
+. **Refactor code** for clarity or optimization.
+
+---
+
+*Summary*:
+
+In the beginning of TDD, it is *normal* and *expected* that all test cases fail.
+The goal is to gradually move from *failing tests* to *passing tests* as development progresses.
