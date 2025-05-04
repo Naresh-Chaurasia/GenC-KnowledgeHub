@@ -1,0 +1,105 @@
+Here's an example of content in AsciiDoc format for setting up SonarQube, ideal for documentation, teaching, or team onboarding.
+
+---
+
+## \[source,asciidoc]
+
+\= Setting up SonarQube
+Author: Your Name
+\:toc:
+\:toclevels: 2
+
+\== Introduction
+
+SonarQube is an open-source platform for continuous inspection of code quality. It performs automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities.
+
+\== Prerequisites
+
+* Java 17 or higher (OpenJDK or Oracle)
+* At least 2 GB RAM
+* PostgreSQL (or other supported DB for production)
+* SonarQube ZIP distribution
+* Optional: Docker (for containerized setup)
+
+\== Option 1: Setting up SonarQube using ZIP distribution
+
+\=== Step 1: Download SonarQube
+
+* Go to [https://www.sonarsource.com/products/sonarqube/downloads/](https://www.sonarsource.com/products/sonarqube/downloads/)
+* Download the Community edition (or other editions based on your need)
+* Extract the ZIP file
+
+## \[source,bash]
+
+unzip sonarqube-<version>.zip
+cd sonarqube-<version>
+----------------------
+
+\=== Step 2: Set Environment Variables
+
+Set `JAVA_HOME` and optionally add SonarQube `bin` to `PATH`.
+
+## \[source,bash]
+
+export JAVA\_HOME=/path/to/java17
+export PATH=\$PATH:/path/to/sonarqube/bin
+-----------------------------------------
+
+\=== Step 3: Start SonarQube
+
+Navigate to the `bin/<OS>` folder and run the appropriate script:
+
+## \[source,bash]
+
+cd bin/linux-x86-64
+./sonar.sh start
+----------------
+
+\=== Step 4: Access the Dashboard
+
+Open your browser and go to:
+
+## \[source,text]
+
+## [http://localhost:9000](http://localhost:9000)
+
+Default credentials:
+
+* Username: `admin`
+* Password: `admin` (you’ll be prompted to change it)
+
+\== Option 2: Running SonarQube using Docker
+
+\=== Step 1: Pull the Docker Image
+
+## \[source,bash]
+
+## docker pull sonarqube
+
+\=== Step 2: Run the Container
+
+## \[source,bash]
+
+## docker run -d --name sonarqube -p 9000:9000 sonarqube
+
+\=== Step 3: Access SonarQube
+
+## \[source,text]
+
+## [http://localhost:9000](http://localhost:9000)
+
+\== Next Steps
+
+* Install a SonarQube Scanner for analyzing code
+* Integrate with your CI/CD pipeline
+* Configure quality gates and rules
+
+\== Troubleshooting Tips
+
+* Make sure no other process is using port 9000
+* Check logs in `logs/sonar.log`, `web.log`, and `es.log`
+* If using Docker, ensure enough memory is allocated
+
+---
+
+Would you like me to add a section for SonarScanner setup or integration with Maven/Gradle?

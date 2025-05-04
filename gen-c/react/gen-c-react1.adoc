@@ -3,6 +3,7 @@
 :toclevels:5
 :sectnums:
 
+== What is React
 
 * React is a library for building modern single page applications (*SPAs*).
 * In traditional applications, each user action causes a full HTML page reload.
@@ -31,3 +32,7 @@
 ** Using vanilla JavaScript, jQuery, and Ajax could work for small apps.
 ** For enterprise apps, managing features like data binding becomes hard.
 ** Libraries like React, Angular, and Vue handle the heavy lifting, making development easier and scalable.
+
+== React Overview
+
+
