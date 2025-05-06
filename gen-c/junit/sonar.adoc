@@ -341,3 +341,11 @@ Default credentials:
 
 Open your browser and visit: http://localhost:9000
 
+
+----
+mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=SonarQube \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=sqa_042aafd30e4fe28986c99f7d9b0be5277ecb8649
+----
+
