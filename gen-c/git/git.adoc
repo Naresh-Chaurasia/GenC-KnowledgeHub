@@ -7,39 +7,39 @@
 
 ---
 
-image::git1.png[]
+image::./img/git1.png[]
 
 ---
 
-image::git2.png[]
+image::./img/git2.png[]
 
 ---
 
-image::git3.png[]
+image::./img/git3.png[]
 
 ---
 
-image::git4.png[]
+image::./img/git4.png[]
 
 ---
 
-image::git5.png[]
+image::./img/git5.png[]
 
 ---
 
-image::git6.png[]
+image::./img/git6.png[]
 
 ---
 
-image::git7.png[]
+image::./img/git7.png[]
 
 ---
 
-image::git8.png[]
+image::./img/git8.png[]
 
 ---
 
-image::git9.png[]
+image::./img/git9.png[]
 
 
 == Comparison: Git vs. SVN
@@ -142,6 +142,7 @@ Git is a distributed version control system widely used for tracking changes in 
 *Installing Git*
 
 To install Git:
+
 * *Windows:* Download Git from https://git-scm.com/, run the installer, and follow the setup instructions.
 * *macOS:* Use the Terminal and run `brew install git` if Homebrew is installed.
 * *Linux:* Use your package manager, e.g., `sudo apt install git` on Ubuntu.
@@ -229,7 +230,7 @@ git status
 
 ---
 
-image::git-workflow.png[]
+image::./img/git-workflow.png[]
 
 ################################################################################
 
@@ -258,7 +259,7 @@ TIP: Make a repository in Github and add README.md file.
 
 ---
 
-image::branch-2.png[width=500]
+image::./img/branch-2.png[width=500]
 
 ---
 
@@ -277,6 +278,12 @@ git add .
 git commit -m "feature commit"
 
 git log
+
+# Merging feature to Main / Master
+
+git merge featureBranch
+
+
 ```
 
 
@@ -292,6 +299,12 @@ git show <hash>
 
 git show --name-only <hash>
 ```
+
+################
+
+=== Git Push and Pull
+
+* Master / Main
 
 ################
 
@@ -472,4 +485,56 @@ Hi username! You've successfully authenticated, but GitHub does not provide shel
 ```
 
 You’re now ready to use SSH with GitHub on Windows!
+
+---
+
+== git_home_mac.sh
+
+----
+clear
+
+git add .
+
+my_date=$(date)
+
+echo $my_date
+
+git commit -m "Macbook Pro, Checkin Timestamp::$my_date"
+
+git push origin master
+----
+
+== Creating Repository
+
+----
+echo "# Delete1" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:Naresh-Chaurasia/MyRepo.git
+git push -u origin main
+----
+
+
+*The need for creating the `main` branch*
+
+* Historically, Git used `master` as the default branch name.
+* To promote inclusive naming, GitHub and other platforms now use `main` as the default branch.
+* When you initialize a repo, Git still names the default branch `master` unless configured otherwise.
+* The command `git branch -M main` renames the default `master` branch to `main`.
+
+*What does `git branch -M main` do?*
+
+* `-M` stands for "move/rename" forcefully.
+* It renames the current branch (usually `master`) to `main`.
+* If a branch named `main` already exists, it will be overwritten.
+
+*Why rename before pushing?*
+
+* GitHub expects the default branch to be `main` when creating a new repository.
+* You must ensure your local branch matches the expected remote branch name.
+* So, `git branch -M main` ensures consistency with GitHub's default setup.
+* Then, `git push -u origin main` will successfully push your local `main` branch to GitHub.
+
 
