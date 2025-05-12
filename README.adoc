@@ -1,6 +1,7 @@
 = GenC-KnowledgeHub
-:toc: left
-:toclevels: 2
+:toc: right
+:toclevels: 5
+:sectnums: 5
 
 
 * link:gen-c/agile/gen-c-agile.adoc[Agile]
@@ -11,3 +12,5 @@
 * link:gen-c/mocking/mocking.adoc[Mocking]
 * link:gen-c/slf4j/slf4j.adoc[SLF4J]
 * link:gen-c/spring/gen-c-spring-1.adoc[Spring]
+* link:gen-c/spring/gen-c-springboot-1.adoc[Spring Boot]
+** https://github.com/Naresh-Chaurasia/GenC-SpringBoot-PatientApp[PatientApp]
