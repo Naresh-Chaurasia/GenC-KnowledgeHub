@@ -14,4 +14,4 @@
 * link:gen-c/spring/gen-c-spring-1.adoc[Spring]
 * link:gen-c/spring/gen-c-springboot-1.adoc[Spring Boot]
 ** https://github.com/Naresh-Chaurasia/GenC-SpringBoot-PatientApp[PatientApp]
-* link:gen-c/rest/rest.adoc[REST API]
+* link:gen-c/rest/gen-c-rest-1.adoc[REST API]

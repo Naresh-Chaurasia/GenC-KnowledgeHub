@@ -1,4 +1,4 @@
-= REST
+= REST 1
 :toc: right
 :toclevels: 5
 :sectnums: 5
@@ -386,6 +386,229 @@ GET /books → 500 Internal Server Error (e.g. database crash)
 | 500         | Server Error | Internal Server Error
 | 503         | Server Error | Service Unavailable
 |===
+
+
+== Request and Response Headers
+
+==== Request Headers
+
+These are sent by the client (like a browser or app) to provide extra information about the request.
+
+[cols="1,2,3", options="header"]
+|===
+| Header | Purpose | Example
+| Content-Type | Tells the server the format of the data being sent | application/json
+| Authorization | Sends credentials (like token or API key) | Bearer abc123token
+| Accept | Tells the server what format the client can accept | application/json, application/xml
+| User-Agent | Identifies the client (browser, app, etc.) | Mozilla/5.0
+| Host | Specifies the domain name of the server | example.com
+| Cache-Control | Controls caching behavior | no-cache, max-age=3600
+|===
+
+==== Response Headers
+
+These are sent by the server to give information about the response.
+
+[cols="1,2,3", options="header"]
+|===
+| Header | Purpose | Example
+| Content-Type | Tells the client the format of the returned data | application/json
+| Content-Length | Size of the response body in bytes | 348
+| Cache-Control | Instructs client/browser how to cache the data | no-store, max-age=600
+| ETag | Identifier for version of resource (used for caching) | "abc123"
+| Set-Cookie | Sends a cookie to be stored on the client | sessionId=abc123; HttpOnly
+| Access-Control-Allow-Origin | Used for CORS (cross-origin requests) | *, https://example.com
+|===
+
+==== Example Request
+
+[source, http]
+----
+POST /books HTTP/1.1
+Host: api.example.com
+Content-Type: application/json
+Authorization: Bearer abc123
+Accept: application/json
+
+{
+  "title": "The Alchemist",
+  "author": "Paulo Coelho"
+}
+----
+
+==== Example Response
+
+[source, http]
+----
+HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 75
+Cache-Control: no-store
+Access-Control-Allow-Origin: *
+
+{
+  "id": 101,
+  "title": "The Alchemist",
+  "author": "Paulo Coelho"
+}
+----
+
+##########################
+
+== JSON Jackson Data Binding
+
+Jackson is a popular Java library used to convert between Java objects and JSON data.
+This process is called *data binding*.
+
+==== Types of Data Binding
+
+* *Simple Data Binding*: Converts JSON to basic Java types like `Map`, `List`, `String`, etc.
+* *Full Data Binding*: Converts JSON to custom Java objects (POJOs) and vice versa.
+
+The main class used for this is `ObjectMapper` from the Jackson library.
+
+==== Example: Convert JSON to Java Object and Back
+
+===== 1. Java POJO Class
+
+[source,java]
+----
+public class Book {
+    private String title;
+    private String author;
+    private double price;
+
+    // Getters and setters
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+
+    public String getAuthor() { return author; }
+    public void setAuthor(String author) { this.author = author; }
+
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+}
+----
+
+===== 2. Convert JSON String to Java Object
+
+[source,java]
+----
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JsonToJavaExample {
+    public static void main(String[] args) throws Exception {
+        String json = "{ \"title\": \"The Alchemist\", \"author\": \"Paulo Coelho\", \"price\": 9.99 }";
+
+        ObjectMapper mapper = new ObjectMapper();
+        Book book = mapper.readValue(json, Book.class);
+
+        System.out.println(book.getTitle());  // Output: The Alchemist
+    }
+}
+----
+
+===== 3. Convert Java Object to JSON String
+
+[source,java]
+----
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JavaToJsonExample {
+    public static void main(String[] args) throws Exception {
+        Book book = new Book();
+        book.setTitle("The Alchemist");
+        book.setAuthor("Paulo Coelho");
+        book.setPrice(9.99);
+
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonString = mapper.writeValueAsString(book);
+
+        System.out.println(jsonString);
+        // Output: {"title":"The Alchemist","author":"Paulo Coelho","price":9.99}
+    }
+}
+----
+
+==== Maven Dependency
+
+If you're using Maven, add this to your `pom.xml`:
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.15.2</version>
+</dependency>
+----
+
+##########################
+
+== Jackson in Spring Boot
+
+Spring Boot has *built-in support* for Jackson — no need to add the dependency manually in most cases.
+
+==== How It Works
+
+* Spring Boot includes Jackson automatically through the `spring-boot-starter-web` dependency.
+* It uses Jackson's `ObjectMapper`:
+** To serialize Java objects into JSON (for responses).
+** To deserialize JSON into Java objects (for requests).
+
+==== Example REST Controller
+
+[source,java]
+----
+@RestController
+public class BookController {
+
+    @PostMapping("/books")
+    public String createBook(@RequestBody Book book) {
+        return "Book received: " + book.getTitle();
+    }
+
+    @GetMapping("/book")
+    public Book getBook() {
+        Book book = new Book();
+        book.setTitle("The Alchemist");
+        book.setAuthor("Paulo Coelho");
+        book.setPrice(9.99);
+        return book; // Automatically converted to JSON by Jackson
+    }
+}
+----
+
+* `@RequestBody` → Jackson deserializes JSON to `Book` object.
+* Return value → Jackson serializes `Book` object to JSON.
+
+==== Do You Need to Add Jackson Manually?
+
+No. If you use the following dependency:
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+----
+
+Then Jackson (`jackson-databind`) is included by default.
+
+
+
+
+##########################
+
+
+##########################
+
+
+##########################
+
+
+##########################
 
 
 
