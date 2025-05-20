@@ -1,4 +1,0 @@
-= REST 2
-:toc: right
-:toclevels: 5
-:sectnums: 5
