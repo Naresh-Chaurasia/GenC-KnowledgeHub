@@ -1,0 +1,150 @@
+= Gen-C Spring Cloud
+:toc: right
+:toclevels:5
+:sectnums:
+
+== Spring Cloud Netflix Eureka
+
+Eureka is a *service discovery* tool from Netflix, integrated with Spring Cloud.
+
+* It acts as a *Service Registry*.
+* Each microservice registers itself with Eureka at startup.
+* Other services use Eureka to discover registered services by name (instead of hard-coded IPs).
+* Helps with dynamic scaling and failover of microservices.
+
+Typical Components:
+
+- *Eureka Server*: Central registry of all services.
+- *Eureka Client*: Microservices that register with the server.
+
+Benefits:
+
+* Enables load-balanced service-to-service communication.
+* Automatically removes failed services after a timeout.
+
+== Spring Cloud LoadBalancer
+
+Spring Cloud LoadBalancer is a *client-side load-balancer* that helps to distribute the load across multiple instances of a service.
+
+* Replaces Netflix Ribbon (deprecated).
+* Works with service discovery (like Eureka).
+* Uses round-robin by default, but strategy can be customized.
+
+Benefits:
+
+* Fault-tolerance: If one service instance fails, request goes to another.
+* Better resource utilization.
+
+Example Flow:
+
+1. User service sends request to `order-service`.
+2. Spring Cloud LoadBalancer fetches all available instances from Eureka.
+3. Chooses one instance using load balancing strategy.
+4. Forwards the request.
+
+== Spring Cloud API Gateway
+
+Spring Cloud Gateway provides a *single entry point* for all client requests to microservices.
+
+* Routes incoming requests to the appropriate service.
+* Can perform filtering, authentication, logging, rate-limiting, etc.
+* Built on Project Reactor (supports asynchronous and reactive programming).
+
+Key Features:
+
+* Path-based routing (`/orders/**` → Order Service).
+* Filters for logging, security, transformation.
+* Integrated with service discovery.
+
+Benefits:
+
+* Centralized control over routing.
+* Improves security and maintainability.
+
+== Fault Tolerance
+
+Fault tolerance ensures that the system continues to function even when parts of it fail.
+
+Spring Cloud supports fault tolerance using:
+
+* *Resilience4j*: A lightweight fault-tolerance library.
+* Features include:
+- *Circuit Breaker*: Prevents system overload by opening circuit when errors spike.
+- *Retry*: Automatically retry failed requests.
+- *Rate Limiter*: Limits number of requests to a service.
+- *Bulkhead*: Isolates failures in parts of the system.
+
+Example: If `payment-service` is down, the circuit breaker opens and returns a fallback response without calling the service.
+
+== Spring Cloud Sleuth and Zipkin
+
+These tools provide *distributed tracing* for microservices.
+
+* *Sleuth*: Adds trace and span IDs to requests so logs can be correlated across services.
+* *Zipkin*: Collects and displays trace data in a UI.
+
+Trace Flow:
+
+1. Sleuth adds tracing information to logs and HTTP headers.
+2. Zipkin gathers and visualizes request flows and timing.
+
+Benefits:
+
+* Helps identify performance bottlenecks.
+* Makes debugging across services easier.
+
+== Spring Cloud Config Server
+
+Provides *centralized configuration management* for all microservices.
+
+* Stores configurations in a Git repository or local file system.
+* Config Server fetches and serves configuration to microservices at runtime.
+* Supports multiple environments (dev, test, prod).
+
+Benefits:
+
+* Externalizes configuration from code.
+* Consistency across services.
+* Easy updates without restarting services.
+
+Typical Setup:
+
+1. Create `application.yml` or `application-{profile}.yml` files in Git.
+2. Start Config Server and point it to Git repo.
+3. Microservices fetch configuration from Config Server.
+
+
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
