@@ -123,6 +123,16 @@ http://localhost:8080/api/student/create
 
 http://localhost:8080/api/student/getById/2
 
+##############################################
+
+=== Address Microservice
+
+* http://localhost:8082/swagger-ui/index.html
+
+=== Student Microservice
+
+* http://localhost:8080/swagger-ui/index.html
+
 
 
 
