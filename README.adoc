@@ -10,6 +10,7 @@
 * link:gen-c/junit/tdd.adoc[TDD]
 * link:gen-c/maven/gen-c-maven.adoc[Maven]
 * link:gen-c/mocking/mocking.adoc[Mocking]
+* link:gen-c/ms/gen-c-ms.adoc[Microservices]
 * link:gen-c/slf4j/slf4j.adoc[SLF4J]
 * link:gen-c/spring/gen-c-spring-cloud.adoc[Spring Cloud]
 * link:gen-c/spring/gen-c-spring-1.adoc[Spring]
