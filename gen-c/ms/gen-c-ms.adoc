@@ -130,11 +130,57 @@ http://localhost:8080/api/student/getById/2
 * http://localhost:8082/swagger-ui/index.html
 
 
+----
+@RestController
+@RequestMapping("/api/address")
+public class AddressController {
+
+	@Autowired
+	AddressService addressService;
+
+	@PostMapping("/create"){}
+
+	@GetMapping("/getById/{id}"){}
+
+	@GetMapping("/getAll"){}
+
+}
+----
+
+
 ##############################################
 
 === Student Microservice
 
 * http://localhost:8080/swagger-ui/index.html
+
+----
+@RestController
+@RequestMapping("/api/student")
+public class StudentController {
+
+	@Autowired
+	StudentService studentService;
+
+	@PostMapping("/create")
+	public StudentResponse createStudent (@RequestBody CreateStudentRequest createStudentRequest) {}
+
+	@GetMapping("getById/{id}")
+	public StudentResponse getById (@PathVariable long id) {}
+
+}
+
+############## Student Calling Address ##############
+
+public AddressResponse getAddressById (long addressId) {
+		Mono<AddressResponse> addressResponse =
+				webClient.get().uri("/getById/" + addressId)
+		.retrieve().bodyToMono(AddressResponse.class);
+
+		return addressResponse.block();
+}
+
+----
 
 
 
