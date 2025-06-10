@@ -214,33 +214,39 @@ public AddressResponse getAddressById (long addressId) {
 
 == MS Configuration Details
 
-[cols="h,1,1,1,1,1,1", options="header"]
+* First start the *Eureka Discover Service*.
+
+[cols="h,1,1,1,1,1,4", options="header"]
 |===
 |MS |Spring-Boot |Java |Port |RESTing|Spring-Cloud|Eureka
 
-|http://localhost:8020/hello[api-gateway]
+|api-gateway
 |2.6.6
 |17
 |8020
 |-
 |2021.0.3
-|-
+a|
+- http://localhost:8020/hello
 
-|http://192.168.1.44:57033/api/users/hello[user-microservice]
+|user-microservice
 |2.6.6
 |17
 |0
 |Column 5, row 2
 |2021.0.3
-|http://localhost:8010/eureka
+a|
+- *Direct*: http://192.168.1.44:51293/api/users/hello
+- *Gateway*: http://192.168.1.44:8020/user-service/api/users/hello
 
-|http://localhost:8010/[eureka-discovery-service]
+|eureka-discovery-service
 |2.6.6
 |17
 |8010
 |Server
 |2021.0.3
-|-
+a|
+- http://localhost:8010/
 
 
 |Column 1, row 4
