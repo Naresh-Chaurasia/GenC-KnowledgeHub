@@ -147,6 +147,16 @@ a|
 |
 a|
 - http://localhost:8080/swagger-ui/index.html
+- Student Calls Address using WebClient
+
+| Student Feign
+| 2.4.2
+| 8
+|
+|
+|
+a|
+- http
 
 |===
 
