@@ -114,12 +114,45 @@ You define a Java interface and annotate it with @FeignClient. Spring will autom
 
 == Mono To Micro
 
-=== University Monolithic Application
+
+[cols="h,1,1,1,1,1,4", options="header"]
+|===
+|MS |Spring-Boot |Java |Port |RESTing|Spring-Cloud|Eureka
+
+| University Monolith
+| 2.6.6
+| 17
+| 8080
+|-
+|
+a|
+- http://localhost:8080/api/student/hello
+- http://localhost:8080/swagger-ui/index.html
 
 
-* http://localhost:8080/swagger-ui/index.html
+| Address
+| 2.6.6
+| 17
+| 8082
+|
+|
+a|
+- http://localhost:8082/swagger-ui/index.html
+
+| Student
+| 2.6.6
+| 17
+| 8080
+|
+|
+a|
+- http://localhost:8080/swagger-ui/index.html
+
+|===
 
 ---
+
+=== University Monolith
 
 * POST
 
