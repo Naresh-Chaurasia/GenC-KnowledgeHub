@@ -62,6 +62,27 @@ They structure an application as a collection of *loosely coupled, fine-grained,
 
 Spring Cloud OpenFeign is a declarative REST client that simplifies HTTP communication between microservices by eliminating boilerplate code.
 
+== Comparison: Feign Client vs WebClient vs RestTemplate
+
+[cols="1,2,2,2", options="header"]
+|===
+|Feature | Feign Client | WebClient | RestTemplate
+
+| *Introduction* | Declarative HTTP client from Spring Cloud | Reactive, non-blocking client from Spring 5 | Traditional synchronous HTTP client
+| *Style* | Declarative (interface-based) | Functional, fluent API | Imperative
+| *Synchronous/Asynchronous* | Synchronous | Both synchronous and asynchronous | Synchronous
+| *Blocking* | Yes | No (non-blocking) | Yes
+| *Reactive Support* | No | Yes (reactive streams) | No
+| *Ease of Use* | Easiest (less boilerplate) | Moderate | Easy but verbose
+| *Best For* | Microservices communication using interfaces | High-performance async HTTP calls | Simple REST calls
+| *Customization* | Requires configuration (e.g., interceptors) | Highly configurable | Moderate customization
+| *Supported in Spring Boot* | Via Spring Cloud OpenFeign | Native in Spring 5+ | Deprecated in Spring 5+
+| *Thread Usage* | High (due to blocking) | Low (event loop-based) | High
+| *Example Use Case* | Inter-service calls in microservice architectures | Streaming data, high load systems | Simple REST APIs or POCs
+|===
+
+
+
 ==== WebClient
 
 ==== REST Template
