@@ -136,11 +136,13 @@ You define a Java interface and annotate it with @FeignClient. Spring will autom
 == Mono To Micro
 
 
-[cols="h,1,1,1,1,1,4", options="header"]
+[cols="h,1,1,1,1,1,1,4", options="header"]
 |===
-|MS |Spring-Boot |Java |Port |RESTing|Spring-Cloud|Eureka
+|MS | Comment |Spring-Boot |Java |Port |RESTing|Spring-Cloud|Eureka
 
 | University Monolith
+a|
+- Hm
 | 2.6.6
 | 17
 | 8080
@@ -152,6 +154,8 @@ a|
 
 
 | Address
+a|
+- Hm
 | 2.6.6
 | 17
 | 8082
@@ -161,6 +165,8 @@ a|
 - http://localhost:8082/swagger-ui/index.html
 
 | Student
+a|
+- Hm
 | 2.6.6
 | 17
 | 8080
@@ -171,6 +177,8 @@ a|
 - Student Calls Address using WebClient
 
 | Student Feign
+a|
+- Hm
 | 2.6.6
 | 17
 |
@@ -281,11 +289,13 @@ public AddressResponse getAddressById (long addressId) {
 
 * First start the *Eureka Discover Service*.
 
-[cols="h,1,1,1,1,1,4", options="header"]
+[cols="h,1,1,1,1,1,1,4", options="header"]
 |===
-|MS |Spring-Boot |Java |Port |RESTing|Spring-Cloud|Eureka
+|MS |Comment|Spring-Boot |Java |Port |RESTing|Spring-Cloud|Eureka
 
 |api-gateway
+a|
+- Hm
 |2.6.6
 |17
 |8020
@@ -294,7 +304,10 @@ public AddressResponse getAddressById (long addressId) {
 a|
 - http://localhost:8020/hello
 
+
 |user-microservice
+a|
+- Hm
 |2.6.6
 |17
 |0
@@ -305,6 +318,8 @@ a|
 - *Gateway*: http://192.168.1.44:8020/user-service/api/users/hello
 
 |eureka-discovery-service
+a|
+- Hm
 |2.6.6
 |17
 |8010
@@ -315,13 +330,6 @@ a|
 - http://localhost:8080/swagger-ui/index.html
 
 
-|
-|
-|
-|
-|
-|
-|
 |===
 
 
