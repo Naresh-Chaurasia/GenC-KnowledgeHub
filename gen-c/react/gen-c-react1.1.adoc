@@ -27,15 +27,15 @@ https://g.page/r/CZd-11KgiKwTEBM/review
 
 === React Features. Ok
 
-image::features.png[]
+image::./img/features.png[]
 
 * #React Architecture#
 
-image::architecture.png[]
+image::./img/architecture.png[]
 
 * React Component
 
-image::key-terms.png[]
+image::./img/key-terms.png[]
 
 ---
 
@@ -43,4 +43,4 @@ image::key-terms.png[]
 
 === Behind the Scene
 
-image::behind-scene.png[]
+image::./img/behind-scene.png[]
