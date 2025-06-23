@@ -3,6 +3,38 @@
 :toclevels:5
 :sectnums:
 
+== Gen C (Batch 2)
+
+=== HTLM5
+
+* Need and Benefits of HTML, Setup, Browser, BOM and DOM, DOCTYPE, Character Encoding, <script> , <link>, , HTML5 Document, Comments
+
+* Visual Studio Code features, Google Chrome Developer tools, Inspect document
+
+* Formatting Tags, List, Table, Form & Input Tags, Images, Styles, placeholder, inline and block elements, id vs class attributes
+
+* Navigation tags, hyper link, reference to intermediate section
+
+* onblur, onchange, onclick, form related events, load events, key events, mouse events, ondblclick, onbeforeonload, oncanplay
+
+* <input> element in HTML5,  <output>, placeholder attribute, autofocus, required
+
+* Session storage, local storage and Delete web storage
+
+* openDatabase, transaction
+
+* Geolocation Methods, Location Properties, Handling Errors, Position Options
+
+---
+
+
+
+
+
+
+
+
+
 
 == Links and References
 

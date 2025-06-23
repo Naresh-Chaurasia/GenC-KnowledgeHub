@@ -136,13 +136,13 @@ You define a Java interface and annotate it with @FeignClient. Spring will autom
 == Mono To Micro
 
 
-[cols="h,1,1,1,1,1,1,4", options="header"]
+[cols="h,3,1,1,1,1,1,4", options="header"]
 |===
 |MS | Comment |Spring-Boot |Java |Port |RESTing|Spring-Cloud|Eureka
 
 | University Monolith
 a|
-- Hm
+- Simple Demo Of Monolith
 | 2.6.6
 | 17
 | 8080

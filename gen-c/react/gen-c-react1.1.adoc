@@ -1,0 +1,46 @@
+= React -1
+:toc: right
+:toclevels:5
+:sectnums:
+
+
+== Full Stack: React and Java Spring Boot
+
+=== Commands
+
+----
+npx create-react-app genc-my-app-1x
+cd my-app
+npm start
+set PORT=5100 && npm start
+----
+
+---
+
+##############################################
+
+https://g.page/r/CZd-11KgiKwTEBM/review
+
+---
+
+##############################################
+
+=== React Features. Ok
+
+image::features.png[]
+
+* #React Architecture#
+
+image::architecture.png[]
+
+* React Component
+
+image::key-terms.png[]
+
+---
+
+##############################################
+
+=== Behind the Scene
+
+image::behind-scene.png[]
