@@ -1,0 +1,152 @@
+= GenC - JS / JavaScript
+:toc: right
+:toclevels: 5
+:sectnums: 5
+
+
+== Introduction to JavaScript
+
+JavaScript is a *dynamic, high-level programming language* that enables you to add interactivity and logic to web pages. It is often used alongside *HTML* and *CSS* to build modern websites and web applications.
+
+* Runs directly in the browser.
+* Can also run on servers with Node.js.
+* Has a C-like syntax.
+
+== Including JavaScript in HTML
+
+You can add JavaScript to your page using the `<script>` tag.
+
+=== Example: Inline
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My First JS Page</title>
+</head>
+<body>
+  <h1>Hello World</h1>
+  <script>
+    alert('Welcome to my page!');
+  </script>
+</body>
+</html>
+----
+
+=== Example: External file
+[source,html]
+----
+<script src="script.js"></script>
+----
+
+== Output in JavaScript
+You can output data in several ways:
+* `alert()` — shows a popup.
+* `console.log()` — outputs data to browser console.
+* `document.write()` — writes directly to the document (not recommended for most cases).
+
+[source,javascript]
+----
+alert('Hi there!');           // Popup alert
+console.log('Debug info');    // Log to console
+document.write('Hello!');     // Write to page
+----
+
+== Variables
+You can declare variables using `let`, `const`, or `var`. Modern practice is to use `let` and `const`.
+
+[source,javascript]
+----
+let name = "Alice";   // can change later
+const PI = 3.14159;   // cannot change
+----
+
+== Data Types
+JavaScript has *dynamic types*:
+* String — `let name = "Alice";`
+* Number — `let age = 25;`
+* Boolean — `let isActive = true;`
+* Object — `let person = { name: "Alice", age: 25 };`
+* Array — `let colors = ["red", "green", "blue"];`
+* Undefined — `let x;`
+* Null — `let y = null;`
+
+== Functions
+Functions let you reuse code.
+
+[source,javascript]
+----
+function greet(name) {
+  return "Hello, " + name;
+}
+
+let message = greet('Alice'); // "Hello, Alice"
+----
+
+You can also use arrow functions:
+[source,javascript]
+----
+const add = (a, b) => a + b;
+----
+
+== Conditionals
+Use `if`, `else if`, and `else` to make decisions.
+
+[source,javascript]
+----
+let score = 85;
+
+if (score >= 90) {
+  console.log("Grade A");
+} else if (score >= 80) {
+  console.log("Grade B");
+} else {
+  console.log("Keep trying!");
+}
+----
+
+== Loops
+Repeat code with loops.
+
+* *for loop* — iterate a fixed number of times
+* *while loop* — iterate while condition is true
+
+[source,javascript]
+----
+for (let i = 0; i < 5; i++) {
+  console.log(i); // 0 to 4
+}
+
+let j = 0;
+while (j < 3) {
+  console.log(j); // 0 to 2
+  j++;
+}
+----
+
+== DOM Manipulation
+JavaScript can access and modify the HTML Document Object Model.
+
+[source,javascript]
+----
+// Get an element by its ID
+let heading = document.getElementById('myHeading');
+
+// Change its content
+heading.innerText = "New title!";
+
+// Change its style
+heading.style.color = "blue";
+----
+
+== Events
+Handle user actions like clicks and key presses.
+
+[source,javascript]
+----
+let btn = document.getElementById('myButton');
+
+btn.addEventListener('click', function() {
+  alert('Button clicked!');
+});
+----
