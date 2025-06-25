@@ -1,0 +1,87 @@
+= Microservices
+:toc: right
+:toclevels: 5
+:sectnums: 5
+
+== Springboot V/s Spring Framework
+
+*Overview*
+
+* *Spring Framework*: A powerful and flexible framework for building Java enterprise applications with support for dependency injection, web, data, transactions, security, etc. Requires manual setup.
+* *Spring Boot*: A convention-over-configuration extension of Spring that simplifies application setup by providing auto-configuration and prebuilt dependencies.
+
+*Comparison Table*
+
+|===
+| Feature | Spring Framework | Spring Boot
+
+| Setup & Configuration
+| Requires XML/Java config files for setup; more boilerplate
+| Auto-configuration, minimal setup; quick project startup
+
+| Dependencies
+| Manually list all Spring dependencies
+| Starter dependencies (`spring-boot-starter-*`) simplify dependency management
+
+| Application Startup
+| Requires a `web.xml` or manual Spring container setup
+| Uses embedded servers (e.g. Tomcat) — run app via `main()` directly
+
+| Auto-Configuration
+| You explicitly configure beans and components
+| Spring Boot auto-configures common beans based on classpath and properties
+
+| Learning Curve
+| Steeper; must understand Spring Core concepts thoroughly
+| Easier for beginners due to sensible defaults and starter guides
+
+| Build & Deploy
+| Requires traditional WAR/EAR packaging and deployment to external servers
+| Packs as a self-contained executable JAR; can also produce WAR if needed
+
+| Configuration
+| `applicationContext.xml` or Java config classes
+| `application.properties` or `application.yml` for centralized config
+
+| Opinionated Defaults
+| Requires you to make most decisions yourself
+| Gives you production-ready defaults that you can override
+
+| Microservices Support
+| Can build microservices manually but requires extra setup
+| Designed for microservices and cloud-native apps; integrates easily with Spring Cloud
+|===
+
+*When to Use Spring Framework*
+
+* You need fine-grained control over all configurations.
+* You already have a legacy application built on Spring.
+* You want to pick and choose each Spring dependency manually.
+
+*When to Use Spring Boot*
+
+* You want rapid development with minimal setup.
+* You’re creating new microservices or cloud-native apps.
+* You prefer convention-over-configuration and embedded servers.
+* You want production-ready features like Actuator, metrics, and health checks by default.
+
+*Conclusion*
+
+Both Spring Framework and Spring Boot are powerful. Spring Framework gives you flexibility and granular control, while Spring Boot simplifies the setup and is ideal for quickly starting production-grade applications, especially microservices.
+
+##############################################
+
+== Microservices with Spring Boot
+
+* Quick setup and minimal configuration — Spring Boot simplifies creating REST APIs with built-in starter dependencies (spring-boot-starter-web), so you don’t have to manually configure all the Spring Web MVC beans.
+
+* Embedded server support — Spring Boot includes an embedded Tomcat/Jetty server, so you can run your REST app as a simple main() method without worrying about an external server.
+
+* Auto-configuration — Spring Boot auto-configures JSON converters, exception handling, content negotiation, etc. that most REST apps need.
+
+* Production-ready — Features like Actuator, metrics, and health checks come out of the box, making it easier to deploy and monitor your REST API.
+
+* Microservices-ready — Spring Boot integrates seamlessly with Spring Cloud if you want to scale up to microservices architecture.
+
+
+
