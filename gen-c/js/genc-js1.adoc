@@ -4,6 +4,18 @@
 :sectnums: 5
 
 
+----
+npm init
+
+npm install chalk --save
+----
+
+
+== References
+
+* https://www.npmjs.com/
+
+
 == Introduction
 
 JavaScript is a *dynamic, high-level programming language* that enables you to add interactivity and logic to web pages. It is often used alongside *HTML* and *CSS* to build modern websites and web applications.
@@ -566,3 +578,4 @@ console.log('You can do other stuff while waiting...');
 ---
 
 ##############################################
+

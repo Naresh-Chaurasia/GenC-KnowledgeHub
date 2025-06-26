@@ -1,0 +1,226 @@
+= TypeScript
+:toc: right
+:toclevels: 5
+:sectnums:
+
+
+=== Install TypeScript
+
+[source,bash]
+----
+npm install -g typescript
+
+tsc -v
+----
+
+=== Online TypeScript
+
+* https://www.typescriptlang.org/
+
+=== Source Code
+
+[source,javascript]
+----
+let myNumber: number = 42;
+let myBoolean: boolean = true;
+let myArray: number[] = [1, 2, 3, 4, 5]; // Array of numbers
+let myArray2: string[] = ["apple", "banana", "orange"]; // Array of strings
+
+let myAny: any = 10; // Any type can hold any kind of value
+myAny = "Hello"; // No error, since myAny can be anything
+
+let myArray: number[] = [1, 2, 3, 4, 5];
+let myArray: Array<number> = [1, 2, 3, 4, 5];
+
+let myArray: Array<any> = [1, "two", true];
+
+
+#Enum
+
+// Define an enum named 'Direction'
+enum Direction {
+  Up,    // 0
+  Down,  // 1
+  Left,  // 2
+  Right  // 3
+}
+
+// Using the enum
+let playerDirection: Direction = Direction.Up;
+console.log(playerDirection); // Output: 0
+
+// Enums can also be accessed by their values
+console.log(Direction[2]); // Output: "Left"
+
+----
+
+=== Functions
+
+[source,javascript]
+----
+
+function greet(name: string): string {
+    return `Hello, ${name}!`;
+}
+
+const message = greet("Alice");
+console.log(message); // Output: Hello, Alice!
+
+
+//----------------------------------------------
+
+function calculateRectangleArea(width: number, height: number): number {
+    return width * height;
+}
+
+const area = calculateRectangleArea(5, 10);
+console.log("Area of rectangle:", area); // Output: Area of rectangle: 50
+
+----
+
+=== Passing Function as Argument
+
+[source,javascript]
+----
+function add(a:number,b:number):number{
+    return a+b;
+}
+
+function calculator(fun:any):void{
+    console.log("Passing function to Calculator");
+    console.log(fun(10,20));
+}
+
+calculator(add);
+----
+
+################################################################################
+
+=== Constructor
+
+
+[source,javascript]
+----
+class Car {
+// Properties
+brand: string;
+model: string;
+year: number;
+
+    // Constructor
+    constructor(brand: string, model: string, year: number) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+    }
+
+    // Method
+    displayInfo(): void {
+        console.log(`Brand: ${this.brand}, Model: ${this.model}, Year: ${this.year}`);
+    }
+}
+
+// Create an instance of the Car class
+const myCar = new Car("Toyota", "Camry", 2020);
+
+// Access properties and call method
+myCar.displayInfo(); // Output: Brand: Toyota, Model: Camry, Year: 2020
+----
+
+################################################################################
+
+=== External-Module, External Module
+
+In TypeScript, a module is a way to organize code into reusable units. Modules allow you to encapsulate related code and prevent naming conflicts between different parts of your program. They also enable you to structure your codebase into smaller, manageable pieces, making it easier to maintain and scale your application.
+
+There are different ways to define and work with modules in TypeScript, but one common approach is to use the ES6 module syntax. Here's an example:
+
+Suppose you have a file named `math.ts`, and you want to define some mathematical functions in this module:
+
+
+.math.ts
+[source,javascript]
+----
+export function add(a: number, b: number): number {
+    return a + b;
+}
+
+export function subtract(a: number, b: number): number {
+    return a - b;
+}
+
+export const PI = 3.14159;
+----
+
+In this module:
+
+- We define two functions, `add` and `subtract`, that perform addition and subtraction operations, respectively.
+- We also export a constant `PI` with the value of π.
+
+The `export` keyword is used to make functions, variables, or classes available outside of the module. In this case, `add`, `subtract`, and `PI` are exported, which means they can be imported and used in other modules.
+
+Now, let's create another file named `app.ts` where we want to use the functions and constant defined in the `math` module:
+
+.file.ts
+[source,javascript]
+----
+import { add, subtract, PI } from "./math";
+
+console.log("2 + 3 =", add(2, 3)); // Output: 2 + 3 = 5
+console.log("5 - 3 =", subtract(5, 3)); // Output: 5 - 3 = 2
+console.log("Value of PI is", PI); // Output: Value of PI is 3.14159
+----
+
+In this file:
+
+- We use the `import` keyword to import specific items (`add`, `subtract`, and `PI`) from the `math` module.
+- We then use these imported items just like any other functions or variables.
+
+When you run `app.ts`, it will execute and output the results of the mathematical operations and the value of π, utilizing the functions and constant exported from the `math` module.
+
+This is a basic example of how modules work in TypeScript, allowing you to organize and reuse code across different files in your project.
+
+=== Internal Module, Internal-Module
+
+[source,javascript]
+----
+// geometry.ts
+namespace Geometry {
+export const PI = 3.14159;
+
+    export function calculateCircumference(radius: number): number {
+        return 2 * PI * radius;
+    }
+
+    export function calculateArea(radius: number): number {
+        return PI * radius * radius;
+    }
+}
+
+
+// app.ts
+/// <reference path="./geometry.ts" />
+
+console.log("Value of PI is", Geometry.PI); // Output: Value of PI is 3.14159
+console.log("Circumference of circle with radius 2 is", Geometry.calculateCircumference(2)); // Output: Circumference of circle with radius 2 is 12.56636
+console.log("Area of circle with radius 3 is", Geometry.calculateArea(3)); // Output: Area of circle with radius 3 is 28.27431
+----
+
+=== Internal V/s External Module
+
+[cols="2", options="header"]
+|===========================================================================
+| Internal Modules (Namespaces)   | External Modules (ES6 Modules)
+| Definition                      | Defined using `namespace` keyword. | Defined using `module` or `export` keywords.
+| File Structure                  | Typically defined in a single file. | Can be spread across multiple files.
+| Scope                           | Scope is limited to the file or files where it's defined. | Scope can be global or limited using `import` and `export` keywords.
+| Dependency Management           | No built-in dependency management.   | Supports explicit dependencies through imports and exports.
+| Compatibility                   | Supported by older versions of TypeScript. | Recommended approach in modern TypeScript applications.
+| Compilation                     | Combined into a single JavaScript file using concatenation. | Each module is compiled into its own JavaScript file, preserving module boundaries.
+| Import Syntax                   | No import syntax.                   | Imported using `import` statements.
+| Export Syntax                   | No explicit export syntax.          | Exported using `export` statements.
+|===========================================================================
+
+
+
+
