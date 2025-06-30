@@ -129,7 +129,93 @@ myCar.displayInfo(); // Output: Brand: Toyota, Model: Camry, Year: 2020
 
 ################################################################################
 
-=== External-Module, External Module
+
+*What are Modules in JavaScript?*
+
+A *module* is a separate JavaScript file that contains code — like variables, functions, or classes — which you can *export* from one file and *import* into another.
+
+This helps in:
+* Organizing your code into reusable chunks
+* Keeping global scope clean
+* Making large projects easier to maintain
+
+---
+
+=== Modules
+
+*Creating and Using Modules*
+
+*Step 1: Export code from a module file*
+
+Create a file called `math.js`:
+
+[source,javascript]
+----
+// math.js
+export function add(a, b) {
+  return a + b;
+}
+
+export const PI = 3.14;
+----
+
+*Step 2: Import and use it in another file*
+
+Create a file called `app.js`:
+
+[source,javascript]
+----
+// app.js
+import { add, PI } from './math.js';
+
+console.log(add(5, 3));  // Output: 8
+console.log(PI);         // Output: 3.14
+----
+
+---
+
+*Default Export*
+
+You can export one value as the *default*:
+
+[source,javascript]
+----
+// greet.js
+export default function greet(name) {
+  return `Hello, ${name}!`;
+}
+----
+
+And import it like this (without curly braces):
+
+[source,javascript]
+----
+// app.js
+import greet from './greet.js';
+
+console.log(greet('Alice')); // Output: Hello, Alice!
+----
+
+---
+
+*Benefits of Using Modules*
+
+* Reusability: Write once, use anywhere
+* Maintainability: Easier to read and manage
+* Separation of concerns: Each file handles a specific task
+
+---
+
+*Conclusion*
+
+Modules allow you to split your JavaScript project into smaller files and make your codebase modular, clean, and easier to maintain.
+
+
+
+
+################################################################################
+
+*External Module*
 
 In TypeScript, a module is a way to organize code into reusable units. Modules allow you to encapsulate related code and prevent naming conflicts between different parts of your program. They also enable you to structure your codebase into smaller, manageable pieces, making it easier to maintain and scale your application.
 
@@ -180,7 +266,9 @@ When you run `app.ts`, it will execute and output the results of the mathematica
 
 This is a basic example of how modules work in TypeScript, allowing you to organize and reuse code across different files in your project.
 
-=== Internal Module, Internal-Module
+---
+
+*Internal Module, Internal-Module*
 
 [source,javascript]
 ----
@@ -206,21 +294,12 @@ console.log("Circumference of circle with radius 2 is", Geometry.calculateCircum
 console.log("Area of circle with radius 3 is", Geometry.calculateArea(3)); // Output: Area of circle with radius 3 is 28.27431
 ----
 
-=== Internal V/s External Module
 
-[cols="2", options="header"]
-|===========================================================================
-| Internal Modules (Namespaces)   | External Modules (ES6 Modules)
-| Definition                      | Defined using `namespace` keyword. | Defined using `module` or `export` keywords.
-| File Structure                  | Typically defined in a single file. | Can be spread across multiple files.
-| Scope                           | Scope is limited to the file or files where it's defined. | Scope can be global or limited using `import` and `export` keywords.
-| Dependency Management           | No built-in dependency management.   | Supports explicit dependencies through imports and exports.
-| Compatibility                   | Supported by older versions of TypeScript. | Recommended approach in modern TypeScript applications.
-| Compilation                     | Combined into a single JavaScript file using concatenation. | Each module is compiled into its own JavaScript file, preserving module boundaries.
-| Import Syntax                   | No import syntax.                   | Imported using `import` statements.
-| Export Syntax                   | No explicit export syntax.          | Exported using `export` statements.
-|===========================================================================
+---
 
+* What does the #namespace# Geometry do? It groups all the geometry-related constants and functions under one name: Geometry.
 
+* The export keyword allows code outside the namespace to access the members.
 
+* Without export, the functions or variables would be private to the namespace.
 
