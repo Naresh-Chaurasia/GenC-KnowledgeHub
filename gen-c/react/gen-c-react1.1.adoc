@@ -1,12 +1,14 @@
-= React -1
+= React - 1
 :toc: right
-:toclevels:5
+:toclevels: 5
 :sectnums:
 
 
 == Full Stack: React and Java Spring Boot
 
-=== Commands
+=== JavaScript
+
+==== Commands
 
 ----
 npx create-react-app genc-my-app-1x
@@ -25,7 +27,7 @@ https://g.page/r/CZd-11KgiKwTEBM/review
 
 ##############################################
 
-=== React Features. Ok
+==== React Features. Ok
 
 image::./img/features.png[]
 
@@ -41,11 +43,11 @@ image::./img/key-terms.png[]
 
 ##############################################
 
-=== genc-my-app-1x
+==== genc-my-app-1x
 
 image::./img/behind-scene.png[]
 
-=== genc-my-app-1.1x
+==== genc-my-app-1.1x
 
 * Create HTML Table and add CSS/Bootstrap
 * index.html
@@ -63,11 +65,148 @@ image::./img/behind-scene.png[]
 ></script>
 ----
 
-=== genc-my-app-1.2x
+==== genc-my-app-1.2x
 
 image::img/components.png[]
 
 
-=== genc-my-app-1.3x
+==== genc-my-app-1.3x
 
 * Tables
+
+==== genc-my-app-1.4x
+
+* Adding new Record dynamically, using forms.
+
+##############################################
+
+== React TypeScript
+
+=== Commands
+
+----
+npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+
+# Created a new tsconfig.json
+npx tsc --init
+
+----
+
+* React development can be done in JavaScript, ECMAScript(standardized version of JavaScript - ES6 etc.) and TypeScript
+
+image::img/relation.png[]
+
+---
+
+image::img/ts-js.png[]
+
+##############################################
+
+=== ReactJS-0
+
+* This is original project
+
+=== ReactJS-1x
+
+* tsx changes
+
+
+
+##############################################
+
+
+##############################################
+
+== Analogies
+
+==== useState, setCount
+
+`const [count, setCount] = useState(0);`
+
+* count is a variable that stores a value (starts at 0).
+* setCount is a function that lets you change the value of count.
+* useState(0) tells React to remember this value and update the UI when it changes.
+
+----
+let count = 0; // This is like your state variable
+
+function setCount(newValue) {
+  count = newValue; // This updates the value
+  render(); // Imagine this re-draws your UI with the new value
+}
+
+function render() {
+  console.log("Current count is:", count);
+}
+
+// Usage:
+setCount(1); // count is now 1, UI updates
+setCount(2); // count is now 2, UI updates
+----
+
+---
+
+##############################################
+
+==== filter()
+
+Suppose you have an array of numbers and you want to remove the number 3
+
+
+----
+const numbers = [1, 2, 3, 4, 5];
+
+// Use filter to create a new array without the number 3
+const filteredNumbers = numbers.filter(function(value) {
+  return value !== 3; // Keep all numbers except 3
+});
+
+console.log(filteredNumbers); // Output: [1, 2, 4, 5]
+----
+
+*Explanation:*
+
+* .filter() goes through each item in the array.
+* If the function returns true, the item stays in the new array.
+* If it returns false, the item is removed.
+
+
+
+---
+
+##############################################
+
+==== props
+
+----
+// Simulate a list of todos
+const todos = [
+    { rowNumber: 1, rowDescription: "Feed puppy", rowAssigned: "User One" },
+    { rowNumber: 2, rowDescription: "Water plants", rowAssigned: "User Two" },
+];
+
+// Function to delete a todo by rowNumber
+function deleteTodo(rowNumber) {
+  const filtered = todos.filter((todo) => todo.rowNumber !== rowNumber);
+  console.log("After delete:", filtered);
+}
+
+// Function to simulate a row item (like a React component)
+function TodoRowItem2(props) {
+  // Simulate clicking the row to delete
+  console.log(
+    `Row: ${props.rowNumber}, Description: ${props.rowDescription}, Assigned: ${props.rowAssigned}`
+  );
+  // Simulate a click event
+  props.deleteTodo(props.rowNumber);
+}
+
+// Try it out:
+TodoRowItem2({
+  rowNumber: 1,
+  rowDescription: "Feed puppy",
+  rowAssigned: "User One",
+  deleteTodo: deleteTodo, // Pass the function as a prop
+});
+
+----

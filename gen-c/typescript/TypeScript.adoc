@@ -3,6 +3,7 @@
 :toclevels: 5
 :sectnums:
 
+== TypeScript
 
 === Install TypeScript
 
@@ -135,11 +136,54 @@ myCar.displayInfo(); // Output: Brand: Toyota, Model: Camry, Year: 2020
 A *module* is a separate JavaScript file that contains code — like variables, functions, or classes — which you can *export* from one file and *import* into another.
 
 This helps in:
+
 * Organizing your code into reusable chunks
 * Keeping global scope clean
 * Making large projects easier to maintain
 
 ---
+
+##############################################
+
+=== TypeScript Accessors
+
+* get: defines a getter method to read a property
+* set: defines a setter method to write/change a property
+
+
+----
+class Person {
+  private _name: string = '';
+
+  // Getter
+  get name(): string {
+    return this._name;
+  }
+
+  // Setter
+  set name(newName: string) {
+    if (newName.length > 0) {
+      this._name = newName;
+    } else {
+      console.log('Name must not be empty.');
+    }
+  }
+}
+
+// Usage
+const p = new Person();
+p.name = 'Alice'; // calls the setter
+console.log(p.name); // calls the getter → Output: Alice
+
+p.name = ''; // Invalid → Output: Name must not be empty.
+----
+
+
+
+---
+
+##############################################
+
 
 === Modules
 
