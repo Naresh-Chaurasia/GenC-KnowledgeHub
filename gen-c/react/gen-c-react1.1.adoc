@@ -92,6 +92,30 @@ npx tsc --init
 
 ----
 
+
+*Explanation of Each Package:*
+
+[cols="1,3", options="header"]
+|===
+| Package | Description
+
+| `typescript`
+| Installs the TypeScript compiler (`tsc`). Required to compile `.ts` and `.tsx` files.
+
+| `@types/node`
+| Type definitions for Node.js — useful when using Node APIs like `fs`, `path`, `process`, etc.
+
+| `@types/react`
+| Type definitions for React — includes JSX support, `FunctionComponent`, `Props`, etc.
+
+| `@types/react-dom`
+| Type definitions for React DOM — includes support for `ReactDOM.render`, `createRoot`, etc.
+
+| `@types/jest`
+| Type definitions for Jest — useful for writing and running tests with Jest in TypeScript.
+|===
+
+
 * React development can be done in JavaScript, ECMAScript(standardized version of JavaScript - ES6 etc.) and TypeScript
 
 image::img/relation.png[]
