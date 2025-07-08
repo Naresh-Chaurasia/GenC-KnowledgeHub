@@ -1,4 +1,4 @@
-= React - 1
+= React - GenC - 1
 :toc: right
 :toclevels: 5
 :sectnums:
@@ -133,7 +133,11 @@ image::img/ts-js.png[]
 === ReactJS-1x
 
 * tsx changes
+* Using Functions
 
+=== ReactJS-2x
+
+* Converting Function to Arrow Functions
 
 
 ##############################################
@@ -233,4 +237,50 @@ TodoRowItem2({
   deleteTodo: deleteTodo, // Pass the function as a prop
 });
 
+----
+
+---
+
+##############################################
+
+==== type
+
+----
+// Define a custom type
+type Person = {
+  name: string;
+  age: number;
+};
+
+// Function that accepts a Person type
+function greet(person: Person): void {
+  console.log(`Hello, ${person.name}. You are ${person.age} years old.`);
+}
+
+// Create a variable of type Person
+const student: Person = {
+  name: "Alice",
+  age: 22,
+};
+
+// Call the function
+greet(student);
+----
+
+
+== Bootstrap
+
+NOTE: This was simple watch along.
+
+* bootstrap-training-1x - WIP
+* bootstrap-training-0x - Original
+
+##############################################
+
+== React App
+
+=== Commands
+
+----
+npx create-react-app react-library --template typescript
 ----
