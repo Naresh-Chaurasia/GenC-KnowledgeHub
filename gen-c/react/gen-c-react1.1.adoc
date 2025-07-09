@@ -4,7 +4,7 @@
 :sectnums:
 
 
-== Full Stack: React and Java Spring Boot
+== Full Stack: React and Java
 
 === JavaScript
 
@@ -283,4 +283,20 @@ NOTE: This was simple watch along.
 
 ----
 npx create-react-app react-library --template typescript
+----
+
+##############################################
+
+== React Backend
+
+=== MySql
+
+----
+brew services list | grep mysql
+
+# Disable auto-start for MySQL via Homebrew
+brew services stop mysql
+brew services cleanup
+
+brew services start mysql
 ----
