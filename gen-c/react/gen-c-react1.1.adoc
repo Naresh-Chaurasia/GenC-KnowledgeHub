@@ -300,3 +300,5 @@ brew services cleanup
 
 brew services start mysql
 ----
+
+* Since the repository exposes endpoints for CRUD operation, so we have to explicitly make it read only.

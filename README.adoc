@@ -22,3 +22,5 @@
 * link:gen-c/rest/gen-c-rest-1.adoc[REST API]
 
 == GenC2
+
+https://github.com/Naresh-Chaurasia/GenC-KnowledgeHub/tree/main/gen-c/slide[Slides]
