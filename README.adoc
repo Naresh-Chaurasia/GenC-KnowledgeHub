@@ -25,4 +25,19 @@
 
 == GenC2
 
-https://github.com/Naresh-Chaurasia/GenC-KnowledgeHub/tree/main/gen-c/slide[Slides]
+=== Resources
+
+* https://github.com/Naresh-Chaurasia/GenC-KnowledgeHub/tree/main/gen-c/slide[Slides]
+
+
+---
+
+[cols="1,2"]
+|===
+| One | Two
+
+| SOLID
+a|
+- Bar
+- Baz
+|===
