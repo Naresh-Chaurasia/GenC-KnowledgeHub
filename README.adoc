@@ -11,7 +11,7 @@
 * link:gen-c/junit/junit.adoc[JUnit]
 * link:gen-c/junit/code-quality.adoc[Code Quality]
 * link:gen-c/junit/tdd.adoc[TDD]
-* link:gen-c/maven/gen-c-maven.adoc[Maven]
+* link:gen-c/maven/maven-genc.adoc[Maven]
 * link:gen-c/mocking/mocking.adoc[Mocking]
 * link:gen-c/ms/gen-c-ms.adoc[Microservices]
 * link:gen-c/slf4j/slf4j.adoc[SLF4J]
@@ -43,6 +43,29 @@ a|
 
 | SOLID
 a|
-- Bar
-- Baz
+- [x] PPTs
+- [ ] Q&A
+
+| Maven
+a|
+- [ ] PPTs
+- [ ] Notes
+- [ ] Q&A
+
 |===
+
+---
+
+* GIT
+* Angular (v19)
+* Spring with Maven
+* Spring Data JPA with Spring Boot, Hibernate
+* Spring REST with Spring Boot 3
+* Microservices with Spring Boot 3 and Spring Cloud
+* Application Debugging-Backend
+* TDD using JUnit and Mockito
+* SLF4J and Lombok
+* Code Quality Standards & SonarQube
+* Docker
+* Cloud and DevOps Basics using AWS
+
