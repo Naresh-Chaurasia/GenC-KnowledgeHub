@@ -44,12 +44,12 @@ a|
 | SOLID
 a|
 - [x] PPTs
-- [ ] Q&A
+- [ ] Q&A - Ready
 
 | Maven
 a|
-- [ ] PPTs
-- [ ] Notes
+- [ ] PPTs - Ready
+- [ ] Notes - Ready
 - [ ] Q&A
 
 |===
