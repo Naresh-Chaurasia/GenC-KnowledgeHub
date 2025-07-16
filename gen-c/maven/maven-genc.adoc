@@ -42,6 +42,7 @@ It helps you:
 
 *Creating Maven Project*
 
+
 ----
 mvn archetype:generate -DgroupId=com.example -DartifactId=My-Maven-Project -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 ----

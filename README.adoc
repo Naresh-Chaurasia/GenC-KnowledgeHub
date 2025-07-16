@@ -48,6 +48,12 @@ a|
 
 | Maven
 a|
+- [x] PPTs - Ready
+- [x] Notes - Ready
+- [ ] Q&A
+
+| Spring
+a|
 - [ ] PPTs - Ready
 - [ ] Notes - Ready
 - [ ] Q&A
