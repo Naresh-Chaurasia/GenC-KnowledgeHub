@@ -3,15 +3,6 @@
 :toclevels: 5
 :sectnums:
 
-
-==  Code
-
-* Java-J2EE-SpringFramework-1
-* package `com.sorting`
-* package `com.springdi.sorting`
-* package `com.dp.dao`
-* package `com.springdi.dao`
-
 == Spring Core
 
 * *Introduction to Spring Framework*
@@ -23,6 +14,15 @@
 === Basic Terminologies
 
 Here are simple definitions for each of the listed Spring Framework concepts:
+
+
+---
+
+*@Service*
+
+*@Service* It tells Spring to treat the class as a service layer bean.
+
+Internally, it's a @Component, so it gets picked up during component scanning.
 
 ---
 
