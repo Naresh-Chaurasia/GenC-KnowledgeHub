@@ -6,8 +6,7 @@
 
 ==  Code
 
-* GenC-SpringFramework-1
-** IoC
+https://github.com/Naresh-Chaurasia/GenC-TechHub/tree/main/GenC-SpringBootDI-1
 
 == Spring Framework Core Concepts
 
