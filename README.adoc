@@ -16,7 +16,7 @@
 * link:gen-c/ms/gen-c-ms.adoc[Microservices]
 * link:gen-c/slf4j/slf4j.adoc[SLF4J]
 * link:gen-c/spring/gen-c-spring-cloud.adoc[Spring Cloud]
-* link:gen-c/spring/gen-c-spring-1.adoc[Spring]
+* link:gen-c/spring/genc-spring-core.adoc[Spring]
 * link:gen-c/spring/gen-c-springboot-1.adoc[Spring Boot]
 ** https://github.com/Naresh-Chaurasia/GenC-SpringBoot-PatientApp[PatientApp]
 * link:gen-c/rest/gen-c-rest-1.adoc[REST API]

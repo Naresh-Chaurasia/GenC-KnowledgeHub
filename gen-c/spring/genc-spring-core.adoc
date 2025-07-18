@@ -29,6 +29,96 @@ https://github.com/Naresh-Chaurasia/GenC-TechHub/tree/main/GenC-SpringBootDI-1
 
 ##############################################
 
+
+=== Basic Terminologies
+
+Here are simple definitions for each of the listed Spring Framework concepts:
+
+
+---
+
+*@Service*
+
+*@Service* It tells Spring to treat the class as a service layer bean.
+
+Internally, it's a @Component, so it gets picked up during component scanning.
+
+---
+
+*@Component*
+
+*@Component* tells Spring that the class is a candidate for dependency injection.
+
+Spring will automatically scan and register this class as a bean in the application context if component scanning is enabled.
+
+Commonly used with @Autowired to inject dependencies.
+
+---
+
+*@Beans*
+
+A *@Bean* is an object that is managed by the Spring IoC container. It is created, configured, and assembled by Spring.
+
+---
+
+*@Configuration*
+
+*@Configuration* is an annotation in Spring used to mark a class as a source of bean definitions. It tells Spring that the class contains one or more @Bean methods and should be processed by the Spring container to generate and manage Spring Beans.
+
+---
+
+*Autowiring*
+
+*Autowiring* is a feature in Spring that automatically injects the required dependencies into a bean by matching types or names, without needing explicit configuration.
+
+---
+
+*Dependency Injection*
+
+*Dependency Injection* is a design pattern where one object supplies the dependencies (other objects it needs) to another object. In Spring, this means the container provides the required objects to your classes.
+
+---
+
+*Inversion of Control*
+
+*Inversion of Control (IoC)* is a principle where the control of object creation and management is given to the framework (Spring), instead of being handled in user code.
+
+---
+
+*IOC Container*
+
+The *IoC Container* is a part of the Spring Framework that implements IoC. It manages the lifecycle, configuration, and dependencies of beans.
+
+---
+
+*Application Context*
+
+The *ApplicationContext* is a Spring interface that represents the IoC container. It provides methods to get beans, load configuration files, and manage the application lifecycle.
+
+---
+
+*@Repository*
+
+*@Repository* is a specialization of the @Component annotation used to indicate that the class provides CRUD operations and interacts with the database. Spring automatically translates database-related exceptions in classes marked with this annotation.
+
+---
+
+*@Configuration*
+
+*@Configuration* marks a class as a source of bean definitions. It is used to define beans using @Bean methods
+
+---
+
+*@ComponentScan*
+
+*@ComponentScan* tells Spring where to look for components (@Component, @Service, @Repository, etc.) to register as beans automatically.
+
+##############################################
+
+---
+
+##############################################
+
 === Inversion of Control (IoC)?
 
 * *Definition:*
@@ -513,6 +603,63 @@ Logging before method execution...
 Doing actual work...
 ```
 
+
+##############################
+
+== Assignment: Coffee Machine Simulation
+
+=== 📘 Objective
+
+Simulate a simple coffee machine system using Spring Core. Students will apply IoC, DI, Bean Scopes, Lifecycle methods, and AOP to build this application.
+
+---
+
+=== 🧩 Requirements:
+
+*Create Interfaces and Implementations*
+
+* `CoffeeMachine` (Interface)
+* Implementations:
+
+* `EspressoMachine`
+* `LatteMachine`
+
+Use `@Component` and `@Qualifier` annotations to distinguish between these implementations.
+
+*Dependency Injection*
+
+Create a `CafeService` class that depends on the `CoffeeMachine`. Inject the dependency using:
+
+* Constructor Injection
+* Use `@Autowired` and `@Qualifier` where applicable.
+
+*Bean Scopes*
+
+* Make `EspressoMachine` a `singleton` bean.
+* Make `LatteMachine` a `prototype` bean.
+
+Print a statement inside constructors to show the difference in bean instantiation.
+
+*Bean Lifecycle*
+
+* Use `@PostConstruct` and `@PreDestroy` in `CafeService` or `EspressoMachine`.
+* Add print statements to observe lifecycle callbacks.
+
+*Aspect-Oriented Programming*
+
+* Create an aspect called `LoggerAspect`.
+* Use AOP to log method execution for `CafeService.makeCoffee()` using `@Before` and `@After` advice.
+
+---
+
+=== ✅ Success Criteria
+
+* Proper use of annotations: `@Component`, `@Autowired`, `@Scope`, `@Qualifier`, `@PostConstruct`, `@PreDestroy`, and AOP annotations.
+* Console output shows bean creation, method logs, and lifecycle events.
+* Different behavior for singleton and prototype beans is observable.
+* Aspect methods log the method calls for coffee making.
+
+---
 
 
 
