@@ -28,7 +28,7 @@ Here are simple definitions for each of the listed Spring Framework concepts:
 
 *@Component*
 
-@Component tells Spring that the class is a candidate for dependency injection.
+*@Component* tells Spring that the class is a candidate for dependency injection.
 
 Spring will automatically scan and register this class as a bean in the application context if component scanning is enabled.
 
