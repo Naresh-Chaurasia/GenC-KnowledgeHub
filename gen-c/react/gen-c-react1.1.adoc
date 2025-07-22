@@ -289,7 +289,7 @@ npx create-react-app react-library --template typescript
 
 == React Backend
 
-=== MySql
+=== MySql / Setup / Running
 
 ----
 brew services list | grep mysql
@@ -299,6 +299,41 @@ brew services stop mysql
 brew services cleanup
 
 brew services start mysql
+
+
+CREATE SCHEMA `genai_db_mysql` DEFAULT CHARACTER SET DEFAULT ;
+
+mysql -u root
+
+########################################################
+
+brew install postgresql
+
+
+/opt/homebrew/opt/postgresql@14/bin/postgres -D /opt/homebrew/var/postgresql@14
+
+psql postgres
+
+psql postgres
+
+CREATE DATABASE genai_db_postgres
+
+\list
+
+
+psql -U nareshchaurasia -d genai_db_postgres -f script.sql
+
+Install pgvector on your PostgreSQL server.
+Create the extension in your database.
+Then run your schema script.
+
+ 1053  brew install pgvector
+ 1054  brew services restart postgresql
+ 1055  psql -U nareshchaurasia -d genai_db_postgres
+ 1056  psql -U nareshchaurasia -d genai_db_postgres -f schema.sql
+
+
+
 ----
 
 * Since the repository exposes endpoints for CRUD operation, so we have to explicitly make it read only.
