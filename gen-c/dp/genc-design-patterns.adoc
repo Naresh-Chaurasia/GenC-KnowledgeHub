@@ -173,18 +173,18 @@ This pattern is especially useful in layered architecture (like in Spring applic
 
 The Proxy Pattern provides a placeholder or surrogate for another object to control access to it.
 
-== Intent
+*Intent*
 
 * Control access to an object.
 * Add additional functionality (like logging, lazy initialization, access control) without changing the real object's code.
 
-== Participants
+*Participants*
 
 * `Subject` – Interface that both Real and Proxy classes implement.
 * `RealSubject` – The actual object that does the real work.
 * `Proxy` – The placeholder that controls access to the RealSubject.
 
-== Example
+*Example*
 
 [source, java]
 ----
@@ -232,7 +232,7 @@ In this example:
 This is a classic example of *Virtual Proxy*, where the real object is created only when needed.
 ====
 
-== When to Use
+*When to Use*
 
 * When you need to control access to an object.
 * When you want to add responsibilities without modifying the actual object.
