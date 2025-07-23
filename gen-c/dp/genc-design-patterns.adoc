@@ -1,0 +1,249 @@
+= Design Patterns
+:toc: right
+:toclevels: 5
+:sectnums: 5
+
+
+== Singleton Pattern
+
+[source, java]
+----
+public class SimpleSingleton {
+
+    // Step 1: Create a private static instance of the class
+    private static final SimpleSingleton instance = new SimpleSingleton();
+
+    // Step 2: Make the constructor private so no other class can instantiate it
+    private SimpleSingleton() {
+        System.out.println("Singleton instance created");
+    }
+
+    // Step 3: Provide a public static method to get the instance
+    public static SimpleSingleton getInstance() {
+        return instance;
+    }
+
+    public void showMessage() {
+        System.out.println("Hello from Singleton!");
+    }
+
+    // Main method to test the Singleton
+    public static void main(String[] args) {
+        SimpleSingleton obj1 = SimpleSingleton.getInstance();
+        SimpleSingleton obj2 = SimpleSingleton.getInstance();
+
+        obj1.showMessage();
+
+        // Check if both references point to the same instance
+        System.out.println("Are both objects same? " + (obj1 == obj2));
+    }
+}
+----
+
+*Output*
+
+----
+Singleton instance created
+Hello from Singleton!
+Are both objects same? true
+----
+
+*Explanation*
+
+* Only one instance is created, no matter how many times `getInstance()` is called.
+* The constructor is private to prevent instantiation from outside.
+* `obj1` and `obj2` point to the same memory location, proving the singleton behavior.
+
+
+##########
+
+##############################################
+
+== Factory Method Pattern
+
+The *Factory Method Pattern* is a creational design pattern that provides an interface for creating objects in a superclass but allows subclasses to alter the type of objects that will be created.
+
+*Purpose*
+
+* To delegate the object instantiation to subclasses.
+* Promotes loose coupling by eliminating the need to bind application-specific classes into the code.
+
+*Real-World Analogy*
+
+Think of a logistics company: depending on the transportation type (Truck, Ship), a different vehicle is created to deliver the product. The client code asks for a transport, not caring about which type it is.
+
+*Basic Example*
+
+We’ll create an interface `Product`, two concrete classes `Book` and `Pen`, and a `ProductFactory` class that returns the right object.
+
+[source, java]
+----
+// Step 1: Create a Product interface
+interface Product {
+    void use();
+}
+
+// Step 2: Concrete implementations of Product
+class Book implements Product {
+    public void use() {
+        System.out.println("You are reading a book.");
+    }
+}
+
+class Pen implements Product {
+    public void use() {
+        System.out.println("You are writing with a pen.");
+    }
+}
+
+// Step 3: Factory class to create products
+class ProductFactory {
+    public static Product getProduct(String type) {
+        if (type.equalsIgnoreCase("book")) {
+            return new Book();
+        } else if (type.equalsIgnoreCase("pen")) {
+            return new Pen();
+        } else {
+            throw new IllegalArgumentException("Unknown product type");
+        }
+    }
+}
+
+// Step 4: Client code
+public class FactoryPatternExample {
+    public static void main(String[] args) {
+        Product p1 = ProductFactory.getProduct("book");
+        p1.use();
+
+        Product p2 = ProductFactory.getProduct("pen");
+        p2.use();
+    }
+}
+----
+
+*Output*
+----
+You are reading a book.
+You are writing with a pen.
+----
+
+*Key Benefits*
+
+* Hides object creation logic from the client.
+* Makes the code more flexible and extensible.
+* Encourages programming to interfaces, not implementations.
+
+*Use Cases*
+
+* When the exact type of the object may vary depending on configuration or input.
+* When you want to isolate object creation logic in one place.
+
+##########
+
+##############################################
+
+== DAO
+
+Sure! Here's a simple explanation of the *DAO (Data Access Object) Pattern* without using code:
+
+---
+
+The *DAO Pattern* is a design pattern used to separate the *persistence logic* of an application (like accessing databases) from the *business logic*.
+
+In simpler terms:
+
+* It creates a clear separation between how data is accessed and how the application uses that data.
+* The DAO acts as an interface between the application and the data source (like a database).
+* It hides all the complexities involved in performing operations such as insert, update, delete, and fetch from the database.
+* The rest of the application interacts only with the DAO and doesn't need to know about the underlying database or how queries are written.
+
+*Why use DAO Pattern?*
+
+* *Abstraction*: Keeps your business logic separate from data access logic.
+* *Reusability*: DAOs can be reused across different parts of the application.
+* *Maintainability*: If your database or access logic changes, you only update the DAO, not the rest of your app.
+* *Testability*: Easier to mock or stub the data access logic for unit testing.
+
+This pattern is especially useful in layered architecture (like in Spring applications), where each layer has a clear responsibility.
+
+##############################################
+
+
+== Proxy Design Pattern in Java
+
+The Proxy Pattern provides a placeholder or surrogate for another object to control access to it.
+
+== Intent
+
+* Control access to an object.
+* Add additional functionality (like logging, lazy initialization, access control) without changing the real object's code.
+
+== Participants
+
+* `Subject` – Interface that both Real and Proxy classes implement.
+* `RealSubject` – The actual object that does the real work.
+* `Proxy` – The placeholder that controls access to the RealSubject.
+
+== Example
+
+[source, java]
+----
+interface Service {
+    void performOperation();
+}
+
+class RealService implements Service {
+    public void performOperation() {
+        System.out.println("RealService: Performing the operation.");
+    }
+}
+
+class ProxyService implements Service {
+    private RealService realService;
+
+    public void performOperation() {
+        if (realService == null) {
+            realService = new RealService(); // Lazy initialization
+        }
+        System.out.println("ProxyService: Logging before operation.");
+        realService.performOperation();
+        System.out.println("ProxyService: Logging after operation.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Service proxy = new ProxyService();
+        proxy.performOperation();
+    }
+}
+----
+
+.Click Here For Explanation
+[%collapsible]
+====
+In this example:
+
+* `Service` is the interface implemented by both the real and proxy services.
+* `RealService` is the actual service that does the main task.
+* `ProxyService` controls access to `RealService`, adds logging, and lazily initializes the object.
+* The client uses the `ProxyService` without knowing the difference between the proxy and real service.
+
+This is a classic example of *Virtual Proxy*, where the real object is created only when needed.
+====
+
+== When to Use
+
+* When you need to control access to an object.
+* When you want to add responsibilities without modifying the actual object.
+* When working with remote objects or implementing lazy loading.
+
+
+
+
+
+
+
+
+
+

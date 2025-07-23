@@ -54,9 +54,10 @@ a|
 
 | Spring
 a|
-- [ ] PPTs - Ready
-- [ ] Notes - Ready
+- [ ] PPTs + Notes
 - [ ] Q&A
+- [x] AOP + Git Code
+- [ ] Spring Boot
 
 |===
 
