@@ -52,6 +52,16 @@ a|
 - [x] Notes - Ready
 - [ ] Q&A
 
+| JUnit
+a|
+- [ ] PPTs - Ready
+- [ ] Notes - Ready
+- [ ] GenC - JUnit
+
+| TDD/Mocking
+a|
+- [ ] GenC - SpringCore1
+
 | Spring
 a|
 - [ ] PPTs + Notes
