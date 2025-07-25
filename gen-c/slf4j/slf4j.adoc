@@ -240,7 +240,7 @@ public class Book {
 }
 ----
 
-== How to Use Lombok
+== Lombok
 
 *1. Add Dependency (Maven)*
 
