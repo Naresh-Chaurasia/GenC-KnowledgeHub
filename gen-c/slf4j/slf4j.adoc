@@ -157,3 +157,109 @@ Create a new `log4j2.xml` file in `src/main/resources` with the following conten
 4. *Verify Configuration*:
 
 Restart your application and ensure that logs are being written to the console and the `logs/application.log` file.
+
+####################################
+
+
+== Introduction to Lombok in Java
+
+Lombok is a Java library that helps reduce boilerplate code by generating commonly used methods such as getters, setters, constructors, `toString()`, and more at compile time using annotations.
+
+== Why Use Lombok?
+
+* Reduces boilerplate code.
+* Increases code readability and maintainability.
+* Easy to integrate with most IDEs and build tools.
+
+== Common Lombok Annotations
+
+[cols="1,3"]
+|===
+|Annotation |Description
+
+|`@Getter` / `@Setter`
+|Generates getter/setter methods for all or specific fields.
+
+|`@ToString`
+|Generates an implementation of the `toString()` method.
+
+|`@EqualsAndHashCode`
+|Generates `equals()` and `hashCode()` methods.
+
+|`@NoArgsConstructor`
+|Generates a no-arguments constructor.
+
+|`@AllArgsConstructor`
+|Generates a constructor with all fields.
+
+|`@RequiredArgsConstructor`
+|Generates a constructor for final fields.
+
+|`@Data`
+|Combines `@Getter`, `@Setter`, `@ToString`, `@EqualsAndHashCode`, and `@RequiredArgsConstructor`.
+
+|`@Builder`
+|Implements the builder pattern for object creation.
+
+|`@Slf4j`
+|Creates a logger instance using SLF4J.
+|===
+
+== Example
+
+[source, java]
+----
+import lombok.Data;
+
+@Data
+public class Book {
+    private String title;
+    private String author;
+    private double price;
+}
+----
+
+.Compiled Output (roughly equivalent)
+[source, java]
+----
+public class Book {
+    private String title;
+    private String author;
+    private double price;
+
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+    public String getAuthor() { return author; }
+    public void setAuthor(String author) { this.author = author; }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+
+    public String toString() { ... }
+    public boolean equals(Object o) { ... }
+    public int hashCode() { ... }
+}
+----
+
+== How to Use Lombok
+
+*1. Add Dependency (Maven)*
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.32</version>
+    <scope>provided</scope>
+</dependency>
+----
+
+*2. Enable Annotation Processing in Your IDE*
+
+* IntelliJ: Preferences → Build, Execution, Deployment → Compiler → Annotation Processors → Enable.
+* Eclipse: Lombok jar must be added as an agent.
+
+*Conclusion*
+
+Lombok is a powerful tool for simplifying Java code and reducing redundancy. It is especially useful in model or DTO classes and is widely adopted in modern Java development.
+
