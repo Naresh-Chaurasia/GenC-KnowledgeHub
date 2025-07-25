@@ -1,7 +1,10 @@
 = SLF4J Concept and Examples
+:toc: right
+:toclevels: 5
+:sectnums: 5
 
 *SLF4J* stands for *Simple Logging Facade for Java*.
-It is **not a logging library itself**; it provides a **common interface** for different logging frameworks (like Logback, Log4j, java.util.logging).
+It is *not a logging library itself*; it provides a *common interface* for different logging frameworks (like Logback, Log4j, java.util.logging).
 
 Instead of tying your application code to a specific logging framework, you write your logs using SLF4J, and at runtime, bind it to your choice of logging backend.
 
@@ -11,7 +14,7 @@ Instead of tying your application code to a specific logging framework, you writ
 * Easy to switch logging frameworks without changing your code.
 * Cleaner and consistent logging API.
 
-== Basic Setup
+*Basic Setup*
 
 To use SLF4J, you typically add these to your project:
 * SLF4J API
@@ -34,7 +37,7 @@ If you are using Maven, dependencies might look like:
 </dependency>
 ----
 
-== How to Use SLF4J
+*How to Use SLF4J*
 
 *Step 1:* Create a logger instance.
 
@@ -55,7 +58,7 @@ public class MyApplication {
 }
 ----
 
-== Placeholder Example
+*Placeholder Example*
 
 SLF4J encourages using placeholders `{}` instead of string concatenation for better performance.
 
@@ -71,7 +74,7 @@ public class UserService {
 }
 ----
 
-== Behind the Scenes
+*Behind the Scenes*
 
 At runtime:
 
@@ -79,12 +82,12 @@ At runtime:
 * If Log4j binding is available → SLF4J routes the logs to Log4j.
 * If no binding is found → You get a warning.
 
-== Important Notes
+*Important Notes*
 
 * Only one binding (implementation) should be available at runtime to avoid conflicts.
-* SLF4J helps in making your code **future-proof** and **framework-agnostic**.
+* SLF4J helps in making your code *future-proof* and *framework-agnostic*.
 
-== Common Backends Used with SLF4J
+*Common Backends Used with SLF4J*
 
 * Logback (recommended and native)
 * Log4j
@@ -93,5 +96,61 @@ At runtime:
 
 ---
 
-Would you also like me to generate a small real-world mini-project example using SLF4J (like a *login service* logging activities)? 🚀
-I can also show Logback configuration if you want!
+== Switching from Logback to Log4j in Spring Boot
+
+To switch from Logback to Log4j in your Spring Boot project, follow these steps:
+
+1. *Update Dependencies*:
+Remove the Logback dependency and add the Log4j 2 dependencies in your `pom.xml`:
+
+   ```xml
+   <dependencies>
+       <!-- Exclude Logback -->
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-logging</artifactId>
+           <scope>provided</scope>
+       </dependency>
+
+       <!-- Add Log4j 2 -->
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-log4j2</artifactId>
+       </dependency>
+   </dependencies>
+   ```
+
+2. *Remove `logback.xml`*:
+
+Delete the `logback.xml` file from `src/main/resources`.
+
+3. *Add `log4j2.xml` Configuration*:
+
+Create a new `log4j2.xml` file in `src/main/resources` with the following content:
+
+   ```xml
+   <Configuration status="WARN">
+       <Appenders>
+           <!-- Console Appender -->
+           <Console name="Console" target="SYSTEM_OUT">
+               <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n" />
+           </Console>
+
+           <!-- File Appender -->
+           <File name="File" fileName="logs/application.log" append="true">
+               <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n" />
+           </File>
+       </Appenders>
+
+       <Loggers>
+           <Root level="debug">
+               <AppenderRef ref="Console" />
+               <AppenderRef ref="File" />
+           </Root>
+       </Loggers>
+   </Configuration>
+   ```
+
+4. *Verify Configuration*:
+
+Restart your application and ensure that logs are being written to the console and the `logs/application.log` file.
