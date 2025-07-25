@@ -1,7 +1,9 @@
 = SLF4J Concept and Examples
 :toc: right
-:toclevels: 5
+:toclevels:5
 :sectnums: 5
+
+== SLF4J Concept
 
 *SLF4J* stands for *Simple Logging Facade for Java*.
 It is *not a logging library itself*; it provides a *common interface* for different logging frameworks (like Logback, Log4j, java.util.logging).
