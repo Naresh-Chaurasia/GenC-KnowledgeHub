@@ -62,6 +62,12 @@ a|
 a|
 - [ ] GenC - SpringCore1
 
+| slf4j/lombok
+a|
+- [ ] PPT
+- [ ] Notes adoc
+- [ ] Code
+
 | Spring
 a|
 - [ ] PPTs + Notes
@@ -80,8 +86,6 @@ a|
 * Spring REST with Spring Boot 3
 * Microservices with Spring Boot 3 and Spring Cloud
 * Application Debugging-Backend
-* TDD using JUnit and Mockito
-* SLF4J and Lombok
 * Code Quality Standards & SonarQube
 * Docker
 * Cloud and DevOps Basics using AWS

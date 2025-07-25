@@ -175,6 +175,145 @@ public class ResetMockTest {
 
 ---
 
+== Mock and InjectMocks Example
+
+We have a `BookService` class that depends on `BookDAO` to get books. We want to test `BookService` in isolation using Mockito.
+
+*Step 1: Create the Entity*
+
+[source, java]
+----
+public class Book {
+    private int id;
+    private String title;
+
+    public Book(int id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
+    public int getId() { return id; }
+    public String getTitle() { return title; }
+
+    @Override
+    public String toString() {
+        return "Book{id=" + id + ", title='" + title + "'}";
+    }
+}
+----
+
+*Step 2: Create DAO Interface*
+
+[source, java]
+----
+import java.util.List;
+
+public interface BookDAO {
+    List<Book> getAllBooks();
+}
+----
+
+*Step 3: Create Service Class*
+
+[source, java]
+----
+import java.util.List;
+
+public class BookService {
+    private BookDAO bookDAO;
+
+    public BookService(BookDAO bookDAO) {
+        this.bookDAO = bookDAO;
+    }
+
+    public List<Book> fetchAllBooks() {
+        return bookDAO.getAllBooks();
+    }
+}
+----
+
+*Step 4: Unit Test with @Mock and @InjectMocks*
+
+[source, java]
+----
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+public class BookServiceTest {
+
+    @Mock
+    private BookDAO bookDAO;
+
+    @InjectMocks
+    private BookService bookService;
+
+    @Test
+    public void testFetchAllBooks() {
+        // Arrange
+        List<Book> mockBooks = Arrays.asList(
+            new Book(1, "Clean Code"),
+            new Book(2, "Effective Java")
+        );
+        when(bookDAO.getAllBooks()).thenReturn(mockBooks);
+
+        // Act
+        List<Book> books = bookService.fetchAllBooks();
+
+        // Assert
+        assertEquals(2, books.size());
+        assertEquals("Clean Code", books.get(0).getTitle());
+    }
+}
+----
+
+*Explanation*
+
+* `@Mock` – creates a mock of the `BookDAO` interface.
+* `@InjectMocks` – injects the mocked `BookDAO` into the `BookService` instance.
+* `when(...).thenReturn(...)` – sets up the mocked behavior.
+* `@ExtendWith(MockitoExtension.class)` – enables annotation processing for Mockito in JUnit 5.
+
+*Dependencies (Maven)*
+
+Add the following dependencies to your `pom.xml`:
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-core</artifactId>
+    <version>5.11.0</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-junit-jupiter</artifactId>
+    <version>5.11.0</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter</artifactId>
+    <version>5.10.0</version>
+    <scope>test</scope>
+</dependency>
+----
+
+Let me know if you want the same example with constructor or setter-based injection instead.
+```
+
 
 
 ##############################################
