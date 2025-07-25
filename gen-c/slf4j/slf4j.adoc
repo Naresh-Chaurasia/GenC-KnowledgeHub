@@ -19,6 +19,7 @@ Instead of tying your application code to a specific logging framework, you writ
 *Basic Setup*
 
 To use SLF4J, you typically add these to your project:
+
 * SLF4J API
 * SLF4J Binding (for example, Logback)
 
