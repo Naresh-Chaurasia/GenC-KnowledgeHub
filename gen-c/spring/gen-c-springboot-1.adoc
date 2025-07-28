@@ -666,3 +666,337 @@ public class BookService {
 
 
 ##############################################
+
+
+
+== Spring Boot Mini Project
+
+1. *Introduction to Spring Boot*
+
+* What is Spring Boot?
+* How it differs from Spring Core?
+* Benefits: Auto-configuration, Starter Dependencies, Embedded Server
+
+2. *Spring Boot Project Setup*
+
+* Creating project using Spring Initializr (Web, JPA, DevTools, etc.)
+* Project structure and files explained
+* Running a Spring Boot application
+
+3. *Spring Boot Annotations*
+
+* `@SpringBootApplication`
+* `@RestController`, `@RequestMapping`, `@GetMapping`, `@PostMapping`
+* `@Component`, `@Service`, `@Repository`
+
+4. *REST API with Spring Boot*
+
+* Creating simple REST endpoints
+* Handling GET, POST, PUT, DELETE
+* Using `@PathVariable` and `@RequestBody`
+
+5. *Spring Boot with JPA & Hibernate*
+
+* Introduction to Spring Data JPA
+* Creating `@Entity` classes
+* `JpaRepository` and CRUD operations
+* Auto-generating schema with `spring.jpa.hibernate.ddl-auto`
+
+6. *Connecting to Databases*
+
+* Using H2 (in-memory) for development
+* Switching to MySQL/PostgreSQL
+* Understanding `application.properties` or `application.yml`
+
+7. *Validation and Exception Handling*
+
+* Using `@Valid` and `@NotNull`, `@Size`, etc.
+* Global exception handling with `@ControllerAdvice`
+
+8. *Spring Boot DevTools and Hot Reload*
+
+* Enabling DevTools
+* Using Spring Boot DevTools for better development experience
+
+9. *Spring Boot Configuration*
+
+* Externalized configuration using `application.properties`
+* Profiles: `application-dev.properties`, `application-prod.properties`
+* Use of `@Value` and `@ConfigurationProperties`
+
+10. *Spring Boot Logging*
+
+* Default logging in Spring Boot
+* Log levels and customizing logs via properties
+
+11. *Spring Boot Testing (Optional for advanced batch)*
+
+* Introduction to testing with `@SpringBootTest`
+* Writing unit tests for controllers/services
+
+12. *Project/Assignment*
+
+* Build a mini full-stack project (e.g., Book Store, Task Manager)
+* Include REST API, JPA, validation, and exception handling
+
+---
+
+
+[source,java]
+----
+
+// File: BookAppApplication.java
+package com.example.bookapp;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class BookAppApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(BookAppApplication.class, args);
+    }
+}
+
+// File: entity/Book.java
+package com.example.bookapp.entity;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+@Entity
+public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank(message = "Title is mandatory")
+    @Size(min = 2, message = "Title must have at least 2 characters")
+    private String title;
+
+    @NotBlank(message = "Author is mandatory")
+    private String author;
+
+    // Getters and setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+    public String getAuthor() { return author; }
+    public void setAuthor(String author) { this.author = author; }
+}
+
+
+
+// File: repository/BookRepository.java
+package com.example.bookapp.repository;
+
+import com.example.bookapp.entity.Book;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BookRepository extends JpaRepository<Book, Long> {
+}
+
+// File: service/BookService.java
+package com.example.bookapp.service;
+
+import com.example.bookapp.entity.Book;
+import com.example.bookapp.exception.ResourceNotFoundException;
+import com.example.bookapp.repository.BookRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class BookService {
+
+    private final BookRepository bookRepository;
+
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
+    public Book getBookById(Long id) {
+        return bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Book not found with id " + id));
+    }
+
+    public Book createBook(Book book) {
+        return bookRepository.save(book);
+    }
+
+    public Book updateBook(Long id, Book updatedBook) {
+        Book book = getBookById(id);
+        book.setTitle(updatedBook.getTitle());
+        book.setAuthor(updatedBook.getAuthor());
+        return bookRepository.save(book);
+    }
+
+    public void deleteBook(Long id) {
+        Book book = getBookById(id);
+        bookRepository.delete(book);
+    }
+}
+
+// File: controller/BookController.java
+package com.example.bookapp.controller;
+
+import com.example.bookapp.entity.Book;
+import com.example.bookapp.service.BookService;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+
+    private final BookService bookService;
+
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
+
+    @GetMapping
+    public List<Book> getAllBooks() {
+        return bookService.getAllBooks();
+    }
+
+    @GetMapping("/{id}")
+    public Book getBookById(@PathVariable Long id) {
+        return bookService.getBookById(id);
+    }
+
+    @PostMapping
+    public Book createBook(@Valid @RequestBody Book book) {
+        return bookService.createBook(book);
+    }
+
+    @PutMapping("/{id}")
+    public Book updateBook(@PathVariable Long id, @Valid @RequestBody Book book) {
+        return bookService.updateBook(id, book);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
+    }
+}
+
+----
+
+[source,java]
+----
+// File: exception/ResourceNotFoundException.java
+package com.example.bookapp.exception;
+
+public class ResourceNotFoundException extends RuntimeException {
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+}
+
+// File: exception/GlobalExceptionHandler.java
+package com.example.bookapp.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<String> handleNotFound(ResourceNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, String>> handleValidationErrors(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+                errors.put(error.getField(), error.getDefaultMessage()));
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+}
+----
+
+[source,properties]
+----
+// File: application.properties
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.h2.console.enabled=true
+spring.jpa.hibernate.ddl-auto=update
+logging.level.org.springframework=INFO
+----
+
+
+[source,xml]
+----
+// File: pom.xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+    <artifactId>bookapp</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    <name>Book App</name>
+    <description>Sample Spring Boot Project with H2 DB</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.3</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+----
