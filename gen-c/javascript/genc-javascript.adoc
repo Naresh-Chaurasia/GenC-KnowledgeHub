@@ -15,6 +15,11 @@ npm install chalk --save
 
 * https://www.npmjs.com/
 
+== Code
+
+* /Users/nareshchaurasia/nc/GenC/GenC-React/genc-js-ts
+* https://github.com/Naresh-Chaurasia/GenC-React/tree/main/genc-js-ts
+
 
 == Introduction
 
