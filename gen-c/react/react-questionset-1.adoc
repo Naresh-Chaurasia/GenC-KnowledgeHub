@@ -1,0 +1,218 @@
+= React Multiple Choice Questions for College Intern Evaluation
+:toc:
+:toclevels: 2
+
+== Beginner Level
+
+1. What is React?
+
+a) A database
+b) A JavaScript library for building user interfaces
+c) A web server
+d) An operating system
+
+2. Which company developed React?
+
+a) Google
+b) Microsoft
+c) Facebook
+d) Oracle
+
+3. What is JSX in React?
+
+a) A database language
+b) A CSS framework
+c) A syntax extension that allows writing HTML-like code in JavaScript
+d) A testing tool
+
+4. Which command is commonly used to create a React application?
+
+a) create-react-app myapp
+b) react-create myapp
+c) npm-react myapp
+d) react init myapp
+
+5. What is a React component?
+
+a) A database table
+b) A reusable piece of UI
+c) A CSS file
+d) A web server
+
+6. Which of the following is used to pass data from a parent component to a child component?
+
+a) State
+b) Props
+c) Event
+d) Hook
+
+7. What is the correct way to display a JavaScript variable in JSX?
+
+a) <p>name</p>
+b) <p>(name)</p>
+c) <p>{name}</p>
+d) <p>[name]</p>
+
+8. Which hook is used to manage state in a functional component?
+
+a) useEffect
+b) useState
+c) useRef
+d) useMemo
+
+9. What is the default file used as the entry point in most React applications?
+
+a) index.js
+b) app.js
+c) home.js
+d) start.js
+
+10. Which attribute is used instead of "class" in JSX?
+
+a) styleClass
+b) cssClass
+c) className
+d) class
+
+11. React applications are primarily written using:
+
+a) Java
+b) Python
+c) JavaScript
+d) SQL
+
+12. Which symbol is used to embed JavaScript expressions in JSX?
+
+a) ()
+b) []
+c) {}
+d) <>
+
+13. What is the purpose of state in React?
+
+a) To store component data
+b) To create routes
+c) To style components
+d) To connect databases
+
+14. Which file usually contains the root React component?
+
+a) package.json
+b) App.js
+c) index.html
+d) styles.css
+
+15. Which function is used to render a React application?
+
+a) React.render()
+b) renderApp()
+c) createRoot().render()
+d) startReact()
+
+== Medium Level
+
+16. What is the purpose of the useEffect hook?
+
+a) To create components
+b) To manage state
+c) To perform side effects
+d) To create routes
+
+17. Which hook is used to reference a DOM element directly?
+
+a) useState
+b) useEffect
+c) useRef
+d) useContext
+
+18. What is the purpose of the key prop in React lists?
+
+a) To style elements
+b) To uniquely identify elements
+c) To pass data
+d) To create state
+
+19. Which method is commonly used to render a list of items in React?
+
+a) forEach()
+b) map()
+c) filter()
+d) reduce()
+
+20. What will happen when state is updated in a React component?
+
+a) The application restarts
+b) The component re-renders
+c) The component is deleted
+d) The browser refreshes
+
+21. Which hook is used to share data globally without passing props through multiple levels?
+
+a) useState
+b) useRef
+c) useContext
+d) useMemo
+
+22. What is the purpose of React Fragment?
+
+a) To create routes
+b) To group multiple elements without adding extra DOM nodes
+c) To store state
+d) To create hooks
+
+23. Which hook is used to optimize expensive calculations by memoizing values?
+
+a) useEffect
+b) useContext
+c) useMemo
+d) useRef
+
+24. What is a controlled component in React?
+
+a) A component managed by React state
+b) A component managed by CSS
+c) A component managed by the browser only
+d) A component managed by Redux
+
+25. Which hook is used to store mutable values that do not cause re-renders?
+
+a) useState
+b) useRef
+c) useEffect
+d) useContext
+
+26. What is the purpose of dependency arrays in useEffect?
+
+a) To store component state
+b) To control when the effect runs
+c) To define routes
+d) To create props
+
+27. What is the virtual DOM?
+
+a) A copy of the real DOM maintained by React
+b) A database
+c) A browser extension
+d) A CSS framework
+
+28. Which of the following best describes props?
+
+a) Mutable data within a component
+b) Read-only data passed to a component
+c) Database records
+d) Event handlers
+
+29. What is React Router primarily used for?
+
+a) Database connectivity
+b) Styling
+c) Navigation between pages/views
+d) Form validation
+
+30. Why should keys be unique when rendering lists?
+
+a) To improve React's rendering and reconciliation process
+b) To increase CSS performance
+c) To enable routing
+d) To prevent JavaScript errors
+

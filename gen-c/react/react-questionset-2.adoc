@@ -1,0 +1,21 @@
+= React Descriptive Questions for College Intern Evaluation
+
+1. Explain React and its main advantages. Why is React widely used for building web applications?
+
+2. What is a React component? Explain the difference between Functional Components and Class Components with examples.
+
+3. What are Props in React? Explain how props are used to pass data between components.
+
+4. What is State in React? How is it different from Props? Provide a practical example.
+
+5. Explain JSX. What are its benefits and how does it differ from traditional HTML?
+
+6. What is the Virtual DOM? Explain how React uses the Virtual DOM to improve application performance.
+
+7. Explain the React component lifecycle at a high level. Why is understanding the lifecycle important for developers?
+
+8. What is the purpose of the useEffect hook? Describe at least three real-world use cases where useEffect can be used.
+
+9. Explain the concept of controlled and uncontrolled components in React forms. Which approach is generally preferred and why?
+
+10. Describe how data flows in a React application. Explain the concept of one-way data binding and its advantages.

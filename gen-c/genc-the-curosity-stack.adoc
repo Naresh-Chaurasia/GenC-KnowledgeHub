@@ -1,0 +1,107 @@
+= GenC - The Curosity Stack
+:toc: right
+:toclevels:5
+:sectnums:
+
+
+== React
+
+=== props
+
+*Props* (short for *properties*) are used to pass data from a parent component to a child component.
+
+* Key Points
+* Props make components reusable.
+* Props are read-only (a child component should not modify them).
+* Data flows from parent to child.
+* Similar to parameters passed to a function.
+
+*Example*
+
+[source,jsx]
+----
+function Welcome(props) {
+    return <h1>Hello, {props.name}!</h1>;
+}
+
+function App() {
+    return <Welcome name="Naresh" />;
+}
+----
+
+*How it works*
+
+* `App` passes the value `"Naresh"` through the `name` prop.
+* `Welcome` receives it as `props.name`.
+* Output displayed in the browser:
+
+----
+Hello, Naresh!
+----
+
+*Analogy*
+
+Think of a React component as a function:
+
+[source,javascript]
+----
+function greet(name) {
+    return "Hello " + name;
+}
+----
+
+In the same way, React components receive data through *props* and use it to render UI.
+
+
+
+##############################################
+
+
+== JAR File in Java
+
+*What is a JAR File?*
+
+* JAR stands for *Java ARchive*.
+* It is a file format that bundles multiple Java class files, metadata, and resources (like images, text files) into a single file.
+* Used to distribute Java applications and libraries.
+
+*Why Use JAR Files?*
+
+* Combines all your `.class` files and resources into one file.
+* Makes deployment and sharing of Java programs easier.
+* Reduces clutter and improves organization.
+
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+

@@ -1,0 +1,118 @@
+= Full Stack: React and Java Spring Boot - The Developer Guide: Chad Darby, Eric Roby
+
+
+
+== Section 2: React Overview
+
+
+=== 4. React Overview
+
+*What is React*
+
+* JavaScript library for building modern user interfaces — especially single-page applications (SPAs)
+* Focuses on efficient UI updates and component-based development
+
+*Single Page Application (SPA) Concept*
+
+* Entire app runs on a single HTML page — no full reloads
+* User actions trigger partial UI updates — faster and smoother experience
+* Communicates with backend via REST APIs — fetch/send data dynamically
+
+*SPA vs Traditional Applications*
+
+* Traditional apps — every action → full page reload from server
+* SPAs — only update required parts of the page — improves performance and UX
+
+*Examples of SPAs*
+
+* Google Maps — updates map dynamically without reload
+* Gmail/Yahoo Mail — UI updates (emails, actions) happen inline
+
+*Role of React*
+
+* Enables partial page updates efficiently — core for SPA behaviour
+* Handles UI rendering based on state changes — reactive updates
+* Integrates with backend services (e.g., Spring Boot) for full-stack apps
+
+*Industry Adoption*
+
+* Used by major companies — Facebook (creator), WhatsApp, Dropbox
+* Widely adopted for production-grade web applications
+
+*Why Not Vanilla JavaScript*
+
+* Possible for small apps — but becomes complex at scale
+* Repetitive work (data binding, DOM updates) — hard to maintain
+* React and similar frameworks abstract complexity — improve productivity
+
+*Key Value*
+
+* Simplifies UI development — handles heavy lifting of DOM updates
+* Scalable for large teams and applications — easier maintenance
+* Enables modern, responsive user experiences\*
+
+
+##############################################
+
+---
+
+=== 6. Getting Started with React
+
+*What is React*
+
+* JavaScript library for building modern single-page applications (SPAs)
+* Enables dynamic UI updates without full page reloads — improves performance
+
+*Core React Features*
+
+* Component-based architecture — UI built from reusable components
+* Declarative views — define *what UI should look like* based on state
+* Logic in JavaScript — combines UI + behaviour in one place
+* Supports modern UI frameworks — Bootstrap, Material UI, etc.
+
+*React Architecture*
+
+* App = hierarchy of components (parent → child → nested components)
+* Each component renders HTML (UI) + contains JavaScript logic
+* Components manage their own state — updates trigger re-render
+
+*Key Concepts*
+
+* Component — reusable UI unit (view + logic)
+* Props — pass data from parent → child components
+* State — internal data of component; changes trigger UI updates
+* Hooks — manage state and lifecycle without class-based code
+* Modules — group related components into a feature/page
+
+*Component Behaviour*
+
+* UI renders from component state
+* When state changes → React updates only affected parts of UI — efficient rendering
+
+*Example UI Structure*
+
+* Header + Footer — common components across pages
+* Main content — dynamic component based on user interaction
+* Nested components — e.g., To-do list → items → pagination
+
+*Backend Integration*
+
+* React communicates with backend via REST APIs (HTTP)
+* Typical flow: UI → API → backend (e.g., Spring Boot) → database → response → UI update
+
+*Project Structure*
+
+* React app = multiple files  
+** Components (JavaScript files)  
+** HTML (via JSX)  
+** CSS styles  
+** Config and assets (images, etc.)
+* Each component typically exists as a `.js` file
+
+*Why React Matters*
+
+* Simplifies complex UI development — reusable and maintainable
+* Efficient updates — avoids full page reloads
+* Scales well for large applications + teams — widely used in production systems
+
+

@@ -1,0 +1,26 @@
+# Maven target directory
+/target/
+
+# IntelliJ IDEA files
+/.idea/
+/*.iml
+
+# Eclipse files
+.project
+.classpath
+.settings/
+
+# Mac OS specific files
+.DS_Store
+
+# Logs
+*.log
+
+# Ignore compiled class files
+*.class
+
+# Ignore local environment files
+.env
+
+# Ignore PDF files
+# *.pdf

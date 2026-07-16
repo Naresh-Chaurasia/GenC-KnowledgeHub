@@ -1,0 +1,41 @@
+= React UI Project Evaluation Questions
+
+1. Describe the React project you worked on. What was the purpose of the application and what was your role in the project?
+
+2. Explain the folder structure of your React application. Why did your team organize the project in that way?
+
+3. How did you divide the UI into React components? Give examples of reusable components you created.
+
+4. How did you manage data within the application? Explain where you used State and where you used Props.
+
+5. Did your application consume data from a backend API? Explain how you called the API and displayed the data on the screen.
+
+6. How did you handle loading states and error messages when fetching data from APIs?
+
+7. Explain how you implemented forms in your project. How did you capture and validate user input?
+
+8. Did your application have multiple pages? If yes, explain how routing and navigation were implemented.
+
+9. What challenges did you face while developing the UI? How did you troubleshoot and resolve those issues?
+
+10. Explain how you handled user events such as button clicks, form submissions, or dropdown selections.
+
+11. Did you use any third-party libraries in your project? Explain why they were needed and how they helped.
+
+12. How did you apply styling in your application? Did you use CSS, CSS Modules, Bootstrap, Material UI, Tailwind CSS, or another approach?
+
+13. Explain how data flows from a parent component to a child component in your project. Provide a real example.
+
+14. What steps did you take to make the UI responsive for mobile and tablet devices?
+
+15. Describe a feature that you implemented completely by yourself. Explain the design, implementation, and testing process.
+
+16. How did you debug issues in your React application? Which browser tools or techniques did you use?
+
+17. What is the difference between useState and useEffect? Where did you use them in your project?
+
+18. Explain how you optimized the performance of your application. Were there any slow screens or rendering issues?
+
+19. If a user reports that data is not appearing on a screen, how would you investigate and troubleshoot the problem?
+
+20. If you were asked to improve your project today, what changes or enhancements would you make and why?

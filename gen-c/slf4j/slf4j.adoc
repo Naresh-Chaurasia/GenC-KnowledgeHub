@@ -1,0 +1,265 @@
+= SLF4J Concept and Examples
+:toc: right
+:toclevels:5
+:sectnums: 5
+
+== SLF4J Concept
+
+*SLF4J* stands for *Simple Logging Facade for Java*.
+It is *not a logging library itself*; it provides a *common interface* for different logging frameworks (like Logback, Log4j, java.util.logging).
+
+Instead of tying your application code to a specific logging framework, you write your logs using SLF4J, and at runtime, bind it to your choice of logging backend.
+
+*Advantages:*
+
+* Decouple your application code from any specific logging framework.
+* Easy to switch logging frameworks without changing your code.
+* Cleaner and consistent logging API.
+
+*Basic Setup*
+
+To use SLF4J, you typically add these to your project:
+
+* SLF4J API
+* SLF4J Binding (for example, Logback)
+
+If you are using Maven, dependencies might look like:
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>2.0.9</version>
+</dependency>
+
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+    <version>1.4.11</version>
+</dependency>
+----
+
+*How to Use SLF4J*
+
+*Step 1:* Create a logger instance.
+
+[source, java]
+----
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class MyApplication {
+
+    private static final Logger logger = LoggerFactory.getLogger(MyApplication.class);
+
+    public static void main(String[] args) {
+        logger.info("Application Started");
+        logger.warn("This is a warning message");
+        logger.error("An error occurred");
+    }
+}
+----
+
+*Placeholder Example*
+
+SLF4J encourages using placeholders `{}` instead of string concatenation for better performance.
+
+[source, java]
+----
+public class UserService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+
+    public void getUserDetails(String userId) {
+        logger.info("Fetching details for user id: {}", userId);
+    }
+}
+----
+
+*Behind the Scenes*
+
+At runtime:
+
+* If Logback binding is available → SLF4J routes the logs to Logback.
+* If Log4j binding is available → SLF4J routes the logs to Log4j.
+* If no binding is found → You get a warning.
+
+*Important Notes*
+
+* Only one binding (implementation) should be available at runtime to avoid conflicts.
+* SLF4J helps in making your code *future-proof* and *framework-agnostic*.
+
+*Common Backends Used with SLF4J*
+
+* Logback (recommended and native)
+* Log4j
+* java.util.logging (JUL)
+* tinylog
+
+---
+
+== Switching from Logback to Log4j in Spring Boot
+
+To switch from Logback to Log4j in your Spring Boot project, follow these steps:
+
+1. *Update Dependencies*:
+Remove the Logback dependency and add the Log4j 2 dependencies in your `pom.xml`:
+
+   ```xml
+   <dependencies>
+       <!-- Exclude Logback -->
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-logging</artifactId>
+           <scope>provided</scope>
+       </dependency>
+
+       <!-- Add Log4j 2 -->
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-log4j2</artifactId>
+       </dependency>
+   </dependencies>
+   ```
+
+2. *Remove `logback.xml`*:
+
+Delete the `logback.xml` file from `src/main/resources`.
+
+3. *Add `log4j2.xml` Configuration*:
+
+Create a new `log4j2.xml` file in `src/main/resources` with the following content:
+
+   ```xml
+   <Configuration status="WARN">
+       <Appenders>
+           <!-- Console Appender -->
+           <Console name="Console" target="SYSTEM_OUT">
+               <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n" />
+           </Console>
+
+           <!-- File Appender -->
+           <File name="File" fileName="logs/application.log" append="true">
+               <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n" />
+           </File>
+       </Appenders>
+
+       <Loggers>
+           <Root level="debug">
+               <AppenderRef ref="Console" />
+               <AppenderRef ref="File" />
+           </Root>
+       </Loggers>
+   </Configuration>
+   ```
+
+4. *Verify Configuration*:
+
+Restart your application and ensure that logs are being written to the console and the `logs/application.log` file.
+
+####################################
+
+
+== Introduction to Lombok in Java
+
+Lombok is a Java library that helps reduce boilerplate code by generating commonly used methods such as getters, setters, constructors, `toString()`, and more at compile time using annotations.
+
+== Why Use Lombok?
+
+* Reduces boilerplate code.
+* Increases code readability and maintainability.
+* Easy to integrate with most IDEs and build tools.
+
+*Common Lombok Annotations*
+
+[cols="1,3"]
+|===
+|Annotation |Description
+
+|`@Getter` / `@Setter`
+|Generates getter/setter methods for all or specific fields.
+
+|`@ToString`
+|Generates an implementation of the `toString()` method.
+
+|`@EqualsAndHashCode`
+|Generates `equals()` and `hashCode()` methods.
+
+|`@NoArgsConstructor`
+|Generates a no-arguments constructor.
+
+|`@AllArgsConstructor`
+|Generates a constructor with all fields.
+
+|`@RequiredArgsConstructor`
+|Generates a constructor for final fields.
+
+|`@Data`
+|Combines `@Getter`, `@Setter`, `@ToString`, `@EqualsAndHashCode`, and `@RequiredArgsConstructor`.
+
+|`@Builder`
+|Implements the builder pattern for object creation.
+
+|`@Slf4j`
+|Creates a logger instance using SLF4J.
+|===
+
+*Example*
+
+[source, java]
+----
+import lombok.Data;
+
+@Data
+public class Book {
+    private String title;
+    private String author;
+    private double price;
+}
+----
+
+.Compiled Output (roughly equivalent)
+[source, java]
+----
+public class Book {
+    private String title;
+    private String author;
+    private double price;
+
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+    public String getAuthor() { return author; }
+    public void setAuthor(String author) { this.author = author; }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+
+    public String toString() { ... }
+    public boolean equals(Object o) { ... }
+    public int hashCode() { ... }
+}
+----
+
+*Lombok*
+
+*1. Add Dependency (Maven)*
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.32</version>
+    <scope>provided</scope>
+</dependency>
+----
+
+*2. Enable Annotation Processing in Your IDE*
+
+* IntelliJ: Preferences → Build, Execution, Deployment → Compiler → Annotation Processors → Enable.
+* Eclipse: Lombok jar must be added as an agent.
+
+*Conclusion*
+
+Lombok is a powerful tool for simplifying Java code and reducing redundancy. It is especially useful in model or DTO classes and is widely adopted in modern Java development.
+

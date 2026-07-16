@@ -1,0 +1,142 @@
+= Maven
+:toc: right
+:toclevels: 5
+
+*1. What is Apache Maven?*
+
+A. A Java IDE
+B. A build automation tool
+C. A database tool
+D. A web server
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *B*. Maven is a build automation and dependency management tool for Java projects.
+====
+---
+
+*2. What is the default configuration file of Maven?*
+
+A. build.xml
+B. settings.xml
+C. pom.xml
+D. maven.xml
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. pom.xml contains project configuration and dependencies.
+====
+---
+
+*3. What does POM stand for in Maven?*
+
+A. Project Object Model
+B. Program Object Model
+C. Project Oriented Module
+D. Program Oriented Module
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *A*. POM stands for Project Object Model.
+====
+---
+
+*4. Which command is used to compile a Maven project?*
+
+A. mvn build
+B. mvn install
+C. mvn compile
+D. mvn package
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. mvn compile compiles the source code of the project.
+====
+---
+
+*5. Which Maven lifecycle creates the JAR file?*
+
+A. validate
+B. compile
+C. package
+D. test
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. The package phase creates the JAR or WAR file.
+====
+---
+
+*6. What is the purpose of Maven repositories?*
+
+A. To store Java source code
+B. To store compiled class files
+C. To store project dependencies
+D. To store test reports
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. Repositories store and manage project dependencies.
+====
+---
+
+*7. Which repository is used first by Maven to find dependencies?*
+
+A. Central repository
+B. Remote repository
+C. Local repository
+D. Plugin repository
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. Maven checks the local repository first.
+====
+---
+
+*8. Which tag is used to define dependencies in pom.xml?*
+
+A. <dependencyList>
+B. <libraries>
+C. <dependencies>
+D. <jars>
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. The <dependencies> tag is used to define project dependencies.
+====
+---
+
+*9. What does the mvn clean command do?*
+
+A. Deletes dependencies
+B. Deletes target directory
+C. Deletes source files
+D. Deletes pom.xml
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *B*. mvn clean removes the target directory.
+====
+---
+
+*10. What is the purpose of mvn install command?*
+
+A. Compile code only
+B. Run tests only
+C. Package and install artifact in local repository
+D. Deploy application to server
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. mvn install builds the project and installs it in the local repository.
+====

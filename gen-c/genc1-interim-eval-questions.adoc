@@ -1,0 +1,93 @@
+= Gen-C Interview Questions
+:toc: right
+:toclevels:5
+:sectnums:
+
+== Core Java
+
+1.	What is Java? List some key features of Java.
+2.	Explain the difference between JVM, JDK, and JRE.
+3.	What is the difference between class and object in Java?
+4.	What are the four main principles of Object-Oriented Programming (OOP)?
+5.	What is method overloading and method overriding? Give an example.
+6.	What is the difference between an abstract class and an interface?
+7.	What is the difference between == and .equals() in Java?
+8.	What is the difference between String, StringBuilder, and StringBuffer?
+9.	What are access modifiers in Java? Explain with examples.
+10.	What is the difference between checked and unchecked exceptions?
+11.	What is the purpose of the final keyword in Java?
+12.	What is the difference between Array and ArrayList?
+13.	How do you create a thread in Java? Explain two ways.
+14.	What is the difference between this and super keywords?
+15.	Write a simple Java program to reverse a string.
+
+##################################################
+
+== SQL Interview
+
+1.	What is SQL? How is it different from MySQL?
+2.	What are the different types of SQL commands? (DDL, DML, DCL, TCL)
+3.	What is the difference between WHERE and HAVING clauses?
+4.	What is the difference between INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL JOIN?
+5.	What is the difference between PRIMARY KEY and UNIQUE constraints?
+6.	What is a foreign key? Why is it important?
+7.	What is the difference between DELETE, TRUNCATE, and DROP statements?
+8.	What is normalization? Explain 1NF, 2NF, and 3NF.
+9.	What is a subquery? Give an example.
+10.	What is the difference between GROUP BY and ORDER BY?
+11.	What is the difference between CHAR and VARCHAR data types?
+12.	What is the use of indexes in SQL? What are clustered and non-clustered indexes?
+13.	What is the difference between COUNT(*), COUNT(column_name), and COUNT(DISTINCT column_name)?
+14.	Write a query to fetch the second highest salary from an Employee table.
+15.	Write a query to display the total number of employees in each department.
+
+
+##################################################
+
+== Spring Framework
+
+1.	What is the Spring Framework? Why is it used?
+2.	What are the advantages of using Spring over traditional Java frameworks?
+3.	What is Inversion of Control (IoC) in Spring?
+4.	What is Dependency Injection (DI)? How is it implemented in Spring?
+5.	What is the difference between constructor injection and setter injection?
+6.	What are Spring Beans? How do you define them?
+7.	What is the use of the @Component, @Service, @Repository, and @Controller annotations?
+8.	What is the role of the ApplicationContext in Spring?
+9.	What is the difference between BeanFactory and ApplicationContext?
+10.	What is the default scope of a Spring Bean? Name other bean scopes.
+11.	What is the purpose of the @Autowired annotation?
+12.	What is Spring Boot? How is it different from the Spring Framework?
+13.	What are Spring Boot starters? Give an example.
+14.	What is the purpose of the application.properties (or application.yml) file in Spring Boot?
+15.	What is Spring Data JPA? How does it simplify database interactions?
+
+##################################################
+
+== Angular Framework
+
+1.	What is Angular? How is it different from AngularJS?
+2.	What are the main features of Angular?
+3.	What is a component in Angular?
+4.	What are modules in Angular? Why are they important?
+5.	What is the purpose of NgModule?
+6.	What are directives in Angular? Explain the difference between structural and attribute directives.
+7.	What is data binding in Angular? Explain its types.
+8.	What are services in Angular? How do you create a service?
+9.	What is dependency injection in Angular?
+10.	What is the role of @Injectable() in Angular services?
+11.	What is Angular CLI? Why is it used?
+12.	What is the difference between ng serve and ng build commands?
+13.	What is routing in Angular? How is it implemented?
+14.	What is lazy loading in Angular modules?
+15.	What is an Angular pipe? Give examples of built-in pipes.
+16.	How do you create a custom pipe in Angular?
+17.	What are lifecycle hooks in Angular? Explain with examples.
+18.	What is the difference between ngOnInit() and a constructor in a component?
+19.	What is two-way data binding in Angular? Which directive is used for it?
+20.	What is the difference between reactive forms and template-driven forms in Angular?
+21.	What is the use of ngModel directive?
+22.	What is an observable in Angular? How is it different from a promise?
+23.	What is the role of RxJS in Angular?
+24.	What are Angular interceptors? How are they useful?
+25.	What are Angular guards? Explain different types of route guards.

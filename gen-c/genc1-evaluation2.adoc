@@ -1,0 +1,39 @@
+= Gen-C Evaluation
+:toc: right
+:toclevels:5
+:sectnums:
+
+== Spring Boot
+
+* What is Spring Boot and why do we use it?
+* Explain the purpose of `@SpringBootApplication`.
+* What are the different ways to configure properties in Spring Boot?
+* What is Spring Boot Starter? Give an example.
+* How does Spring Boot Auto-Configuration work?
+* What is the purpose of `application.properties` or `application.yml`?
+* Explain what Spring Boot DevTools is and its benefits.
+
+== Spring Cloud
+
+* What is Spring Cloud and why is it useful in Microservices?
+* Explain the role of Spring Cloud Config Server.
+* What is Netflix Eureka and how do you register a service with it?
+* What is the purpose of Spring Cloud Gateway?
+* What is Circuit Breaker pattern and how can you implement it with Spring Cloud?
+* Explain what a Feign Client is and its use in Spring Cloud.
+
+== Microservices
+
+* What are Microservices and what are their benefits?
+* Explain the differences between Monolithic and Microservices architecture.
+* What is Service Discovery and why do we need it in Microservices?
+* Explain the concept of API Gateway and its role in Microservices.
+* How do you ensure data consistency across Microservices? Explain eventual consistency.
+* What are some common design patterns for Microservices architecture?
+* What are some common challenges when implementing Microservices and how do you overcome them?
+* How can you implement inter-service communication? Explain REST vs. messaging-based communication.
+* What is the purpose of distributed tracing and how would you implement it (e.g. using Zipkin)?
+* How would you handle security and authorization in a Microservices architecture?
+* Explain the role of Docker and Kubernetes in Microservices deployment.
+* What is the Saga pattern and when would you use it in Microservices?
+* How would you monitor and log Microservices effectively in a production environment?

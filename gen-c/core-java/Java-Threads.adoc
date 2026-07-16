@@ -1,0 +1,102 @@
+= Core Java Threading
+:toc: right
+:toclevels:5
+:sectnums:
+
+*1. What is the difference between `Thread` class and `Runnable` interface?*
+
+* `Thread` is a class that can be extended to create a thread.
+* `Runnable` is a functional interface that can be implemented to define thread behavior.
+* Since Java supports only single inheritance, using `Runnable` is often preferred to allow the class to extend another class.
+
+*2. How do you create a thread in Java? Explain with an example.*
+
+You can create a thread in two ways:
+
+* By extending the `Thread` class.
+* By implementing the `Runnable` interface.
+
+[source, java]
+----
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread is running");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        MyThread t = new MyThread();
+        t.start();
+    }
+}
+----
+
+*3. What is the difference between `start()` and `run()` methods in a thread?*
+
+* `start()` creates a new thread and invokes the `run()` method.
+* `run()` just executes the code in the current thread like a normal method call.
+
+*4. What are the different thread states in Java?*
+
+Java threads have the following states (from `Thread.State` enum):
+
+* NEW
+* RUNNABLE
+* BLOCKED
+* WAITING
+* TIMED_WAITING
+* TERMINATED
+
+*5. What is the purpose of the `synchronized` keyword in Java?*
+
+* It is used to restrict access to a block of code or method by multiple threads.
+* It prevents thread interference and memory consistency errors.
+
+[source, java]
+----
+public synchronized void myMethod() {
+    // Only one thread can access this method at a time
+}
+----
+
+*6. What is a daemon thread? How is it different from a user thread?*
+
+* A daemon thread runs in the background and is used for tasks like garbage collection.
+* The JVM exits when only daemon threads are running, unlike user threads.
+
+[source, java]
+----
+Thread t = new Thread(() -> System.out.println("Daemon thread"));
+t.setDaemon(true);
+t.start();
+----
+
+*7. What is the difference between `wait()`, `notify()`, and `notifyAll()`?*
+
+* `wait()` pauses the thread and releases the lock.
+* `notify()` wakes up one waiting thread.
+* `notifyAll()` wakes up all waiting threads.
+* All must be called from within a synchronized context.
+
+*8. What is thread deadlock and how can you prevent it?*
+
+* Deadlock occurs when two or more threads are waiting indefinitely for each other to release locks.
+* Prevention techniques:
+  - Avoid nested locks
+  - Use lock ordering
+  - Try using `tryLock()` from `java.util.concurrent.locks`
+
+*9. What is the `volatile` keyword in Java? How is it different from `synchronized`?*
+
+* `volatile` ensures that changes made by one thread to a variable are visible to other threads.
+* It does not block threads, unlike `synchronized`.
+* It is suitable only for variables (not blocks/methods) and does not guarantee atomicity.
+
+*10. How does Java achieve thread safety?*
+
+* By using:
+  - `synchronized` blocks/methods
+  - `volatile` keyword
+  - Atomic variables (`AtomicInteger`, etc.)
+  - Thread-safe classes like `ConcurrentHashMap`, `CopyOnWriteArrayList`

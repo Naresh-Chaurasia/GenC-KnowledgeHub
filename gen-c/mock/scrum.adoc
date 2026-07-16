@@ -1,0 +1,31 @@
+= Scrum and Agile Interview Questions
+
+1. *What is Agile methodology?*
+   Explain the basic idea behind Agile and how it differs from traditional models like Waterfall.
+
+2. *What is Scrum?*
+   Describe Scrum as a framework and its purpose in Agile development.
+
+3. *What are the key roles in Scrum?*
+   Explain the responsibilities of Product Owner, Scrum Master, and Development Team.
+
+4. *What is a Sprint?*
+   What happens during a Sprint and what is its typical duration?
+
+5. *What is a Product Backlog?*
+   Who manages it and what does it contain?
+
+6. *What is a Sprint Backlog?*
+   How is it different from the Product Backlog?
+
+7. *What is a Daily Stand-up (Daily Scrum)?*
+   What are the three main questions typically answered in this meeting?
+
+8. *What is a Sprint Review?*
+   What is its purpose and who participates in it?
+
+9. *What is a Sprint Retrospective?*
+   How does it help improve the team’s performance?
+
+10. *What is the concept of “Definition of Done”?*
+    Why is it important in Agile projects?

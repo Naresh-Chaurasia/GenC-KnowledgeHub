@@ -1,0 +1,39 @@
+= GenC
+
+== Getting Started
+
+* [ ] https://cognizant.tekstac.com/login/index.php
+
+---
+
+* [ ] [ ] Day1 Agile Methodology*
+* [ ] Day2 SOLID Principles
+* [ ] Day3 Spring Core and Maven
+** [ ] Which Java, Eclipse IDE for Enterpise Java and Web Developers
+** [ ] IntelliJ
+* [ ] Day4 Spring Core and Maven
+* [ ] Day5 Spring Core and Maven*
+* [ ] Day6 Spring Core and Maven - Reactive
+* [ ] Day7 Maven
+* [ ] Day8 TDD using JUnit and Mockito
+* [ ] Day9 TDD using JUnit and Mockito
+* [ ] Day10 SLF4J and Lombok
+* [ ] Day11 - Forenoon - Code Quality Standards
+* [ ] Day11 - Afternoon - behavioral training and mentor connect.
+* [ ] Day12 - Sonarqube
+* [ ] Day13 - Internal Demo and Rework
+* [ ] Day14 - GIT
+* [ ] Day15 - Application Debugging - Backend
+* [ ] Day16 - Spring Data JPA with Spring Boot, Hibernate
+* [ ] Day17 - Spring Data JPA with Spring Boot, Hibernate
+* [ ] Day18 - Spring Data JPA with Spring Boot, Hibernate
+* [ ] Day19 - Spring Data JPA with Spring Boot, Hibernate
+* [ ] Day20 - Spring Data JPA with Spring Boot, Hibernate
+* [ ] Day21 - Spring REST using Spring Boot 3
+* [ ] Day22 - Spring REST using Spring Boot 3
+* [ ] Day23 - Spring REST using Spring Boot 3
+* [ ] Day24 - Spring REST using Spring Boot 3
+* [ ] Day25 - Spring REST using Spring Boot 3
+* [ ] Day26 - behavioral training and mentor connect.
+* [ ] Day27 - Internal Demo and Rework
+* [ ] Day28 - Microservices with Spring Boot 3 and Spring Cloud

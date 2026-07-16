@@ -1,0 +1,617 @@
+= REST 1
+:toc: right
+:toclevels: 5
+:sectnums: 5
+
+
+=== Stateless Communication
+
+*Definition:*
+In REST, each request from the client to the server must contain all the information the server needs to fulfill that request. The server does *not store any client context* between requests.
+
+*Why it matters:*
+This makes the system scalable, as servers don’t need to remember session state.
+
+*Example:*
+Let’s say you’re making two API calls:
+
+1. `GET /users/101`
+2. `POST /users/101/orders` with body:
+
+```json
+{
+  "item": "Laptop",
+  "quantity": 1
+}
+```
+
+*Stateless behavior:*
+The second request doesn’t assume the server knows who the user is from the first request. It contains everything it needs: the user ID is in the URL (`/users/101`), and the order details are in the body.
+
+---
+
+=== Uniform Resource
+
+*Definition:*
+
+REST uses a *uniform interface* for accessing resources. Each resource is identified by a *URI (Uniform Resource Identifier)*. It also uses standard HTTP methods (GET, POST, PUT, DELETE, etc.).
+
+*Why it matters:*
+It simplifies and decouples the architecture. Clients don't need to know how the server works internally.
+
+*Example:*
+For a book store API, these could be URIs:
+
+* `GET /books` → List all books
+* `GET /books/10` → Get details of book with ID 10
+* `DELETE /books/10` → Delete book 10
+
+Each URI is a unique identifier for a *resource*.
+
+---
+
+=== Resource-Based
+
+*Definition:*
+
+In REST, everything is considered a *resource*. A resource could be a user, an order, a product, etc. Resources are represented as JSON or XML, and are accessed using standard methods.
+
+*Why it matters:*
+It focuses on *nouns* (like `/books`, `/users`) instead of *verbs* (like `/getBook`, `/createUser`).
+
+*Example:*
+
+Instead of this RPC-style (non-RESTful):
+
+```
+GET /getUser?id=101
+POST /createOrder?user=101
+```
+
+You use resource-based REST-style:
+
+```
+GET /users/101
+POST /users/101/orders
+```
+
+####################
+
+The REST (Representational State Transfer) architecture is defined by a set of *architectural constraints*. These constraints guide how web services should be designed to be scalable, maintainable, and performant.
+
+There are *6 REST architectural constraints*:
+
+---
+
+== REST Architectural Constraints
+
+=== Client-Server
+
+*Separation of concerns between client and server.*
+
+* The *client* handles the user interface.
+* The *server* manages data and business logic.
+
+*Benefit:* Improves portability and scalability.
+
+*Example:*
+A mobile app (client) sends a request to `https://api.example.com/users/1`, and the server sends back the data.
+
+---
+
+=== Stateless
+
+*Each request from client to server must contain all necessary information to understand and process the request.*
+
+* No session is stored on the server.
+* Each request is independent.
+
+*Benefit:* Simplifies server design and improves scalability.
+
+*Example:*
+Every API call includes authentication tokens and necessary data, like:
+
+```http
+GET /orders
+Authorization: Bearer abc123
+```
+
+---
+
+=== Cacheable
+
+*Responses must define whether they are cacheable or not.*
+
+* Helps improve performance.
+* Reduces unnecessary server calls.
+
+*Benefit:* Optimizes network efficiency and reduces server load.
+
+*Example:*
+Response header:
+
+```http
+Cache-Control: max-age=3600
+```
+
+Allows the client to cache the response for 1 hour.
+
+---
+
+=== Uniform Interface
+
+*REST relies on a consistent, standardized interface for communication.*
+
+Key principles:
+
+* Use standard HTTP methods (GET, POST, PUT, DELETE)
+* Use resource URIs
+* Use standard media types (like JSON)
+* Stateless communication
+
+*Benefit:* Simplifies interactions between client and server.
+
+*Example:*
+
+```
+GET /users/123
+POST /users
+DELETE /users/123
+```
+
+---
+
+=== Layered System
+
+*A REST API can be composed of multiple layers (e.g., security, load balancing, caching), and each layer doesn't know about the other layers.*
+
+*Benefit:* Improves flexibility and scalability.
+
+*Example:*
+A request may pass through a load balancer, authentication server, and cache before reaching the API server.
+
+---
+
+=== Code on Demand (optional)
+
+*Servers can provide code (usually JavaScript) that clients can execute.*
+
+*Benefit:* Extends client functionality on the fly.
+
+*Example:*
+Server returns a JavaScript snippet that adds dynamic behavior to a web app.
+
+```html
+<script src="https://api.example.com/widgets/button.js"></script>
+```
+
+---
+
+
+== RESTful URL Design Best Practices
+
+=== Resource Naming
+
+*Definition:*
+In REST, resources (like users, products, orders) should be named using *nouns*, not verbs.
+
+*Best Practices:*
+
+* Use *plural nouns*
+* Use *lowercase*
+* Use *hyphens* for readability
+* Avoid using actions like `get` or `create` in the URL
+
+*Examples:*
+
+```
+GET /users           → Get all users
+GET /users/101       → Get user with ID 101
+POST /orders         → Create a new order
+DELETE /orders/55    → Delete order with ID 55
+```
+
+Avoid doing this:
+
+```
+GET /getUser?id=101     ✗
+POST /createOrder       ✗
+```
+
+---
+
+=== Path Parameters
+
+*Definition:*
+*Path parameters* are variables within the path of the URL and are used to identify a *specific resource*.
+
+*Syntax:* `/resource/{id}`
+
+*Examples:*
+
+```
+GET /books/123        → Get the book with ID 123
+PUT /users/45         → Update user with ID 45
+DELETE /orders/22     → Delete order with ID 22
+```
+
+Here, `123`, `45`, and `22` are *path parameters*.
+
+---
+
+=== Query Parameters
+
+*Definition:*
+*Query parameters* are used to *filter or sort* results and are not part of the resource path.
+
+*Syntax:* `/resource?key=value`
+
+*Examples:*
+
+```
+GET /books?author=John
+GET /books?genre=fiction&sort=title
+GET /users?age=30&country=India
+```
+
+Here, `author`, `genre`, `sort`, `age`, and `country` are *query parameters* used to refine the results.
+
+---
+
+=== API Versioning
+
+*Definition:*
+*API versioning* helps manage changes to an API over time without breaking existing clients.
+
+*Common Approaches:*
+
+*URI Versioning* (most common)
+
+```
+GET /v1/users
+GET /v2/users
+```
+
+*Header Versioning*
+
+```
+GET /users
+Header: Accept-Version: v1
+```
+
+*Query Parameter Versioning*
+
+```
+GET /users?version=1
+```
+
+== Response Codes and Error Handling
+
+=== Success Codes (2xx)
+
+These indicate the request was successfully received, understood, and accepted.
+
+[cols="1,2,3", options="header"]
+|===
+| Code | Meaning | Description
+| 200  | OK      | The request was successful
+| 201  | Created | Resource was successfully created
+| 204  | No Content | Request succeeded but there’s no response body
+|===
+
+.Examples:
+----
+GET /users/5     → 200 OK (with user data)
+POST /books      → 201 Created (new book added)
+DELETE /orders/9 → 204 No Content (order deleted)
+----
+
+=== Client Error Codes (4xx)
+
+These indicate the client sent a bad request or doesn't have the right permissions.
+
+[cols="1,2,3", options="header"]
+|===
+| Code | Meaning | Description
+| 400  | Bad Request  | Invalid data sent by client
+| 401  | Unauthorized | Missing or invalid authentication
+| 403  | Forbidden    | Authenticated but not allowed
+| 404  | Not Found    | Resource not found
+| 409  | Conflict     | Resource conflict (e.g. duplicate entry)
+|===
+
+.Examples:
+----
+GET /users/9999   → 404 Not Found
+POST /books       → 400 Bad Request (if required field is missing)
+DELETE /admin/5   → 403 Forbidden (if user lacks permission)
+----
+
+=== Server Error Codes (5xx)
+
+These indicate a failure on the server side while processing the request.
+
+[cols="1,2,3", options="header"]
+|===
+| Code | Meaning | Description
+| 500  | Internal Server Error | Server failed to handle the request
+| 502  | Bad Gateway           | Invalid response from upstream server
+| 503  | Service Unavailable   | Server is down or overloaded
+|===
+
+.Example:
+----
+GET /books → 500 Internal Server Error (e.g. database crash)
+----
+
+=== Error Handling Best Practices
+
+* Use proper HTTP status codes.
+* Return a JSON body with helpful error messages.
+* Don’t expose internal server details to the client.
+
+.Example Error Response (400 Bad Request):
+[source, json]
+----
+{
+  "status": 400,
+  "error": "Bad Request",
+  "message": "Missing required field: 'title'"
+}
+----
+
+.Example Error Response (404 Not Found):
+[source, json]
+----
+{
+  "status": 404,
+  "error": "Not Found",
+  "message": "User with ID 999 not found"
+}
+----
+
+=== Summary Table
+
+[cols="1,2,3", options="header"]
+|===
+| Status Code | Type         | Description
+| 200         | Success      | OK
+| 201         | Success      | Created
+| 204         | Success      | No Content
+| 400         | Client Error | Bad Request
+| 401         | Client Error | Unauthorized
+| 403         | Client Error | Forbidden
+| 404         | Client Error | Not Found
+| 409         | Client Error | Conflict
+| 500         | Server Error | Internal Server Error
+| 503         | Server Error | Service Unavailable
+|===
+
+
+== Request and Response Headers
+
+==== Request Headers
+
+These are sent by the client (like a browser or app) to provide extra information about the request.
+
+[cols="1,2,3", options="header"]
+|===
+| Header | Purpose | Example
+| Content-Type | Tells the server the format of the data being sent | application/json
+| Authorization | Sends credentials (like token or API key) | Bearer abc123token
+| Accept | Tells the server what format the client can accept | application/json, application/xml
+| User-Agent | Identifies the client (browser, app, etc.) | Mozilla/5.0
+| Host | Specifies the domain name of the server | example.com
+| Cache-Control | Controls caching behavior | no-cache, max-age=3600
+|===
+
+==== Response Headers
+
+These are sent by the server to give information about the response.
+
+[cols="1,2,3", options="header"]
+|===
+| Header | Purpose | Example
+| Content-Type | Tells the client the format of the returned data | application/json
+| Content-Length | Size of the response body in bytes | 348
+| Cache-Control | Instructs client/browser how to cache the data | no-store, max-age=600
+| ETag | Identifier for version of resource (used for caching) | "abc123"
+| Set-Cookie | Sends a cookie to be stored on the client | sessionId=abc123; HttpOnly
+| Access-Control-Allow-Origin | Used for CORS (cross-origin requests) | *, https://example.com
+|===
+
+==== Example Request
+
+[source, http]
+----
+POST /books HTTP/1.1
+Host: api.example.com
+Content-Type: application/json
+Authorization: Bearer abc123
+Accept: application/json
+
+{
+  "title": "The Alchemist",
+  "author": "Paulo Coelho"
+}
+----
+
+==== Example Response
+
+[source, http]
+----
+HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 75
+Cache-Control: no-store
+Access-Control-Allow-Origin: *
+
+{
+  "id": 101,
+  "title": "The Alchemist",
+  "author": "Paulo Coelho"
+}
+----
+
+##########################
+
+== JSON Jackson Data Binding
+
+Jackson is a popular Java library used to convert between Java objects and JSON data.
+This process is called *data binding*.
+
+==== Types of Data Binding
+
+* *Simple Data Binding*: Converts JSON to basic Java types like `Map`, `List`, `String`, etc.
+* *Full Data Binding*: Converts JSON to custom Java objects (POJOs) and vice versa.
+
+The main class used for this is `ObjectMapper` from the Jackson library.
+
+==== Example: Convert JSON to Java Object and Back
+
+===== 1. Java POJO Class
+
+[source,java]
+----
+public class Book {
+    private String title;
+    private String author;
+    private double price;
+
+    // Getters and setters
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+
+    public String getAuthor() { return author; }
+    public void setAuthor(String author) { this.author = author; }
+
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+}
+----
+
+===== 2. Convert JSON String to Java Object
+
+[source,java]
+----
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JsonToJavaExample {
+    public static void main(String[] args) throws Exception {
+        String json = "{ \"title\": \"The Alchemist\", \"author\": \"Paulo Coelho\", \"price\": 9.99 }";
+
+        ObjectMapper mapper = new ObjectMapper();
+        Book book = mapper.readValue(json, Book.class);
+
+        System.out.println(book.getTitle());  // Output: The Alchemist
+    }
+}
+----
+
+===== 3. Convert Java Object to JSON String
+
+[source,java]
+----
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class JavaToJsonExample {
+    public static void main(String[] args) throws Exception {
+        Book book = new Book();
+        book.setTitle("The Alchemist");
+        book.setAuthor("Paulo Coelho");
+        book.setPrice(9.99);
+
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonString = mapper.writeValueAsString(book);
+
+        System.out.println(jsonString);
+        // Output: {"title":"The Alchemist","author":"Paulo Coelho","price":9.99}
+    }
+}
+----
+
+==== Maven Dependency
+
+If you're using Maven, add this to your `pom.xml`:
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.15.2</version>
+</dependency>
+----
+
+##########################
+
+== Jackson in Spring Boot
+
+Spring Boot has *built-in support* for Jackson — no need to add the dependency manually in most cases.
+
+==== How It Works
+
+* Spring Boot includes Jackson automatically through the `spring-boot-starter-web` dependency.
+* It uses Jackson's `ObjectMapper`:
+** To serialize Java objects into JSON (for responses).
+** To deserialize JSON into Java objects (for requests).
+
+==== Example REST Controller
+
+[source,java]
+----
+@RestController
+public class BookController {
+
+    @PostMapping("/books")
+    public String createBook(@RequestBody Book book) {
+        return "Book received: " + book.getTitle();
+    }
+
+    @GetMapping("/book")
+    public Book getBook() {
+        Book book = new Book();
+        book.setTitle("The Alchemist");
+        book.setAuthor("Paulo Coelho");
+        book.setPrice(9.99);
+        return book; // Automatically converted to JSON by Jackson
+    }
+}
+----
+
+* `@RequestBody` → Jackson deserializes JSON to `Book` object.
+* Return value → Jackson serializes `Book` object to JSON.
+
+==== Do You Need to Add Jackson Manually?
+
+No. If you use the following dependency:
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+----
+
+Then Jackson (`jackson-databind`) is included by default.
+
+
+
+
+##########################
+
+
+##########################
+
+
+##########################
+
+
+##########################
+
+
+
+
+
+

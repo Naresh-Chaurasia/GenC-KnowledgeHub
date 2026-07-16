@@ -1,0 +1,186 @@
+= SOLID
+:toc: right
+:toclevels: 5
+
+== SOLID Q1
+
+Which principle states that a class should have only one reason to change?
+
+.Click Here For Answer
+[%collapsible]
+====
+The *Single Responsibility Principle (SRP)*. It ensures that a class is focused on one task or responsibility.
+====
+
+##############################################
+
+== SOLID Q2
+
+Which principle is violated in the below code?
+
+[source, java]
+----
+public class Report {
+    public void generateReport() {
+        // logic to generate report
+    }
+
+    public void saveToFile() {
+        // logic to save to file
+    }
+
+    public void sendEmail() {
+        // logic to send email
+    }
+}
+----
+
+.Click Here For Answer
+[%collapsible]
+====
+*Single Responsibility Principle (SRP)* is violated. This class is doing 3 different jobs: generating, saving, and emailing.
+====
+
+##############################################
+
+== SOLID Q3
+
+Which principle encourages extending a class's behavior without modifying it?
+
+.Click Here For Answer
+[%collapsible]
+====
+The *Open/Closed Principle (OCP)* — classes should be open for extension, but closed for modification.
+====
+
+== SOLID Q4
+
+What principle does the following code follow?
+
+[source, java]
+----
+public interface Shape {
+    double area();
+}
+
+public class Circle implements Shape {
+    public double area() {
+        return Math.PI * 5 * 5;
+    }
+}
+----
+
+.Click Here For Answer
+[%collapsible]
+====
+This follows the *Liskov Substitution Principle (LSP)*. `Circle` can be used wherever `Shape` is expected.
+====
+
+== SOLID Q5
+
+Which principle is violated in this example?
+
+[source, java]
+----
+public interface Worker {
+    void work();
+    void eat();
+}
+----
+
+.Click Here For Answer
+[%collapsible]
+====
+*Interface Segregation Principle (ISP)* is violated. Not all workers may need both methods (e.g., robots don't eat).
+====
+
+== SOLID Q6
+
+How does the following code violate the Dependency Inversion Principle?
+
+[source, java]
+----
+public class LightBulb {
+    public void turnOn() { System.out.println("Light On"); }
+}
+
+public class Switch {
+    private LightBulb bulb = new LightBulb();
+    public void operate() { bulb.turnOn(); }
+}
+----
+
+.Click Here For Answer
+[%collapsible]
+====
+The `Switch` is tightly coupled to `LightBulb`. DIP is violated — high-level modules should depend on abstractions.
+====
+
+== SOLID Q7
+
+Which principle is being applied here?
+
+[source, java]
+----
+public interface Printer {
+    void print(String text);
+}
+
+public class ConsolePrinter implements Printer {
+    public void print(String text) {
+        System.out.println(text);
+    }
+}
+----
+
+.Click Here For Answer
+[%collapsible]
+====
+This follows the *Dependency Inversion Principle (DIP)* by depending on an abstraction (`Printer`) instead of a concrete class.
+====
+
+== SOLID Q8
+
+How can you fix this SRP violation?
+
+[source, java]
+----
+public class Invoice {
+    public void calculateTotal() {}
+    public void printInvoice() {}
+}
+----
+
+.Click Here For Answer
+[%collapsible]
+====
+Split into two classes: one for calculation, one for printing. SRP suggests each class should have one responsibility.
+====
+
+== SOLID Q9
+
+What is the benefit of Interface Segregation Principle in real-world applications?
+
+.Click Here For Answer
+[%collapsible]
+====
+It avoids forcing classes to implement unnecessary methods, leading to cleaner and more focused interfaces.
+====
+
+== SOLID Q10
+
+What change would make the below code follow Open/Closed Principle?
+
+[source, java]
+----
+public class AreaCalculator {
+    public double calculateCircleArea() { return Math.PI * 5 * 5; }
+    public double calculateRectangleArea() { return 10 * 5; }
+}
+----
+
+.Click Here For Answer
+[%collapsible]
+====
+Introduce a `Shape` interface with an `area()` method. Then create separate `Circle` and `Rectangle` classes. This way, you can add new shapes without modifying `AreaCalculator`.
+====

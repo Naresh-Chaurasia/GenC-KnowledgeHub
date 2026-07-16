@@ -1,0 +1,212 @@
+= React
+:toc: right
+:toclevels: 5
+
+*1. What is React?*
+
+A. A database
+B. A JavaScript library for building UI
+C. A backend framework
+D. A CSS library
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *B*. React is a JavaScript library used to build user interfaces using components.
+====
+---
+
+*2. What is a component in React?*
+
+A. A database table
+B. A reusable piece of UI
+C. A CSS class
+D. A JavaScript variable
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *B*. A component is a reusable UI block in React.
+====
+---
+
+*3. What is JSX?*
+
+A. A database query language
+B. A CSS framework
+C. A syntax extension for JavaScript
+D. A React server
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. JSX allows writing HTML-like code inside JavaScript.
+====
+---
+
+*4. Which of the following is a functional component?*
+
+A. class MyComp extends React.Component
+B. function MyComp() {}
+C. React.createClass()
+D. new Component()
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *B*. Functional components are simple JavaScript functions.
+====
+---
+
+*5. What are props in React?*
+
+A. Internal component data
+B. Styling rules
+C. Inputs passed to components
+D. Database values
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. Props are used to pass data from parent to child components.
+====
+---
+
+*6. What is state in React?*
+
+A. Data stored in database
+B. Component’s internal data
+C. CSS configuration
+D. URL parameter
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *B*. State is used to manage data that changes inside a component.
+====
+---
+
+*7. Which statement is true?*
+
+A. Props can be modified
+B. State is read-only
+C. Props are read-only
+D. State is passed from parent
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. Props are immutable and cannot be changed by the component.
+====
+---
+
+*8. Which hook is used to manage state in functional components?*
+
+A. useEffect
+B. useContext
+C. useState
+D. useRef
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. useState allows functional components to have state.
+====
+---
+
+*9. Which hook is used for side effects?*
+
+A. useState
+B. useEffect
+C. useMemo
+D. useReducer
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *B*. useEffect is used for API calls, subscriptions, and side effects.
+====
+---
+
+*10. What is the virtual DOM?*
+
+A. Real browser DOM
+B. Database structure
+C. Lightweight copy of real DOM
+D. HTML template
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. Virtual DOM improves performance by minimizing real DOM updates.
+====
+---
+
+*11. What is conditional rendering?*
+
+A. Rendering only CSS
+B. Rendering based on conditions
+C. Rendering all components
+D. Rendering without state
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *B*. Conditional rendering displays UI based on conditions.
+====
+---
+
+*12. How are events handled in React?*
+
+A. Using inline HTML events
+B. Using addEventListener
+C. Using camelCase event handlers
+D. Using jQuery
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. React events use camelCase like onClick and onChange.
+====
+---
+
+*13. Why is key used in lists?*
+
+A. For styling
+B. For routing
+C. To identify list items uniquely
+D. To sort items
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. Keys help React track changes in lists efficiently.
+====
+---
+
+*14. What does lifting state up mean?*
+
+A. Deleting state
+B. Moving state to child
+C. Moving state to common parent
+D. Copying state
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. State is moved to a common parent to share between components.
+====
+---
+
+*15. What is React Router used for?*
+
+A. API calls
+B. State management
+C. Navigation between pages
+D. Styling components
+
+.Click Here For Answer
+[%collapsible]
+====
+Correct Answer: *C*. React Router enables navigation in single-page applications.
+====

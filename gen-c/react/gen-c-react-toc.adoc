@@ -1,0 +1,850 @@
+= React TOC
+:toc: right
+:toclevels:5
+:sectnums:
+
+== Components
+
+*Differences between class and functional components*
+
+*Class Component*
+
+* Uses `class`
+* Uses `this`
+* Uses lifecycle methods
+* More code
+
+[source, javascript]
+----
+class Counter extends React.Component {
+  state = { count: 0 };
+
+  render() {
+    return <h2>Count: {this.state.count}</h2>;
+  }
+}
+----
+
+*Functional Component*
+
+* Uses `function`
+* No `this`
+* Uses Hooks (`useState`, `useEffect`)
+* Less code (modern React)
+
+[source, javascript]
+----
+function Counter() {
+  const [count, setCount] = useState(0);
+  return <h2>Count: {count}</h2>;
+}
+----
+
+**Key Differences (Simple)**
+
+* Class → `this.state`, `this.setState()`
+* Function → `useState()`
+* Class → lifecycle methods
+* Function → `useEffect()`
+* Functional components are *preferred today*
+
+**Summary**
+
+Class components are old-style, functional components are modern and simpler.
+
+
+== React v18 Features
+
+*Automatic Batching*  
+
+Earlier, React updated the UI every time a state change happened.  
+In React 18, multiple state updates are grouped together and React updates the UI only once.
+
+* Many updates result in one re-render  
+* Improves performance  
+* Reduces unnecessary UI updates  
+
+*Concurrent Rendering*  
+
+Concurrent rendering allows React to work on multiple UI updates at the same time without blocking the screen.
+
+* React can pause, resume, or stop rendering work  
+* Keeps the application responsive  
+* Improves user experience during heavy rendering or data loading  
+
+*Summary*  
+
+* Automatic batching improves performance  
+* Concurrent rendering makes the UI smoother and more responsive  
+
+
+##################################################
+
+---
+
+== React Project Structure
+
+*Understanding the React Project Structure*
+
+*node_modules/*  
+
+Contains all third-party libraries and dependencies used by the project.  
+This folder is auto-generated and should not be edited manually.
+
+*public/*  
+
+Holds static files that are directly served to the browser.
+
+* index.html – The main HTML file where the React app is injected  
+* favicon.ico – App icon  
+
+*src/*  
+
+The most important folder. All application code lives here.
+
+* index.js / main.jsx  
+Entry point of the React application.  
+It renders the root component into the DOM.
+
+* App.js / App.jsx  
+Root component of the application.  
+Other components are usually nested inside this.
+
+* components/*  
+Reusable UI pieces like buttons, headers, tables, etc.
+
+* pages/* (optional)  
+Components that represent full pages (Home, About, Login).
+
+* services/* (optional)  
+Used for API calls and business logic.
+
+* models/* or *types/* (optional)  
+Defines data structures and TypeScript interfaces or classes.
+
+* styles/* or *.css files  
+Contains CSS files for styling components.
+
+*package.json*  
+
+Defines project metadata, dependencies, and scripts like start and build.
+
+*package-lock.json / yarn.lock*  
+
+Locks dependency versions to ensure consistency.
+
+*Summary*  
+
+* public → static files  
+* src → application code  
+* App.js → main component  
+* index.js → app entry point  
+* package.json → project configuration  
+
+
+
+
+##################################################
+
+---
+
+== What is JSX?
+
+JSX stands for *JavaScript XML*.
+
+JSX is a syntax extension used in *React* to describe what the UI should look like.
+
+JSX looks very similar to HTML, but it is *not HTML*.
+Behind the scenes, JSX is converted into JavaScript.
+
+JSX allows you to *write UI and logic together* in a clean and readable way.
+
+You can use *JavaScript expressions inside JSX* by wrapping them in curly braces `{ }`.
+
+JSX helps React create *dynamic, reusable, and readable components*.
+
+JSX is usually written inside the `return` statement of a React component.
+
+*Simple Example*
+
+[source, javascript]
+----
+function Welcome() {
+  const name = "Naresh";
+
+  return (
+    <h1>Hello, {name}</h1>
+  );
+}
+----
+
+In this example:
+
+- `h1` looks like HTML but it is JSX
+- `{name}` is a JavaScript expression inside JSX
+- When the value of `name` changes, the UI updates automatically
+
+*Why JSX is Useful*
+
+- Makes UI code easier to understand
+- Keeps structure and logic together
+- Reduces complex JavaScript code
+- Improves readability for beginners
+
+JSX is optional in React, but it is *strongly recommended* because it makes development simpler and cleaner.
+
+
+
+##################################################
+
+---
+
+=== Why JSX
+
+When building applications in React, components are the core building blocks. They help us create modular, reusable, and maintainable user interfaces. But there’s an interesting question many beginners ask:
+
+If browsers don’t understand JSX, how does React code actually run?
+
+Let’s break it down step by step.
+
+🌐 Why Browsers Can’t Understand JSX
+JSX looks like HTML, but it’s not HTML. It’s a syntax extension for JavaScript created specifically for React.
+
+Browsers only understand plain JavaScript, not JSX. This means JSX must be converted into something the browser can execute.
+
+That’s where transpilation comes in.
+
+🔄 What Is a Transpiler?
+A transpiler converts code written in one version of a language into another version of the same language.
+
+A simple example:
+
+Modern JavaScript (ES6):
+
+const PI = 3.14
+Older JavaScript (ES5):
+
+var PI = 3.14
+Older browsers only understand ES5. To make modern JavaScript work everywhere, we transpile it.
+
+🧠 Enter Babel: 
+Babel is a JavaScript compiler that converts:
+
+Modern JavaScript → Browser-compatible JavaScript
+JSX → Plain JavaScript
+
+This makes it possible for browsers to run React applications.
+
+🧩 What Happens to JSX?
+Consider this React component written in JSX:
+
+----
+function Heading(props) {
+    return <h1>{props.title}</h1>
+}
+----
+
+When Babel transpiles this code (using the classic React runtime), it becomes:
+
+----
+function Heading(props) {
+  return React.createElement("h1", null, props.title);
+}
+----
+So JSX is just syntactic sugar for React.createElement().
+
+⚙️ Understanding React.createElement()
+This method takes three arguments:
+
+The element or component to render
+An object containing attributes (or null if none exist)
+The content inside the element
+
+In simple terms, JSX is just a more readable way of writing JavaScript function calls.
+
+🧱 JSX for Components Works the Same Way
+JSX:
+
+----
+<Heading title="This is the heading text!" />
+----
+
+Transpiled output:
+
+----
+React.createElement(Heading, {
+  title: "This is the heading text!"
+});
+----
+Even custom components are converted into plain JavaScript function calls.
+
+🧪 The Minimum Code Needed for a React Component
+At its core, a React component only needs:
+
+A function
+A return statement that returns JSX
+
+Example:
+
+----
+function Example() {
+    return <div>An element</div>
+}
+----
+
+export default Example
+That’s all it takes to render something on the screen.
+
+🎯 Final Thought
+React may feel magical at first, but under the hood:
+
+JSX becomes JavaScript
+Babel does the translation
+Browsers execute plain JavaScript
+
+Once you understand this flow, React becomes far less mysterious—and much more powerful.
+
+
+##################################################
+
+---
+
+== Controlled Components in React
+
+A controlled component is a form element (like <input>, <textarea>, or <select>) whose value is controlled by React state.
+
+Here's a simple React example demonstrating controlled components, form management, and basic validation:
+
+```jsx
+import React, { useState } from 'react';
+
+function SimpleForm() {
+  // State to store form data
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: ''
+  });
+  
+}
+export default SimpleForm;
+```
+
+*Key Concepts Demonstrated:*
+
+1. **Controlled Components**:
+   - Each input is controlled by React state (`formData`)
+   - `value` and `onChange` props connect the input to the state
+
+2. **Form Management**:
+   - Single source of truth for form data in `formData` state
+   - Single `handleChange` function for all inputs using `name` attribute
+
+3. **Basic Validation**:
+   - Frontend validation in `validateForm()`
+   - Shows error messages conditionally
+   - Prevents submission if validation fails
+
+4. **Form Submission**:
+   - `handleSubmit` manages the form submission
+   - Validates before submission
+   - Prevents default form behavior
+
+This example shows the fundamental patterns for building forms in React with proper state management and validation.
+
+
+##################################################
+
+---
+
+== Step-by-Step Tutorial: React Hook Form (For Beginners)
+
+This tutorial explains React Hook Form slowly and clearly, assuming you are a backend developer learning React.
+
+---
+
+*Step 0: What Problem Are We Solving?*
+
+In backend development, you usually:
+
+* receive request data
+* validate it
+* process it
+
+In React, forms are how user data is collected.
+
+React Hook Form helps you:
+
+* collect form data
+* validate it
+* receive a clean JavaScript object (like a request body)
+
+Think of it as:
+Request DTO + validation, but on the browser side.
+
+---
+
+*Step 1: Install React Hook Form*
+
+[source, bash]
+----
+npm install react-hook-form
+----
+
+No additional setup is required.
+
+---
+
+*Step 2: Create a Simple Form (Without React Hook Form)*
+
+[source, javascript]
+----
+function UserForm() {
+  return (
+    <form>
+      <input placeholder="Username" />
+      <button>Submit</button>
+    </form>
+  );
+}
+
+export default UserForm;
+----
+At this stage:
+
+* the input appears on the screen
+* React does not know what the user typed
+
+---
+
+*Step 3: Introduce useForm()*
+
+[source, javascript]
+----
+import { useForm } from "react-hook-form";
+
+function UserForm() {
+  const { register } = useForm();
+
+  return (
+    <form>
+      <input {...register("username")} placeholder="Username" />
+      <button>Submit</button>
+    </form>
+  );
+}
+----
+
+Explanation:
+
+* useForm() creates form control logic
+* register("username") tells React Hook Form to track this input field
+
+No useState or onChange is required.
+
+---
+
+*Step 4: Handle Form Submission*
+
+[source, javascript]
+----
+import { useForm } from "react-hook-form";
+
+function UserForm() {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register("username")} placeholder="Username" />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+export default UserForm;
+----
+
+When the form is submitted:
+
+* all registered inputs are collected
+* an object is created
+* onSubmit(data) is called
+
+Example data:
+[source, javascript]
+----
+{
+  username: "naresh"
+}
+----
+
+---
+
+*Step 5: Add More Fields*
+
+[source, javascript]
+----
+<input {...register("email")} placeholder="Email" />
+<input {...register("age")} placeholder="Age" />
+----
+
+Now the submitted data becomes:
+[source, javascript]
+----
+{
+  username: "naresh",
+  email: "naresh@email.com",
+  age: "48"
+}
+----
+
+---
+
+*Step 6: Add Validation*
+
+[source, javascript]
+----
+<input
+  {...register("username", { required: true })}
+  placeholder="Username"
+/>
+----
+
+This means:
+* username is mandatory
+* the form will not submit if empty
+
+---
+
+*Step 7: Display Validation Errors*
+
+[source, javascript]
+----
+const { register, handleSubmit, formState: { errors } } = useForm();
+----
+
+[source, javascript]
+----
+<input
+  {...register("username", { required: true })}
+  placeholder="Username"
+/>
+
+{errors.username && <p>Username is required</p>}
+----
+
+If the field is empty:
+* validation fails
+* error message is shown
+
+---
+
+*Step 8: Complete Beginner-Friendly Example*
+
+[source, javascript]
+----
+import { useForm } from "react-hook-form";
+
+function UserForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log("Form Data:", data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input
+        {...register("username", { required: true })}
+        placeholder="Username"
+      />
+      {errors.username && <p>Username is required</p>}
+
+      <input
+        {...register("email", { required: true })}
+        placeholder="Email"
+      />
+      {errors.email && <p>Email is required</p>}
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+export default UserForm;
+----
+
+---
+
+*Step 9: Why Backend Developers Like React Hook Form*
+
+* No manual state management for every field
+* Clean validation logic
+* Minimal boilerplate
+* Better performance
+* Declarativ*
+
+
+
+##################################################
+
+---
+
+== React Context API
+
+This version explains Context API in the simplest possible way,
+one idea at a time, without complex terminology.
+
+---
+
+**The One Problem Context API Solves**
+
+You have some data (example: user name).
+
+Many components need this data.
+
+Passing the data again and again using props becomes painful.
+
+This problem is called *prop drilling*.
+
+---
+
+**Prop Drilling (Very Simple Example)**
+
+[source, javascript]
+----
+function App() {
+  return <Parent name="Naresh" />;
+}
+
+function Parent({ name }) {
+  return <Child name={name} />;
+}
+
+function Child({ name }) {
+  return <h2>Hello {name}</h2>;
+}
+----
+
+Problem here:
+* Parent does not use name
+* Still it must pass name
+* This becomes worse with many levels
+
+This is prop drilling.
+
+---
+
+**What Context API Does (One Sentence)**
+
+Context API lets you store data in one place  
+and read it anywhere without passing props.
+
+---
+
+**Step 1: Create Context (Global Box)**
+
+[source, javascript]
+----
+import { createContext } from "react";
+
+export const UserContext = createContext(null);
+----
+
+Think of this as:  
+Creating a global box to store user data.
+
+---
+
+**Step 2: Put Data into Context (Provider)**
+
+[source, javascript]
+----
+import { UserContext } from "./UserContext";
+
+function App() {
+  return (
+    <UserContext.Provider value="Naresh">
+      <Dashboard />
+    </UserContext.Provider>
+  );
+}
+----
+
+Explanation:
+
+* value="Naresh" is stored in the context
+* all child components can access it
+
+---
+
+**Step 3: Read Data from Context (useContext)**
+
+[source, javascript]
+----
+import { useContext } from "react";
+import { UserContext } from "./UserContext";
+
+function Dashboard() {
+  const user = useContext(UserContext);
+
+  return <h2>Hello {user}</h2>;
+}
+----
+
+Explanation:
+
+* useContext reads data from the global box
+* no props required
+
+---
+
+**Visual Flow**
+
+[source, text]
+----
+App
+ └─ UserContext.Provider (stores "Naresh")
+      └─ Dashboard
+           └─ useContext() → "Naresh"
+----
+
+---
+
+**When Should You Use Context?**
+
+Use Context when:
+
+* the same data is needed in many places
+* the data is global
+* prop passing becomes annoying
+
+Examples:
+
+* logged-in user
+* theme
+* language
+
+---
+
+**When Should You NOT Use Context?**
+
+Do not use Context for:
+
+* small local state
+* frequently changing values
+* everything in the app
+
+---
+
+**One Golden Rule**
+
+Props are for local communication.  
+Context is for global communication.
+
+---
+
+**Final Summary**
+
+* createContext() creates a global container
+* Provider puts data into the container
+* useContext() reads data from the container
+
+That is the entire Context API in React.
+
+
+
+##################################################
+
+---
+
+
+== Redux
+
+
+Here is a **very simple comparison** between **Redux** and **Application Context** in **AsciiDoc table format**, using **non-technical, easy language** as you prefer.
+
+[cols="1,1,1", options="header"]
+|===
+| Aspect | Redux | Application Context
+
+| What it is
+| A separate state manager library
+| A shared data holder inside the application
+
+| Purpose
+| Manage application-wide state
+| Share data across components
+
+| Where it lives
+| Outside the application logic
+| Inside the application
+
+| How data changes
+| Only through actions and reducer
+| Data can be changed directly
+
+| Predictability
+| Very predictable
+| Less predictable as app grows
+
+| Boilerplate
+| More code to write
+| Very little code
+
+| Best suited for
+| Large, complex applications
+| Small to medium applications
+
+| Debugging
+| Easy to track state changes
+| Harder to track changes
+
+| Learning curve
+| Steep initially
+| Very easy
+
+| Performance
+| Optimized for frequent updates
+| Can re-render more components
+
+| Example use case
+| Banking app, large dashboards
+| Theme, language, user settings
+
+|===
+
+
+
+##################################################
+
+---
+
+
+
+
+##################################################
+
+---
+
+
+
+
+##################################################
+
+---
+
+
+
+
+##################################################
+
+---

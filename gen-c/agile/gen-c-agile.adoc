@@ -1,0 +1,257 @@
+= Gen-C Agile
+:toc: right
+:toclevels:5
+:sectnums:
+
+== CheckList
+
+* [x] Notes in Github
+* [x] PPT in one drive
+* [x] PPT on Laptop
+* [x] PPT to PDF
+
+== Agile Simulation Assignment
+
+*Build a Simple Product Using Scrum*
+
+=== Objective
+To simulate a real Agile environment using the Scrum framework and demonstrate understanding of Agile principles, roles, ceremonies, and artifacts.
+
+=== Project Theme (Choose One)
+Ask each team to pick one simple product idea. Some examples:
+
+* A To-do List Web App
+* A Simple Weather App
+* A Book Catalog System
+* A Recipe Manager
+* A College Event Planner
+
+(Or let them come up with their own idea, subject to approval)
+
+=== Team Structure
+Each team should have:
+
+* 1 Product Owner
+* 1 Scrum Master
+* 2-4 Developers
+
+Encourage rotation in roles across different teams if time allows.
+
+=== Assignment Phases
+
+==== 1. Product Vision and Backlog Creation
+*Deliverables:* Product Vision Statement, Initial Product Backlog
+
+* Define the product goal.
+* Write at least 10-15 user stories with acceptance criteria.
+* Prioritize the product backlog.
+
+==== 2. Sprint Planning
+*Deliverables:* Sprint Goal, Sprint Backlog
+
+* Conduct a Sprint Planning meeting.
+* Select user stories for Sprint 1 (small scope — 1-week sprint recommended).
+* Break stories into tasks.
+* Estimate story points using Planning Poker.
+
+==== 3. Sprint Execution
+*Deliverables:* Daily Scrum notes/log (simulated)
+
+* Simulate daily standups (they can document this on a shared sheet).
+* Team works on implementing features (actual coding is optional or minimal).
+* Create at least 1 “Increment” or mock-up.
+
+==== 4. Sprint Review & Retrospective
+*Deliverables:* Sprint Review presentation + Sprint Retrospective notes
+
+* Showcase completed work (even if it's paper-based or design).
+* Capture feedback.
+* Reflect on what went well and what can be improved.
+
+=== Agile Artifacts to Submit
+Each team should submit:
+
+. Product Vision
+. Product Backlog
+. Sprint Backlog for Sprint 1
+. Burndown chart (simulated)
+. Daily Scrum notes (brief entries)
+. Sprint Review summary
+. Sprint Retrospective summary
+
+=== Evaluation Criteria
+
+[cols="2,1", options="header"]
+|===
+|Criteria                            |Marks
+|Quality of User Stories             |10
+|Use of Agile Roles and Ceremonies   |10
+|Estimation & Planning               |10
+|Agile Artifacts                     |10
+|Reflection & Team Collaboration     |10
+|*Total*                             |*50*
+|===
+
+
+##############################################
+
+==  Agile Simulation Assignment Solution (Sample)
+
+*Project:* To-Do List Application
+
+*Team Members:*
+
+* Product Owner: Riya Sharma
+* Scrum Master: Arjun Patel
+* Developers: Mansi Mehta, Rahul Verma
+
+== 1. Product Vision
+A simple and intuitive To-Do List app that allows users to manage daily tasks efficiently with minimal effort.
+
+== 2. Product Backlog (Sample Stories)
+
+[cols="1,3,1,1,3", options="header"]
+|===
+|ID |User Story |Priority |Story Points |Acceptance Criteria
+
+|US1 |As a user, I want to add a new task so that I can keep track of my activities. |High |3
+a|
+* Input field for task name
+* Save button
+* Task added to list
+
+|US2 |As a user, I want to delete a task so that I can remove completed or irrelevant tasks. |High |2
+a|
+* Delete button shown next to each task
+* Task removed from list
+
+|US3 |As a user, I want to mark a task as complete so that I know which tasks are done. |Medium |2
+a|
+* Checkbox available
+* Task shows strikethrough when checked
+
+|US4 |As a user, I want to edit a task so that I can change task description if needed. |Low |3
+a|
+* Edit icon next to each task
+* Input becomes editable
+
+|US5 |As a user, I want to filter tasks by status so I can view only pending or completed tasks. |Medium |3
+a|
+* Dropdown with filter options
+* Task list updates on selection
+|===
+
+== 3. Sprint Planning
+
+*Sprint Duration:*
+
+1 week
+
+*Sprint Goal:*
+
+Deliver the basic functionality of the To-Do List: Add, View, and Delete Tasks
+
+=== Selected User Stories for Sprint 1
+
+* US1 – Add a new task
+* US2 – Delete a task
+* US3 – Mark task as complete
+
+=== Sprint Backlog (Tasks)
+
+[cols="1,2", options="header"]
+|===
+|Story |Tasks
+
+|US1
+a|
+* Create task input form
+* Store task in memory or mock DB
+* Render task in list
+
+|US2
+a|
+* Add delete button
+* Implement delete logic
+
+|US3
+a|
+* Add checkbox
+* Style completed tasks
+|===
+
+== 4. Estimation (Planning Poker)
+
+* All user stories were estimated using Planning Poker.
+* Team discussed and reached consensus on story points using Fibonacci scale.
+
+== 5. Daily Scrum (Simulated Logs)
+
+[cols="1,2,2,1", options="header"]
+|===
+|Day |What was done |Plan for tomorrow |Any blockers?
+
+|Day 1 |UI design and setup |Complete add task feature |None
+|Day 2 |Added task creation |Start delete feature |None
+|Day 3 |Delete feature done |Checkbox toggle |Minor styling bug
+|Day 4 |Completed all tasks |Code cleanup and testing |None
+|===
+
+== 6. Sprint Review Summary
+
+* The team demonstrated the working version with:
+** Add task
+** Delete task
+** Mark as complete
+
+*Stakeholder feedback:*
+
+* UI looks clean
+* Add feature to edit tasks in next sprint
+
+== 7. Sprint Retrospective Summary
+
+*What went well:*
+
+* Clear role ownership
+* Quick consensus during planning
+
+*What could be improved:*
+
+* UI styling delayed functionality work
+* Need more test data for validation
+
+*Action Items:*
+
+* Separate design and coding roles in next sprint
+* Use mock data for testing earlier
+
+== 8. Burndown Chart (Simulated)
+
+_Attach a simple chart image showing progress from 8 points to 0 across the 5-day sprint._
+
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+
+
+##############################################
+

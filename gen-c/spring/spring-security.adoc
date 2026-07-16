@@ -1,0 +1,207 @@
+= Spring Security
+:toc: right
+:toclevels: 5
+:sectnums: 5
+
+### 1. Why Security Matters
+
+* Any application needs to ensure *who is accessing (authentication)* and *what they can access (authorization)*.
+* Without security, anyone could read or modify sensitive data.
+* Spring Security is the most popular solution in the Java ecosystem to handle this.
+
+---
+
+### 2. What is Spring Security?
+
+* It is a *framework* that provides:
+
+* *Authentication* (login, identity check)
+* *Authorization* (permissions/roles)
+* *Protection* against common web attacks (CSRF, XSS, session fixation, etc.)
+* Works with *Spring Boot* and *Spring MVC* seamlessly.
+
+---
+
+### 3. Core Concepts
+
+* *Authentication* – verifying user identity (username/password, token, etc.)
+* *Authorization* – deciding what an authenticated user can access
+* *Security Filter Chain* – a set of filters that inspect every request (like a security guard at the gate)
+* *Security Context* – holds the details of the logged-in user for that request/session
+
+---
+
+### 4. Default Behavior in Spring Boot
+
+* When you add Spring Security dependency:
+
+* All endpoints are *secured by default*
+* Auto-generated *login form* is provided
+* Default username = `user`, password is printed in the logs
+* This shows the framework can secure your app instantly, even without writing code.
+
+---
+
+### 5. Common Ways to Authenticate Users
+
+* *In-Memory* (for demos/testing)
+* *Database-backed* authentication (real-world apps)
+* *LDAP* for enterprise apps
+* *JWT / OAuth2* for modern microservices & APIs
+
+---
+
+### 6. Simple Example
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+          .authorizeRequests()
+            .anyRequest().authenticated()
+          .and()
+            .formLogin();
+    }
+}
+```
+
+* This means: every request requires login, and the login form will be shown automatically.
+
+---
+
+### 7. Interview/Mock Eval Questions They Might Ask
+
+1. *What’s the difference between authentication and authorization?*
+
+* Authentication = who you are, Authorization = what you can do.
+2. *What does Spring Security do by default when added to a project?*
+
+* Secures all endpoints, generates login form, provides default user/password.
+
+---
+
+### 8. Wrap-up
+
+* Spring Security = *Authentication + Authorization + Attack Protection*.
+* It works out-of-the-box but is highly customizable.
+* Knowing just these basics can already answer 2–3 typical interview/mock questions.
+
+---
+
+## 🔑 JWT (JSON Web Token)
+
+* *What it is*
+
+* A compact, self-contained token format used for authentication in modern web/mobile apps.
+* It’s just a *string* that contains information about the user.
+
+* *Structure*
+JWT has 3 parts (separated by dots `.`):
+
+  ```
+  header.payload.signature
+  ```
+
+  Example:
+
+  ```
+  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMSIsInJvbGUiOiJBRE1JTiJ9.qwerty123
+  ```
+
+1. *Header* → algorithm info (e.g., HS256)
+2. *Payload* → user details (username, roles, expiry time)
+3. *Signature* → digital signature to verify token integrity
+
+* *How it works (flow)*
+
+1. User logs in with username/password.
+2. Server generates a JWT and sends it back.
+3. For every future request, user sends the JWT in the `Authorization` header:
+
+     ```
+     Authorization: Bearer <token>
+     ```
+  4. Server validates the token → if valid, request proceeds.
+
+* *Why it’s popular*
+
+* Stateless → server doesn’t need to store sessions.
+* Portable → works well in microservices and APIs.
+* Fast → only token validation required, no DB lookup each time.
+
+* *Downsides*
+
+* If token is stolen, attacker can use it until it expires.
+* Token revocation is tricky.
+
+---
+
+## 🔑 OAuth2.0 (Open Authorization 2.0)
+
+* *What it is*
+
+** A standard protocol for authorization.
+** Commonly used to let users log in using third-party providers (Google, GitHub, Facebook, etc.).
+** Focuses on *delegated access*. Example: “Allow this app to access your Google Drive files.”
+
+* *Key Roles*
+
+1. *Resource Owner* → the user (you).
+2. *Client* → the app requesting access (your app).
+3. *Authorization Server* → issues tokens (Google, GitHub, etc.).
+4. *Resource Server* → API you want to access (Google Drive API).
+
+* *How it works (flow)*
+
+1. You click “Login with Google” on a website.
+2. You are redirected to Google’s login page.
+3. You log in and approve access.
+4. Google (Authorization Server) sends an *Access Token* back to the app.
+5. The app uses this token to call Google APIs (Resource Server).
+
+---
+
+* *Spring Security + OAuth2*
+
+* Spring Boot makes this easy with `spring-boot-starter-oauth2-client`.
+* Just a few configs and you can allow “Login with Google/GitHub”.
+
+* *Why it’s popular*
+
+* Standardized and secure.
+* No need to manage passwords for external users.
+* Works great with *JWT* (Access Token often is a JWT).
+
+---
+
+## 🔑 JWT vs OAuth2.0
+
+[cols="1,1,1", options="header"]
+|===
+| Feature    | JWT                                | OAuth2.0
+
+| Definition | Token format (self-contained data) | Authorization framework/protocol
+| Purpose    | Authentication mechanism           | Delegated access between systems
+| Usage      | APIs, microservices, mobile apps   | "Login with Google/Facebook", enterprise SSO
+| Works With | Standalone or inside OAuth2.0      | Often issues JWT tokens
+|===
+
+
+---
+
+## ✅ Typical Mock Questions on JWT/OAuth2.0
+
+1. *What is JWT and why is it used?*
+
+* A token format used for stateless authentication, carrying user info.
+
+2. *What is the difference between JWT and OAuth2.0?*
+
+* JWT is a token format, OAuth2.0 is a protocol for authorization that can use JWT.
+
+3. *How does “Login with Google” work?*
+
+* It’s OAuth2.0 → user authenticates with Google (Auth Server), app gets an Access Token, then uses it to call APIs.

@@ -1,0 +1,17 @@
+= SOLID Questions
+:toc: right
+:toclevels:5
+:sectnums:
+
+=== SOLID Principles – Questions
+
+1. What does the acronym SOLID stand for in object-oriented programming?
+2. Can you explain the Single Responsibility Principle with a real-world software example?
+3. How would you refactor a class that violates the Open/Closed Principle?
+4. What is the Liskov Substitution Principle, and how does it impact inheritance?
+5. What problems can arise if the Interface Segregation Principle is not followed?
+6. How does the Dependency Inversion Principle help with testability and maintainability?
+7. What’s the difference between dependency injection and dependency inversion?
+8. Can a class follow the Single Responsibility Principle but still violate the Open/Closed Principle?
+9. How would you apply SOLID principles when designing a payment processing system?
+10. How do SOLID principles help in building scalable and maintainable software architecture?

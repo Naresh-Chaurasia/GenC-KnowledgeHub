@@ -1,0 +1,205 @@
+= JUnit 5
+:toc: right
+:toclevels: 5
+:sectnums: 5
+
+== JUnit 5 Setup
+
+* Add the following dependencies for Maven:
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter</artifactId>
+    <version>5.10.0</version>
+    <scope>test</scope>
+</dependency>
+----
+
+* Or download the JARs manually (`junit-jupiter-api`, `junit-jupiter-engine`) and add them to your classpath.
+
+== JUnit 5 Annotations
+
+* `@Test` - Marks a method as a test method.
+* `@BeforeEach` - Runs before each test method.
+* `@AfterEach` - Runs after each test method.
+* `@BeforeAll` - Runs once before all test methods.
+* `@AfterAll` - Runs once after all test methods.
+* `@Disabled` - Skips the test method or class.
+
+== Basic Test Example
+
+[source, java]
+----
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CalculatorTest {
+
+    @Test
+    public void testAddition() {
+        assertEquals(5, 2 + 3);
+    }
+
+    @Test
+    public void testSubtraction() {
+        assertTrue(5 - 2 == 3);
+    }
+}
+----
+
+== Assertions
+
+* `assertEquals(expected, actual)`
+* `assertTrue(condition)`
+* `assertFalse(condition)`
+* `assertNull(object)`
+* `assertNotNull(object)`
+* `assertSame(expected, actual)`
+* `assertNotSame(expected, actual)`
+* `assertThrows(expectedException, executable)`
+* `fail("message")` – forces a failure
+
+== Lifecycle Annotations Example
+
+[source, java]
+----
+import org.junit.jupiter.api.*;
+
+public class SampleTest {
+
+    @BeforeAll
+    static void setupAll() {
+        System.out.println("Before All - runs once");
+    }
+
+    @AfterAll
+    static void tearDownAll() {
+        System.out.println("After All - runs once");
+    }
+
+    @BeforeEach
+    void setup() {
+        System.out.println("Before Each - runs before each test");
+    }
+
+    @AfterEach
+    void cleanup() {
+        System.out.println("After Each - runs after each test");
+    }
+
+    @Test
+    void testOne() {
+        System.out.println("Test One");
+    }
+
+    @Test
+    void testTwo() {
+        System.out.println("Test Two");
+    }
+}
+----
+
+== Testing Exceptions
+
+[source, java]
+----
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+@Test
+void testDivideByZero() {
+    assertThrows(ArithmeticException.class, () -> {
+        int result = 10 / 0;
+    });
+}
+----
+
+== Timeout Example
+
+[source, java]
+----
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
+import java.time.Duration;
+
+@Test
+void testTimeout() {
+    assertTimeout(Duration.ofSeconds(1), () -> {
+        Thread.sleep(500);
+    });
+}
+----
+
+== Ignore a Test
+
+[source, java]
+----
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+@Disabled("This test is disabled for now")
+@Test
+void testIgnored() {
+    assertEquals(1, 2);
+}
+----
+
+
+== Best Practices
+
+* Name your test methods clearly (`calculateInterest_shouldReturnCorrectValue`).
+* Keep tests independent.
+* Use `@BeforeEach` and `@AfterEach` to avoid code duplication.
+* Test both positive and negative cases.
+* Run tests frequently and automate with CI/CD pipelines.
+
+== Tools That Use JUnit 5
+
+* IDEs: Eclipse, IntelliJ IDEA, Visual Studio Code (with plugins)
+* Build tools: Maven, Gradle (have built-in JUnit 5 support)
+* CI tools: Jenkins, GitHub Actions, GitLab CI/CD
+
+== Test Suites in JUnit 5
+
+* In JUnit 5, test suites are built using `@Suite` annotations from the `junit-platform-suite` package.
+* You can group multiple test classes to run them together.
+
+=== Syntax and Example
+
+[source, java]
+----
+import org.junit.platform.suite.api.SelectClasses;
+import org.junit.platform.suite.api.Suite;
+
+@Suite
+@SelectClasses({
+    CalculatorTest.class,
+    UserServiceTest.class,
+    OrderServiceTest.class
+})
+public class AllTests {
+    // No code needed here
+}
+----
+
+* `AllTests` is the test suite that runs:
+** `CalculatorTest`
+** `UserServiceTest`
+** `OrderServiceTest`
+
+=== How to Run the Test Suite
+
+* Run `AllTests` like a regular test class.
+* JUnit Platform automatically executes all specified tests.
+
+=== Points to Remember
+
+* You must have `junit-platform-suite` dependency for suites.
+* Only classes, not methods, are selected.
+
+=== Advantages
+
+* Simplifies batch testing.
+* Organizes tests by feature, module, or layer.
+* Useful for continuous integration pipelines.

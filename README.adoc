@@ -1,0 +1,81 @@
+= GenC-KnowledgeHub
+:toc: right
+:toclevels: 5
+:sectnums: 5
+
+== React 4
+
+
+[cols="1,4", options="header"]
+|===
+| Date | Details
+
+| 27-Mar-26 | Agile Methodology, Jira Basics
+| 30-Mar-26 | Jira Basics, GIT Basics
+| 31-Mar-26 | GIT Basics
+| 1-Apr-26 | GIT Basics, Data Structures and Algorithms
+| 2-Apr-26 | Data Structures and Algorithms
+| 3-Apr-26 | Data Structures and Algorithms, Design Patterns and Principles
+| 6-Apr-26 | Design Patterns and Principles
+| 7-Apr-26 | Design Patterns and Principles, Spring Core and Maven
+| 8-Apr-26 | Spring Core and Maven
+| 9-Apr-26 | Spring Core and Maven
+| 10-Apr-26 | Spring Core and Maven
+| 13-Apr-26 | Spring Core and Maven
+| 15-Apr-26 | Spring Core and Maven, Spring Data JPA with Spring Boot, Hibernate
+| 16-Apr-26 | Spring Data JPA with Spring Boot, Hibernate
+| 17-Apr-26 | Spring Data JPA with Spring Boot, Hibernate
+| 20-Apr-26 | Spring Data JPA with Spring Boot, Hibernate
+| 21-Apr-26 | Spring Data JPA with Spring Boot, Hibernate, Cognizant Flowsource 101 foundation program [101-BASICS] (ELRNG02089)
+| 22-Apr-26 | Spring REST using Spring Boot 3
+| 23-Apr-26 | Spring REST using Spring Boot 3
+| 24-Apr-26 | Spring REST using Spring Boot 3
+| 27-Apr-26 | Spring REST using Spring Boot 3
+| 28-Apr-26 | Spring REST using Spring Boot 3
+| 29-Apr-26 | Spring REST using Spring Boot 3
+| 30-Apr-26 | Spring REST using Spring Boot 3
+| 4-May-26 | Spring REST using Spring Boot 3, Application Debugging-Backend
+| 5-May-26 | Application Debugging-Backend, TDD using JUnit and Mockito
+| 6-May-26 | TDD using JUnit and Mockito
+| 7-May-26 | TDD using JUnit and Mockito, SLF4J and Lombok
+| 8-May-26 | SLF4J and Lombok, Interim Evaluation (Project+Technical)
+| 11-May-26 | #Interim Evaluation# (Project+Technical)
+| 12-May-26 | Interim Evaluation (Project+Technical), Microservices with Spring Boot 3 and Spring Cloud
+| 13-May-26 | Microservices with Spring Boot 3 and Spring Cloud
+| 14-May-26 | Microservices with Spring Boot 3 and Spring Cloud
+| 15-May-26 | Microservices with Spring Boot 3 and Spring Cloud
+| 18-May-26 | Microservices with Spring Boot 3 and Spring Cloud
+| 19-May-26 | Microservices with Spring Boot 3 and Spring Cloud
+| 20-May-26 | Microservices with Spring Boot 3 and Spring Cloud
+| 21-May-26 | Microservices with Spring Boot 3 and Spring Cloud, Docker Basics
+| 22-May-26 | Docker Basics
+| 25-May-26 | GitHub Copilot
+| 26-May-26 | GitHub Copilot
+| 27-May-26 | GitHub Copilot, Node.js Fundamentals
+| 28-May-26 | Node.js Fundamentals, TypeScript Basics
+| 29-May-26 | TypeScript Basics, Bootstrap 5
+| 1-Jun-26 | Bootstrap 5, React (v18)
+| 2-Jun-26 | React (v18)
+| 3-Jun-26 | React (v18)
+| 4-Jun-26 | React (v18)
+| 5-Jun-26 | React (v18)
+| 8-Jun-26 | React (v18)
+| 9-Jun-26 | React (v18)
+| 10-Jun-26 | React (v18)
+| 11-Jun-26 | React (v18)
+| 12-Jun-26 | React (v18), Application Debugging - Front-end
+| 15-Jun-26 | Application Debugging - Front-end, Code Quality Standards
+| 16-Jun-26 | Code Quality Standards, SonarQube
+| 17-Jun-26 | SonarQube, Cloud and DevOps using AWS
+| 18-Jun-26 | Cloud and DevOps using AWS
+| 19-Jun-26 | Cloud and DevOps using AWS
+| 22-Jun-26 | Cloud and DevOps using AWS
+| 23-Jun-26 | Cloud and DevOps using AWS
+| 24-Jun-26 | Cloud and DevOps using AWS, Final Evaluation (Project+Technical)
+| 25-Jun-26 | Final Evaluation (Project+Technical)
+| 26-Jun-26 | Final Evaluation (Project+Technical)
+| 29-Jun-26 | Final Evaluation (Project+Technical), HackerRank Mock & Final Assessment
+| 30-Jun-26 | HackerRank Mock & Final Assessment
+
+
+|===

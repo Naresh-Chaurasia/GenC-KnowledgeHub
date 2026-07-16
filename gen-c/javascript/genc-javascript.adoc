@@ -1,0 +1,567 @@
+= GenC - JS / JavaScript
+:toc: right
+:toclevels: 5
+:sectnums: 5
+
+
+----
+npm init
+
+npm install chalk --save
+----
+
+
+== References
+
+* https://www.npmjs.com/
+
+== Code
+
+* /Users/nareshchaurasia/nc/GenC/GenC-React/genc-js-ts
+* https://github.com/Naresh-Chaurasia/GenC-React/tree/main/genc-js-ts
+
+
+== Introduction
+
+JavaScript is a *dynamic, high-level programming language* that enables you to add interactivity and logic to web pages. It is often used alongside *HTML* and *CSS* to build modern websites and web applications.
+
+* Runs directly in the browser.
+* Can also run on servers with Node.js.
+
+== JavaScript in HTML
+
+You can add JavaScript to your page using the `<script>` tag.
+
+*Example: Inline*
+
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My First JS Page</title>
+</head>
+<body>
+  <h1>Hello World</h1>
+  <script>
+    alert('Welcome to my page!');
+  </script>
+</body>
+</html>
+----
+
+*Example: External file*
+
+[source,html]
+----
+<script src="script.js"></script>
+----
+
+== Output in JavaScript
+
+You can output data in several ways:
+
+* `alert()` — shows a popup.
+* `console.log()` — outputs data to browser console.
+* `document.write()` — writes directly to the document (not recommended for most cases).
+
+[source,javascript]
+----
+alert('Hi there!');           // Popup alert
+console.log('Debug info');    // Log to console
+document.write('Hello!');     // Write to page
+----
+
+== Variables
+You can declare variables using `let`, `const`, or `var`. Modern practice is to use `let` and `const`.
+
+[source,javascript]
+----
+let name = "Alice";   // can change later
+const PI = 3.14159;   // cannot change
+----
+
+== Data Types
+
+JavaScript has *dynamic types*:
+
+* String — `let name = "Alice";`
+* Number — `let age = 25;`
+* Boolean — `let isActive = true;`
+* Object — `let person = { name: "Alice", age: 25 };`
+* Array — `let colors = ["red", "green", "blue"];`
+* Undefined — `let x;`
+* Null — `let y = null;`
+
+== Functions
+
+Functions let you reuse code.
+
+[source,javascript]
+----
+function greet(name) {
+  return "Hello, " + name;
+}
+
+let message = greet('Alice'); // "Hello, Alice"
+----
+
+##############################################
+
+
+=== Function Expression?
+
+A *function expression* is a way to define a function *as part of an expression* rather than as a standalone declaration.
+
+* Unlike function declarations, function expressions can:
+* Be assigned to variables.
+* Be passed as arguments.
+* Be returned from other functions.
+
+---
+
+Here is the basic syntax:
+[source,javascript]
+----
+const myFunction = function(parameters) {
+  // body of the function
+  return something;
+};
+----
+
+*Example 1: Basic Function Expression*
+
+[source,javascript]
+----
+const greet = function(name) {
+  return "Hello, " + name + "!";
+};
+
+console.log(greet("Alice")); // Output: Hello, Alice!
+----
+
+*Example 2: Passing as Argument*
+
+You can pass a function expression as a callback:
+[source,javascript]
+----
+function processUser(callback) {
+  const user = "John";
+  callback(user); // calling the passed-in function
+}
+
+// Passing a function expression
+processUser(function(name) {
+  console.log("Processing user:", name); // Output: Processing user: John
+});
+----
+
+*Example 3: Returning a Function Expression*
+
+You can return a function expression too:
+[source,javascript]
+----
+function makeMultiplier(factor) {
+  return function(number) {
+    return number * factor;
+  };
+}
+
+const double = makeMultiplier(2);
+const triple = makeMultiplier(3);
+
+console.log(double(10)); // Output: 20
+console.log(triple(10)); // Output: 30
+----
+
+*Example 4: Named Function Expression*
+
+You can also give a function expression a *name* (optional), useful for recursion:
+[source,javascript]
+----
+const factorial = function fact(n) {
+  if (n <= 1) return 1;
+  return n * fact(n - 1); // recursive call
+};
+
+console.log(factorial(5)); // Output: 120
+----
+
+##############################################
+
+
+=== Arrow Functions?
+
+*Arrow functions* are a *shorter*, *more concise* way of writing functions in JavaScript introduced in ES6 (ECMAScript 2015). They use the `=>` (fat arrow) syntax.
+
+*Syntax*
+
+[source,javascript]
+----
+const functionName = (parameters) => {
+  // function body
+  return value;
+};
+----
+
+*Example 1: Basic Arrow Function*
+
+[source,javascript]
+----
+const greet = (name) => {
+  return "Hello, " + name + "!";
+};
+
+console.log(greet("Alice")); // Output: Hello, Alice!
+----
+
+*Example 2: Implicit Return*
+
+If the function body contains only one expression, you can omit the `return` keyword and curly braces:
+[source,javascript]
+----
+const double = (n) => n * 2;
+
+console.log(double(5)); // Output: 10
+----
+
+*Example 3: No Parameters*
+
+If there are no parameters, use empty parentheses:
+[source,javascript]
+----
+const sayHi = () => "Hi there!";
+console.log(sayHi()); // Output: Hi there!
+----
+
+*Example 4: Single Parameter*
+
+If there's exactly one parameter, you can omit the parentheses:
+[source,javascript]
+----
+const square = x => x * x;
+console.log(square(4)); // Output: 16
+----
+
+*Example 5: Returning an Object*
+
+When returning an object literal, wrap it in parentheses to avoid ambiguity:
+[source,javascript]
+----
+const getUser = (name) => ({ username: name, active: true });
+
+console.log(getUser("Alice"));
+// Output: { username: 'Alice', active: true }
+----
+
+
+*Differences from Regular Functions*
+
+|===
+| Feature | Arrow Function | Regular Function
+| this | Lexical (inherited from parent scope) | Own `this` determined by caller
+| Syntax | Shorter `=>` syntax | Requires `function` keyword
+| Hoisted? | No | Yes
+| arguments object | Not available | Available
+| Can be a constructor? | No (`new` cannot be used) | Yes
+|===
+
+*Summary*
+
+*Arrow functions* offer a *clean and concise* syntax, especially for simple callbacks. They also make working with `this` easier in many cases. However, they cannot be used as constructors or with the `arguments` object.
+
+
+
+##############################################
+
+== Conditionals
+
+Use `if`, `else if`, and `else` to make decisions.
+
+[source,javascript]
+----
+let score = 85;
+
+if (score >= 90) {
+  console.log("Grade A");
+} else if (score >= 80) {
+  console.log("Grade B");
+} else {
+  console.log("Keep trying!");
+}
+----
+
+== Loops
+Repeat code with loops.
+
+* *for loop* — iterate a fixed number of times
+* *while loop* — iterate while condition is true
+
+[source,javascript]
+----
+for (let i = 0; i < 5; i++) {
+  console.log(i); // 0 to 4
+}
+
+let j = 0;
+while (j < 3) {
+  console.log(j); // 0 to 2
+  j++;
+}
+----
+
+== DOM Manipulation
+JavaScript can access and modify the HTML Document Object Model.
+
+[source,javascript]
+----
+// Get an element by its ID
+let heading = document.getElementById('myHeading');
+
+// Change its content
+heading.innerText = "New title!";
+
+// Change its style
+heading.style.color = "blue";
+----
+
+
+##############################################
+
+== Asynchronous Programming
+
+=== Callback Programming
+
+Of course! Here’s a *very simple, non-technical explanation of a callback*, followed by a *basic JavaScript example*.
+
+---
+
+* What is a Callback? (Non-technical)*
+
+Imagine you *order a pizza* 🍕.
+You give the shop your phone number and wait at home.
+
+When the pizza is ready, they *call you back* 📞 to let you know.
+
+In programming, a *callback* is like giving one function *another function to call later* — when its work is finished.
+
+---
+
+*A Super-Simple JavaScript Example*
+
+Here we have a function that *waits 2 seconds* and then *calls the callback*:
+
+```javascript
+function orderPizza(callback) {
+  console.log('Ordering pizza...');
+
+  // Simulate pizza making time with setTimeout
+  setTimeout(() => {
+    console.log('Pizza is ready!');
+    callback(); // This is like the shop "calling you back"
+  }, 2000);
+}
+
+// This is the callback function:
+function eatPizza() {
+  console.log('Time to eat the pizza! 🍕');
+}
+
+// Start the process:
+orderPizza(eatPizza);
+```
+
+---
+
+*What happens when you run this code?*
+
+1. `orderPizza()` says "Ordering pizza...".
+2. After 2 seconds, it says "Pizza is ready!".
+3. Then it "calls you back" — by running the `eatPizza()` function.
+
+---
+
+A *callback* is just a *function that you give to another function* so it can call you back when it’s done working.
+
+---
+
+##############################################
+
+
+=== 😈 Callback Hell?
+
+*Callback Hell* happens when you have to do **several tasks one after another**, and each one requires a callback.
+Your code ends up **nested deeper and deeper**, looking like a staircase that’s hard to read and maintain.
+
+---
+
+*Example of Callback Hell*
+
+Here we do *three tasks in order*:
+
+1. Order pizza
+2. Get a drink
+3. Set the table
+
+Each task waits for the one before it to finish — which is why the code nests deeper!
+
+```javascript
+function orderPizza(callback) {
+  console.log('Ordering pizza...');
+  setTimeout(() => {
+    console.log('Pizza is ready 🍕');
+    callback();
+  }, 2000);
+}
+
+function getDrink(callback) {
+  console.log('Getting drinks...');
+  setTimeout(() => {
+    console.log('Drinks are ready 🥤');
+    callback();
+  }, 1000);
+}
+
+function setTable(callback) {
+  console.log('Setting the table...');
+  setTimeout(() => {
+    console.log('Table is ready 🍽️');
+    callback();
+  }, 500);
+}
+
+// Nested callbacks (Callback Hell!)
+orderPizza(() => {
+  getDrink(() => {
+    setTable(() => {
+      console.log('All set — let’s eat! 🎉');
+    });
+  });
+});
+```
+
+---
+
+*Why is this "Hell"?*
+
+* Deep nesting — code is hard to read.
+* Error handling gets complicated.
+* Adding or changing steps is messy.
+
+
+##############################################
+
+== Promise
+
+
+*What is a Promise? (Non-technical)*
+
+Imagine you *order food online* 🍕.
+You don't get it immediately — the restaurant *promises* to deliver it *later*.
+
+While waiting:
+
+* You can do other things.
+* Eventually, they’ll give you either:
+** the food (*success* 🟢)
+** or say they cannot deliver (*failure* 🔴).
+
+A *Promise* in JavaScript works just like that —
+it’s a *"promise"* that some work will finish later,
+and then you'll either get a *result* or an *error*.
+
+*Simple Example in JavaScript*
+
+[source,javascript]
+----
+function orderPizza() {
+  return new Promise((resolve, reject) => {
+    console.log('Ordering pizza...');
+    setTimeout(() => {
+      const success = true; // Change to false to test error
+      if (success) {
+        resolve('Your pizza is here! 🍕');
+      } else {
+        reject('Sorry, no pizza today. ❌');
+      }
+    }, 2000);
+  });
+}
+
+// Usage
+orderPizza()
+  .then((message) => {
+    console.log('✅', message); // Runs if successful
+  })
+  .catch((error) => {
+    console.log('⚠️', error); // Runs if there was an error
+  });
+
+console.log('You can do other stuff while waiting...');
+----
+
+*Explanation:*
+
+* `orderPizza()` returns a *Promise*.
+* Inside the promise:
+** `resolve()` is like telling you: *Here’s the pizza 🍕*.
+** `reject()` is like telling you: *Sorry, can’t deliver ❌*.
+* `then()` handles success.
+* `catch()` handles errors.
+
+
+##############################################
+
+== Async/Await
+
+*What is async/await? (Non-technical)*
+
+Imagine you *order a pizza* 🍕 and then go do other things while waiting.
+
+When the pizza is finally ready:
+* you *wait* for it to arrive,
+* then continue with your next task.
+
+In programming, *async/await* is like telling JavaScript:
+
+> “*This task will take some time. Don’t freeze the page. Let me know when it’s done, and then I’ll continue.*”
+
+This makes your code easier to read — like telling a story one step at a time.
+
+*A simple example in JavaScript*
+
+[source,javascript]
+----
+function orderPizza() {
+  return new Promise((resolve) => {
+    console.log('Ordering pizza...');
+    setTimeout(() => {
+      resolve('Your pizza is ready! 🍕');
+    }, 2000);
+  });
+}
+
+// async function that uses await
+async function getPizza() {
+  const pizza = await orderPizza(); // wait for the pizza
+  console.log(pizza);                // then do this
+  console.log('Let\'s eat! 🍽️');
+}
+
+// Run the async function
+getPizza();
+
+console.log('You can do other stuff while waiting...');
+----
+
+*What happens here?*
+
+* `getPizza()` is an *async* function — this allows us to use *await*.
+* `await orderPizza()` tells JS to *wait* until the pizza is ready.
+* Meanwhile, JS can do other stuff (`console.log('You can do other stuff...')`).
+* Once the pizza is ready, it continues and prints "Let's eat!".
+
+---
+
+##############################################
+

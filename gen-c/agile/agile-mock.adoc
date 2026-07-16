@@ -1,0 +1,39 @@
+= Agile & Scrum – Assessment Questions for Freshers
+
+== Conceptual Understanding
+
+* What is Agile methodology, and how is it different from a traditional project management approach?
+* What are the four key values of the Agile Manifesto?
+* How does Agile emphasise "responding to change over following a plan"?
+
+*Agile vs Scrum*
+
+* What is the difference between Agile and Scrum? Explain with examples.
+* Name at least two other Agile frameworks apart from Scrum and briefly describe them.
+
+*Scrum Basics*
+
+* What are the core components of the Scrum framework?
+* Explain the concept of a sprint and its typical duration.
+* What are the three pillars of the empirical process in Scrum?
+
+*Roles & Responsibilities*
+
+* What are the responsibilities of a Product Owner in Scrum?
+* What role does a Scrum Master play in a team?
+* Who are Developers in Scrum, and what is their key responsibility?
+
+*Scrum Events*
+
+* What is discussed in a Daily Scrum meeting?
+* What is the purpose of a Sprint Review and how does it help stakeholders?
+
+*Artifacts & Work Management*
+
+* What is the difference between Product Backlog and Sprint Backlog?
+* What is a User Story and how is it different from an Epic?
+
+*Bonus Discussion Questions*
+
+* Why should velocity not be used to compare teams?
+* What are some common challenges faced while adopting Scrum?

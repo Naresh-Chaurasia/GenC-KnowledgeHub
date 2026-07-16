@@ -1,0 +1,46 @@
+= Core Java OOP Interview Questions (College Level)
+
+1. *What is Object-Oriented Programming (OOP)?*
+   Explain the main principles of OOP and why they are used in Java.
+
+2. *What is encapsulation?*
+   How do you achieve encapsulation in Java? Provide a simple example.
+
+3. *What is inheritance?*
+   How does Java support inheritance? What are its advantages?
+
+4. *What is polymorphism?*
+   Explain the difference between compile-time (method overloading) and runtime (method overriding) polymorphism.
+
+5. *What is method overloading?*
+   Can you overload a method by changing only the return type? Why or why not?
+
+6. *What is method overriding?*
+   What are the rules for method overriding in Java?
+
+7. *What is abstraction?*
+   How is abstraction implemented using abstract classes and interfaces?
+
+8. *What is the difference between an abstract class and an interface?*
+   When would you use one over the other?
+
+9. *What is the `super` keyword in Java?*
+   How is it used in constructors and methods?
+
+10. *What is dynamic method dispatch?*
+    How does it enable runtime polymorphism in Java?
+
+11. *What is the difference between composition and inheritance?*
+    Which one is preferred in modern design and why?
+
+12. *Can a constructor be overridden in Java?*
+    Explain why or why not, and how constructor chaining works.
+
+13. *What is the role of the `final` keyword in OOP?*
+    How does it affect classes, methods, and variables?
+
+14. *Explain the concept of tight coupling and loose coupling.*
+    How does OOP help in achieving loose coupling?
+
+15. *What happens if a subclass defines a method with the same name as a static method in the superclass?*
+    Is it overriding or something else? Explain with reasoning.

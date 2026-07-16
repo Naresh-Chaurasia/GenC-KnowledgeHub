@@ -1,0 +1,196 @@
+= Design Patters
+:toc: right
+:toclevels: 5
+
+== Q1
+
+Which pattern ensures that only one instance of a class is ever created?
+
+.Click Here For Answer
+[%collapsible]
+====
+The *Singleton Pattern*. It restricts object creation so only one global instance exists.
+====
+
+##############################################
+
+== Q2
+
+Which design pattern typically uses a private constructor and a static method?
+
+.Click Here For Answer
+[%collapsible]
+====
+The *Singleton Pattern*. A private constructor prevents direct object creation, and a static method returns the single instance.
+====
+
+##############################################
+
+== Q3
+
+Which pattern helps create objects without exposing the exact class that will be created?
+
+.Click Here For Answer
+[%collapsible]
+====
+The *Factory Method Pattern*. It lets subclasses decide which class to instantiate.
+====
+
+##############################################
+
+== Q4
+
+
+Which pattern provides a centralized method to create different types of related objects?
+
+.Click Here For Answer
+[%collapsible]
+====
+The *Factory Method Pattern*. It centralizes object creation based on input or conditions.
+====
+
+##############################################
+
+== Q5
+
+
+Which pattern allows selecting an algorithm at runtime?
+
+.Click Here For Answer
+[%collapsible]
+====
+The *Strategy Pattern*. It defines a family of algorithms and lets you choose one dynamically.
+====
+
+##############################################
+
+== Q6
+
+Which pattern avoids using multiple if-else or switch-case statements for different algorithm choices?
+
+.Click Here For Answer
+[%collapsible]
+====
+The *Strategy Pattern*. It replaces conditional logic with interchangeable strategy classes.
+====
+
+##############################################
+
+== Q7
+
+Which pattern adds new responsibilities to an object without modifying its original code?
+
+.Click Here For Answer
+[%collapsible]
+====
+The *Decorator Pattern*. It wraps objects to extend behavior dynamically.
+====
+
+##############################################
+
+== Q8
+
+Which pattern is often used to add features like logging, validation, or encryption to an existing object?
+
+.Click Here For Answer
+[%collapsible]
+====
+The *Decorator Pattern*. It allows adding extra behavior on top of an object.
+====
+
+##############################################
+
+== Q9
+
+
+Which pattern allows one object to notify many other objects when its state changes?
+
+.Click Here For Answer
+[%collapsible]
+====
+The *Observer Pattern*. It defines a one-to-many dependency between objects.
+====
+
+##############################################
+
+== Q10
+
+Which pattern is commonly used in GUI frameworks for events like button clicks?
+
+.Click Here For Answer
+[%collapsible]
+====
+The *Observer Pattern*. Observers (listeners) get notified when an event occurs.
+====
+
+##############################################
+
+== Coding Exercise
+
+
+=== 1. Singleton Pattern Exercise
+
+Write a class `DatabaseConnection` that must always return the same instance.
+
+Requirements:
+
+* The constructor should be private.
+* Provide a static method `getInstance()` that returns the single instance.
+* Print a message to verify that two calls to `getInstance()` return the same object.
+
+=== 2. Factory Method Pattern Exercise
+
+Create a program that generates different types of `Notification`:
+
+* `EmailNotification`
+* `SMSNotification`
+* `PushNotification`
+
+Requirements:
+
+* Create an interface `Notification` with a method `send()`.
+* Create a `NotificationFactory` with a method `createNotification(String type)`.
+* Based on the type, the factory should return the appropriate object.
+
+=== 3. Strategy Pattern Exercise
+
+Build a simple payment system that supports:
+
+* Credit Card Payment
+* UPI Payment
+* PayPal Payment
+
+Requirements:
+
+* Create a `PaymentStrategy` interface with a method `pay(double amount)`.
+* Implement three strategy classes.
+* Create a `PaymentContext` class that uses the strategy.
+* Allow the user (or main method) to switch the payment method at runtime.
+
+=== 4. Decorator Pattern Exercise
+
+Create a `Coffee` interface with a method `getCost()` and `getDescription()`.
+
+Requirements:
+
+* Implement `BasicCoffee`.
+* Create decorators:
+* `MilkDecorator`
+* `SugarDecorator`
+* Allow combining decorators (e.g., Coffee with Milk + Sugar).
+* Print the final cost and description.
+
+=== 5. Observer Pattern Exercise
+
+Create a simple **YouTube channel** notification system.
+
+Requirements:
+
+* Interface `Observer` with method `update(String videoTitle)`.
+* Class `YouTubeChannel` that maintains a list of subscribers.
+* Subscribers should get notified whenever a new video is uploaded.
+* Write a main method to:
+* Add subscribers
+* Upload a video
+* Show notifications sent to each subscriber
+

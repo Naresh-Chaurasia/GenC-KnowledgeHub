@@ -1,0 +1,42 @@
+= Spring Core Questions
+
+* What is the Spring Framework and what problem does it solve?
+
+* What is Spring Core and how is it different from other modules of Spring?
+
+* What is Inversion of Control (IoC) and why is it important?
+
+* What is Dependency Injection (DI)? Explain with a simple example.
+
+* What are the types of Dependency Injection supported by Spring?
+
+* What is the difference between constructor injection and setter injection?
+
+* What is a Spring Bean?
+
+* How does Spring manage the lifecycle of a bean?
+
+* What are different bean scopes available in Spring?
+
+* What is the default scope of a Spring bean?
+
+* What is the difference between singleton and prototype scope?
+
+* What is ApplicationContext in Spring?
+
+* How is ApplicationContext different from BeanFactory?
+
+* What is configuration metadata in Spring?
+
+* What are different ways to configure Spring (XML, annotations, Java config)?
+
+* What is @Component annotation and how is it used?
+
+* What is component scanning in Spring?
+
+* What is @Autowired annotation and how does it work?
+
+* What is the difference between @Component, @Service, and @Repository?
+
+
+
